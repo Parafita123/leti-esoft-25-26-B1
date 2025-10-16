@@ -169,6 +169,5 @@ An association is a relationship between instances of objects that indicates a r
 
 ## Domain Model
 
-**Do NOT forget to identify concept attributes too.**
 
 ![DM.svg](svg/DM.svg)
