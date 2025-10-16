@@ -9,21 +9,21 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Business Transactions**
 
-- Appointment – pedido de marcação de vacinação efectuado por um utente.
-- Vaccination Process – registo da administração de uma dose de vacina a um utente, incluindo observação e reacções adversas.
+- Appointment – pedido de marcação de vacinação efetuado por um utente.
+- Vaccination Process – registo da administração de uma dose de vacina a um utente, incluindo observação e reações adversas.
 
 ---
 
 **Transaction Line Items**
 
-- (Sem correspondência directa no domínio actual)
+- (Sem correspondência direta no domínio atual)
 
 ---
 
 **Product/Service related to a Transaction or Transaction Line Item**
 
 - Vaccine – produto biológico administrado para induzir imunidade.
-- Vaccine Type – classificação geral (ARNm, proteína recombinante, vírus inactivado, etc.).
+- Vaccine Type – classificação geral (ARNm, proteína recombinante, vírus inativado, etc.).
 - Vaccine Brand – designação comercial e fabricante de uma vacina específica.
 
 ---
@@ -32,7 +32,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 - Vaccination Certificate – documento emitido após a conclusão do esquema vacinal.
 - Vaccination History – conjunto de registos de vacinações de um utente.
-- Adverse Reaction Record – registo de reacções adversas observadas.
+- Adverse Reaction Record – registo de reações adversas observadas.
 
 ---
 
@@ -40,7 +40,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 - SNS User – indivíduo com número de SNS que pode agendar e receber vacinas.
 - Receptionist – funcionário que confirma presença e regista o estado do agendamento.
-- Nurse – profissional que administra vacinas e regista o acto.
+- Nurse – profissional que administra vacinas e regista o ato.
 - DGS Administrator – elemento que gere centros, pessoal e configurações.
 
 ---
@@ -55,7 +55,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 - Appointment Created – quando um utente marca uma vacinação.
 - Vaccination Performed – quando a vacina é administrada.
-- Adverse Reaction Observed – quando é registada uma reacção adversa.
+- Adverse Reaction Observed – quando é registada uma reação adversa.
 
 ---
 
@@ -83,16 +83,16 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 - Vaccine Type Catalog – lista das várias tecnologias de vacinas aprovadas.
 - Vaccine Brand Catalog – lista de marcas comerciais disponíveis.
-- Vaccination Centers Catalog – lista de centros activos (fixos e temporários).
+- Vaccination Centers Catalog – lista de centros ativos (fixos e temporários).
 
 ---
 
 **Containers**
 
-- User Registry – colecção de todos os utentes registados no sistema.
+- User Registry – coleção de todos os utentes registados no sistema.
 - Personnel Registry – lista de todos os funcionários (rececionistas e enfermeiros).
 - Appointment Registry – lista de todos os agendamentos realizados.
-- Vaccine Inventory – inventário de vacinas e respectivos lotes disponíveis em cada centro.
+- Vaccine Inventory – inventário de vacinas e respetivos lotes disponíveis em cada centro.
 
 ---
 
@@ -104,7 +104,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **(Other) Organizations**
 
-- DGS – Direcção-Geral da Saúde.
+- DGS – Direção-Geral da Saúde.
 
 ---
 
