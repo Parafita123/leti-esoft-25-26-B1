@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+title Use Case Diagram - Updated for Sprint 2
+
+left to right direction
+
+actor :Time: as System
+actor :Person: as Person
+note bottom: Please notice that \nthe actor's name \nhas been clarified
+actor :Unregistered User: as NotAuthUser
+
+
+(UC01 - Create a category) as (CategoryCreate)
+(UC02 - List all categories) as (CategoryList)
+(UC03 - Update category description) as (CategoryDescriptionUpdate)
+(UC04 - Delete a category) as (CategoryDelete)
+
+(UC05 - Create a task) as (TaskCreate)
+(UC?? - List all tasks) as (TaskList)
+(UC?? - Update a task) as (TaskUpdate)
+(UC?? - Delete a task) as (TaskDelete)
+
+(UC?? - Get a report) as (GetReport)
+
+(UC?? - Alert for task completion approaching) as (TaskAlert)
+
+(UC?? - Consult system goals) as (SystemGoals)
+(UC?? - Consult system credits) as (SystemCredits)
+
+
+NotAuthUser --> SystemGoals
+NotAuthUser --> SystemCredits
+
+Person --> CategoryCreate
+Person --> CategoryList
+Person --> CategoryDescriptionUpdate
+note right: Please notice the \nchanges made here
+Person --> CategoryDelete
+Person --> TaskCreate
+Person --> TaskList
+Person --> TaskUpdate
+Person --> TaskDelete
+Person --> GetReport
+
+System --> TaskAlert
+
+@enduml

@@ -1,0 +1,117 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+
+
+class Vaccine {
+    - commercial_name
+    - brand
+    - type
+    - technology
+}
+
+class Vaccine_Type {
+    - code
+    - disease
+}
+
+class Vaccine_Brand {
+    - patient_age
+    - number_doses
+    - dosage(mm)
+    - interval_doses
+}
+
+class National_Vaccination_Program {
+}
+
+class SNS_User {
+    - user_ID
+    - name
+    - date_birth
+    - sex
+    - postal_adress
+    - phone_number
+    - email
+    - CC_number
+    - SNS_user_number
+
+}
+
+class Disease {
+    - name
+}
+
+
+class Vaccination_Appointment {
+    - SNS_user_number
+    - facility
+    - date
+    - time
+    - vaccine_type
+}
+
+class Facility {
+    - name
+    - postal_adress
+    - phone_number
+    - email
+    - website_adress
+    - opening_hours
+    - closing_hours
+    - maximum_number_vaccines_administered
+    - center_capacity
+}
+
+
+class Type_of_Facility {
+    -community_mass_vaccination_center
+    -healthcare_center
+
+}
+
+class Current_Outbreak {
+    - disease
+}
+
+class Community_Mass_Vaccination_Center {
+}
+
+class Healthcare_Center {
+    - medical_services
+    - area
+    -
+}
+
+class Nurse {
+    - nurse_id
+    - name
+    - postal_adress
+    - phone_number
+    - email
+}
+
+class Receptionist {
+    - receptionist_id
+    - name
+    - postal_adress
+    - phone_number
+    - email
+}
+
+class Event {
+    - user_arrival
+    - vaccine_type
+    - brand
+    - lot_number
+    - reactions
+}
+
+class Administrator {
+    -name
+}
+
+@enduml
