@@ -7,6 +7,7 @@ hide methods
 
 
 class Vaccine {
+    - vaccine_id
     - commercial_name
     - brand
     - type
@@ -14,19 +15,12 @@ class Vaccine {
 }
 
 class Vaccine_Type {
-    - code
+    - type_id
     - disease
+    - short_description
 }
 
-class Vaccine_Brand {
-    - patient_age
-    - number_doses
-    - dosage(mm)
-    - interval_doses
-}
 
-class National_Vaccination_Program {
-}
 
 class SNS_User {
     - user_ID
@@ -47,14 +41,17 @@ class Disease {
 
 
 class Vaccination_Appointment {
+    - appointment_id
     - SNS_user_number
     - facility
+    - status
     - date
     - time
     - vaccine_type
 }
 
 class Facility {
+    - facility_id
     - name
     - postal_adress
     - phone_number
@@ -62,7 +59,6 @@ class Facility {
     - website_adress
     - opening_hours
     - closing_hours
-    - maximum_number_vaccines_administered
     - center_capacity
 }
 
@@ -74,16 +70,21 @@ class Type_of_Facility {
 }
 
 class Current_Outbreak {
+    - outbreak_id
     - disease
+    - start_date
+    - end_date
+    - is_current
+    - vaccine_type
 }
 
 class Community_Mass_Vaccination_Center {
+    - area
 }
 
 class Healthcare_Center {
     - medical_services
     - area
-    -
 }
 
 class Nurse {
@@ -103,15 +104,65 @@ class Receptionist {
 }
 
 class Event {
+    - event_id
     - user_arrival
     - vaccine_type
     - brand
     - lot_number
-    - reactions
+    - reaction_notes
 }
 
 class Administrator {
-    -name
+    - name
+    - email
+    - phone_number
 }
+
+class Vaccine_Certificate {
+    - certificate_id
+    - event_id
+    - nurse_id
+    - issue_day
+}
+
+
+Administrator "1" -right-- "1..*" Nurse: register
+
+Administrator "1" -left-- "1..*" Receptionist: register
+
+Administrator "1" -down-- "1..*" Vaccine: register
+
+Administrator "1" -left-- "1..*" Facility: register
+
+SNS_User "1" -down-- "0..1" Vaccination_Appointment: makes a
+
+Facility "1..*" -down-- "1" Type_of_Facility: organized by
+
+Type_of_Facility "1" -down-- "1..*" Community_Mass_Vaccination_Center: divided by
+Type_of_Facility "1" -down-- "1..*" Healthcare_Center: divided by
+
+Nurse "1..*" -left-- "1" Facility:works in
+Receptionist "1..*" -up-- "1" Facility:works in
+
+Current_Outbreak "0..*" -right-- "0..1*" Disease: have
+
+Current_Outbreak "1" -left-- "1" Vaccine_Type: correlated
+
+Vaccine "0..*" -right-- "1" Vaccine_Type: has
+
+Nurse "1" -down-- "0..*" Vaccine_Certificate: creates
+
+Vaccine_Certificate "0..1" -down- "1" Event: issued for
+
+Vaccination_Appointment "1" -down-- "1" Vaccine_Type: correlated
+
+Vaccination_Appointment "1" -up-- "0..1" Event: generates
+
+Event "0..*" -right-- "1" SNS_User: belongs
+
+SNS_User "1"  -left-- "0..1" Vaccine_Certificate: belongs
+
+
+
 
 @enduml
