@@ -1,48 +1,62 @@
 @startuml
-'https://plantuml.com/use-case-diagram
-
-title Use Case Diagram - Updated for Sprint 2
-
+title Pandemic Vaccination Management System (PVMS) - Use Case Diagram
 left to right direction
 
-actor :Time: as System
-actor :Person: as Person
-note bottom: Please notice that \nthe actor's name \nhas been clarified
-actor :Unregistered User: as NotAuthUser
+actor "SNS User" as User
+actor "Receptionist" as Receptionist
+actor "Nurse" as Nurse
+actor "Administrator (DGS Staff)" as Admin
 
 
-(UC01 - Create a category) as (CategoryCreate)
-(UC02 - List all categories) as (CategoryList)
-(UC03 - Update category description) as (CategoryDescriptionUpdate)
-(UC04 - Delete a category) as (CategoryDelete)
+  (Register / Authenticate) as UC1
+  (Schedule Vaccination) as UC2
+  (Consult / Cancel Appointment) as UC3
+  (Obtain Vaccination Certificate) as UC4
+  (View Vaccination History) as UC5
+  (Receive Notification) as UC6
 
-(UC05 - Create a task) as (TaskCreate)
-(UC?? - List all tasks) as (TaskList)
-(UC?? - Update a task) as (TaskUpdate)
-(UC?? - Delete a task) as (TaskDelete)
+  (Register Arrival) as UC7
+  (Confirm Appointment) as UC8
+  (Assist In-Person Scheduling) as UC9
+  (Update User Status) as UC10
 
-(UC?? - Get a report) as (GetReport)
+  (View Waiting List) as UC11
+  (Administer Vaccine) as UC12
+  (Record Vaccination Event) as UC13
+  (Issue Certificate) as UC14
+  (Record Adverse Reaction) as UC15
 
-(UC?? - Alert for task completion approaching) as (TaskAlert)
+  (Manage Vaccination Centers) as UC16
+  (Manage Staff) as UC17
+  (Manage Vaccines / Vaccine Types) as UC18
+  (Monitor Outbreak Data) as UC19
+  (Generate Reports / Statistics) as UC20
 
-(UC?? - Consult system goals) as (SystemGoals)
-(UC?? - Consult system credits) as (SystemCredits)
 
+'--- Associations ---
+User --> UC1
+User --> UC2
+User --> UC3
+User --> UC4
+User --> UC5
+User --> UC6
 
-NotAuthUser --> SystemGoals
-NotAuthUser --> SystemCredits
+Receptionist --> UC7
+Receptionist --> UC8
+Receptionist --> UC9
+Receptionist --> UC10
 
-Person --> CategoryCreate
-Person --> CategoryList
-Person --> CategoryDescriptionUpdate
-note right: Please notice the \nchanges made here
-Person --> CategoryDelete
-Person --> TaskCreate
-Person --> TaskList
-Person --> TaskUpdate
-Person --> TaskDelete
-Person --> GetReport
+Nurse --> UC11
+Nurse --> UC12
+Nurse --> UC14
+Nurse --> UC15
 
-System --> TaskAlert
+Admin --> UC16
+Admin --> UC17
+Admin --> UC18
+Admin --> UC19
+Admin --> UC20
+Admin --> UC13
+
 
 @enduml
