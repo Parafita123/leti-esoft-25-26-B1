@@ -117,11 +117,3 @@ _Specifies a limitation or physical requirement regarding the hardware used to h
 - The application is expected to run on a standard workstation or institutional computing environment.
 
 ---
-
-✅ **Summary:**  
-This document defines the non-functional requirements and supplementary constraints (FURPS+) for the **DGS Vaccination Management System**, ensuring:
-- Security and controlled access;
-- Usability and interface consistency;
-- Data reliability and integrity;
-- Testability and adherence to software engineering best practices (OO, SOLID, GRASP, TDD);
-- Compatibility and extensibility for future pandemic or vaccination scenarios.
