@@ -19,8 +19,8 @@ After receiving the User Stories of Sprint 2, the previous Use Case Diagram was 
 # Use Cases / User Stories
 | UC/US  | Description                                 |                   
 |:----|:--------------------------------------------|
-| US01 | [Create a category](../US01/US01.md)           |
-| US02 | [List all categories](../US02/US02.md)         |
-| US03 | [Update category description](../US03/US03.md) |
-| US04 | [Delete a category](../US04/US04.md)           |
-| US05 | [Create a task](US05/US05.md)               |
+| US01 |           |
+| US02 |       |
+| US03 | |
+| US04 |          |
+| US05 |              |

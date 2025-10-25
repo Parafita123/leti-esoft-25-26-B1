@@ -7,7 +7,6 @@ hide methods
 
 
 class Vaccine {
-    - vaccine_id
     - commercial_name
     - brand
     - type
@@ -15,7 +14,6 @@ class Vaccine {
 }
 
 class Vaccine_Type {
-    - type_id
     - disease
     - short_description
 }
@@ -23,7 +21,6 @@ class Vaccine_Type {
 
 
 class SNS_User {
-    - user_ID
     - name
     - date_birth
     - sex
@@ -41,7 +38,6 @@ class Disease {
 
 
 class Vaccination_Appointment {
-    - appointment_id
     - SNS_user_number
     - facility
     - status
@@ -50,8 +46,29 @@ class Vaccination_Appointment {
     - vaccine_type
 }
 
-class Facility {
-    - facility_id
+class Current_Outbreak {
+    - disease
+    - start_date
+    - end_date
+    - is_current
+    - vaccine_type
+}
+
+class Community_Mass_Vaccination_Center {
+    - name
+    - postal_adress
+    - phone_number
+    - email
+    - website_adress
+    - opening_hours
+    - closing_hours
+    - center_capacity
+    - area
+}
+
+class Healthcare_Center {
+    - medical_services
+    - area
     - name
     - postal_adress
     - phone_number
@@ -62,33 +79,7 @@ class Facility {
     - center_capacity
 }
 
-
-class Type_of_Facility {
-    -community_mass_vaccination_center
-    -healthcare_center
-
-}
-
-class Current_Outbreak {
-    - outbreak_id
-    - disease
-    - start_date
-    - end_date
-    - is_current
-    - vaccine_type
-}
-
-class Community_Mass_Vaccination_Center {
-    - area
-}
-
-class Healthcare_Center {
-    - medical_services
-    - area
-}
-
 class Nurse {
-    - nurse_id
     - name
     - postal_adress
     - phone_number
@@ -96,7 +87,6 @@ class Nurse {
 }
 
 class Receptionist {
-    - receptionist_id
     - name
     - postal_adress
     - phone_number
@@ -104,7 +94,6 @@ class Receptionist {
 }
 
 class Event {
-    - event_id
     - user_arrival
     - vaccine_type
     - brand
@@ -119,9 +108,6 @@ class Administrator {
 }
 
 class Vaccine_Certificate {
-    - certificate_id
-    - event_id
-    - nurse_id
     - issue_day
 }
 
@@ -132,17 +118,18 @@ Administrator "1" -left-- "1..*" Receptionist: register
 
 Administrator "1" -down-- "1..*" Vaccine: register
 
-Administrator "1" -left-- "1..*" Facility: register
+Administrator "1" -right-- "1..*" Community_Mass_Vaccination_Center: register
+
+Administrator "1" -up-- "1..*" Healthcare_Center: register
 
 SNS_User "1" -down-- "0..1" Vaccination_Appointment: makes a
 
-Facility "1..*" -down-- "1" Type_of_Facility: organized by
+Nurse "1..*" -down-- "1" Community_Mass_Vaccination_Center:works in
+Nurse "1..*" -left-- "1" Healthcare_Center:works in
 
-Type_of_Facility "1" -down-- "1..*" Community_Mass_Vaccination_Center: divided by
-Type_of_Facility "1" -down-- "1..*" Healthcare_Center: divided by
+Receptionist "1..*" -up-- "1" Community_Mass_Vaccination_Center:works in
+Receptionist "1..*" -up-- "1" Healthcare_Center:works in
 
-Nurse "1..*" -left-- "1" Facility:works in
-Receptionist "1..*" -up-- "1" Facility:works in
 
 Current_Outbreak "0..*" -right-- "0..1*" Disease: have
 
