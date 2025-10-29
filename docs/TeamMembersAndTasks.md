@@ -33,10 +33,10 @@ Finally, keep in mind that each User Story is not isolated — it must be integr
 | [Use Case Diagram (UCD)](system-documentation/global-artifacts/use-case-diagram.md)                |   all    |   all    |   all    |   all    |
 | [Supplementary Specification](system-documentation/global-artifacts/suplementary-specification.md) |   all    |   all    |   all    |   all    |
 | [Domain Model](system-documentation/global-artifacts/analysis.md)                                  |   all    |   all    |   all    |   all    |
-| [US01](system-documentation/US01) (SDP Activities)                                                 |          | 1XXXXXX  |          |          |
-| [US02](system-documentation/US02) (SDP Activities)                                                 |          | 1XXXXXX  |          |          |
-| [US03](system-documentation/US03) (SDP Activities)                                                 |          | 1XXXXXX  |          |          |
-| ...                                                                                                |   ...    |   ...    |   ...    |   ...    |
+| [US10](../docs/Sprint2/US10) (SDP Activities)                                                      |          | 1231283  |          |          |
+| [US11](system-documentation/US02) (SDP Activities)                                                 |          | 1XXXXXX  |          |          |
+| [US14](system-documentation/US03) (SDP Activities)                                                 |          | 1XXXXXX  |          |          |
+| [US15] (SDP Activities)                                                                            |   ...    |   ...    |   ...    |   ...    |
 | ...                                                                                                |   ...    |   ...    |   ...    |   ...    |
 
 

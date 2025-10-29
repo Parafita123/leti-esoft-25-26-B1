@@ -1,0 +1,26 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+hide methods
+
+title Specify New Vaccine Type
+
+class Admin {
+      + name: String
+      + login(): void
+  }
+
+  class VaccineType {
+       + type_id
+       + disease
+       + short_description
+  }
+
+  class VaccineTypeContainer {
+  }
+
+Admin --> VaccineType: registers
+ VaccineTypeContainer <-- VaccineType: is saved in
+
+@enduml
