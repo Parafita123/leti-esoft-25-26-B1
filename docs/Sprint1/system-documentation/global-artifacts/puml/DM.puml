@@ -122,6 +122,8 @@ Administrator "1" -right-- "1..*" Community_Mass_Vaccination_Center: register
 
 Administrator "1" -up-- "1..*" Healthcare_Center: register
 
+Administrator "1" -down-- "1..*" Vaccine_Type: specify a
+
 SNS_User "1" -down-- "0..1" Vaccination_Appointment: makes a
 
 Nurse "1..*" -down-- "1" Community_Mass_Vaccination_Center:works in
