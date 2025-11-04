@@ -12,7 +12,7 @@ class Admin {
   }
 
   class VaccineType {
-       + type_id
+       + type_code
        + disease
        + short_description
   }

@@ -15,10 +15,10 @@ class  CreateNewVaccineTypeController {
 }
 
 class VaccineType {
-    - type_id
+    - type_code
     - disease
     - short_description
-    +getVaccineTypeContainer(): VaccineTypeContainer
+    VaccineType(int type_code, string disease, string short_description)
 }
 
 class App {
@@ -27,7 +27,7 @@ class App {
 }
 
 class VaccineTypeContainer {
-+ create(string type_id, string disease, string short_description): VaccineType
++ create(string type_code, string disease, string short_description): VaccineType
 + save(VaccineType obj): Result
 }
 
