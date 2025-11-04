@@ -1,0 +1,47 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class RegisterVaccineView {
+}
+
+class RegisterVaccineController {
+    +registerVaccine(string name, string brand, string technology): void
+    +saveCreatedVaccine(): Result
+}
+
+class Administrator {
+    - name
+    +getVaccinesContainer(): VaccineContainer
+}
+
+class VaccineContainer {
+    +create(string name, string brand, string technology): Vaccine
+    +save(Vaccine obj): Result
+}
+
+class Vaccine {
+    - commercialName
+    - brand
+    - technology
+    Vaccine(string name, string brand, string technology)
+}
+
+class VaccineType {
+    - code
+    - description
+    - technology
+}
+
+Administrator "1" -right-> "1" VaccineContainer:  maintains
+VaccineContainer "1" -right-> "0..*" Vaccine:  records
+Vaccine "1" -down-> "1" VaccineType:  has
+
+RegisterVaccineView ..> RegisterVaccineController
+RegisterVaccineController ..> Administrator
+RegisterVaccineController ..> VaccineContainer
+RegisterVaccineController ..> Vaccine
+
+@enduml
