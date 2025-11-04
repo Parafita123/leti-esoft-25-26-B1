@@ -10,7 +10,7 @@ class CreateNewVaccineTypeView {
 }
 
 class  CreateNewVaccineTypeController {
-    +createNewVaccineType(string type_id, string disease, string short_description): void
+    +createNewVaccineType(string type_code, string disease, string short_description): void
     +saveCreatedNewVaccineType(): Result
 }
 

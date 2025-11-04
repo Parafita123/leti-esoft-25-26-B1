@@ -26,7 +26,8 @@ class Facility {
     - website_adress
     - opening_hours
     - closing_hours
-    - center_capacity
+    - max_vaccines_per_hour
+    - facility_type
 }
 
 class Employee {
@@ -34,6 +35,7 @@ class Employee {
     - postal_adress
     - phone_number
     - email
+    - employee_role
 }
 
 
@@ -51,7 +53,6 @@ class SNS_User {
 
 
 class Vaccination_Appointment {
-    - SNS_user_number
     - facility
     - status
     - date
@@ -108,25 +109,19 @@ Employee <|-- Receptionist
 Facility <|-- Community_Mass_Vaccination_Center
 Facility <|-- Healthcare_Center
 
-Administrator "1" -right--> "1..*" Nurse: register
+Employee "1" -up-> "0..*" Facility : works in
 
-Administrator "1" -left--> "1..*" Receptionist: register
+Administrator "1" -right--> "1..*" Employee: register
 
 Administrator "1" -down--> "1..*" Vaccine: register
 
-Administrator "1" -right--> "1..*" Community_Mass_Vaccination_Center: register
-
-Administrator "1" -up--> "1..*" Healthcare_Center: register
+Administrator "1" -right--> "1..*" Facility: register
 
 Administrator "1" -down--> "1..*" Vaccine_Type: specify a
 
 SNS_User "1" -down--> "0..1" Vaccination_Appointment: makes a
 
-Nurse "1..*" -down--> "1" Community_Mass_Vaccination_Center:works in
-Nurse "1..*" -left--> "1" Healthcare_Center:works in
 
-Receptionist "1..*" -up--> "1" Community_Mass_Vaccination_Center:works in
-Receptionist "1..*" -up--> "1" Healthcare_Center:works in
 
 Current_Outbreak "1" -left--> "1" Vaccine_Type: correlated
 
@@ -144,7 +139,7 @@ Event "0..*" -right--> "1" SNS_User: belongs
 
 Event "1" -down--> "1" Vaccine_Type:has
 
-SNS_User "1"  -left--> "0..1" Vaccine_Certificate: belongs
+SNS_User "1"  -left--> "0..1" Vaccine_Certificate: has
 
 
 
