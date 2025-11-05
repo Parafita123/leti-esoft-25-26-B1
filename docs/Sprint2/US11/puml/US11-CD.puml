@@ -30,9 +30,9 @@ class Vaccine {
 }
 
 class VaccineType {
-    - code
-    - description
-    - technology
+    - type_code
+    - disease
+    - short_description
 }
 
 Administrator "1" -right-> "1" VaccineContainer:  maintains
