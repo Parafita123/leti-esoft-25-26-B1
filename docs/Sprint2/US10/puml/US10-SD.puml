@@ -13,31 +13,27 @@ participant "container:VaccineTypeContainer" as container
 
 activate admin
 
-admin -> view: Login request
-view -> ctrl: login(PersonId, role)
-ctrl --> view: Confirms sucess
-view --> admin: Login response
-
-admin -> view: Request to specify a new vaccine type
-view --> admin: Display specification of a new vaccine type
+admin -> view: Asks to specify a new vaccine type
+view --> admin: Requests data (type_code, disease, short_description)
 admin -> view: Types requested data
-view -> ctrl: CreateNewVaccineType(int type_code, string disease, string short_description)
+view -> ctrl: createNewVaccineType(string type_code, string disease, string short_description)
+
 ctrl -> app: getVaccineTypeContainer()
 app --> ctrl: VaccineTypeContainer
-ctrl -> container: create(int type_code, string disease, string short_description)
+ctrl -> container: create(string type_code, string disease, string short_description)
 container --> ctrl: VaccineType
 ctrl --> view: Confirmation
 view --> admin: Shows all data and request confirmation
-admin -> view: Confirms data
-view -> ctrl: saveNewVaccineType()
-ctrl -> container: save(VaccineType)
-container -> container: validate(VaccineType)
+admin -> view: Confirms the data
+view -> ctrl: saveCreatedNewVaccineType()
+ctrl -> container: save(VaccineType obj)
+container -> container: validate(VaccineType obj)
 container --> container: Data confirmed
-container -> container: add(VaccineType)
+container -> container: save(VaccineType obj)
 container --> container: Data confirmed
 container --> ctrl: Data confirmed
 ctrl --> view: Data confirmed
-view --> admin: Confirms the sucess of operation
+view --> admin: Informs operation sucess
 
 
 
