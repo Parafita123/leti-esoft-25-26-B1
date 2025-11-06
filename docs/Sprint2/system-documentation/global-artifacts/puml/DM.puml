@@ -131,7 +131,7 @@ Nurse "1" -down--> "0..*" Vaccine_Certificate: creates >
 
 Vaccine_Certificate "0..1" -down-- "1" Event: issued for >
 
-Vaccination_Appointment "1" -down-- "1" Vaccine_Type: correlated >
+Vaccination_Appointment "0..*" -down-- "1" Vaccine_Type: correlated >
 
 Vaccination_Appointment "1" -up-- "0..1" Event: generates >
 

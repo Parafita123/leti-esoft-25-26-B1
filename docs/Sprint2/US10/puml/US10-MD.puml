@@ -7,20 +7,17 @@ hide methods
 title Specify New Vaccine Type
 
 class Admin {
-      + name: String
-      + login(): void
+      - name
+      - email
+      - phone_number
   }
 
   class VaccineType {
-       + type_code
-       + disease
-       + short_description
-  }
-
-  class VaccineTypeContainer {
+       - type_code
+       - disease
+       - short_description
   }
 
 Admin --> VaccineType: registers
- VaccineTypeContainer <-- VaccineType: is saved in
 
 @enduml

@@ -29,6 +29,7 @@ class App {
 class VaccineTypeContainer {
 + create(string type_code, string disease, string short_description): VaccineType
 + save(VaccineType obj): Result
++ validate(VaccineType obj): Result
 }
 
 
