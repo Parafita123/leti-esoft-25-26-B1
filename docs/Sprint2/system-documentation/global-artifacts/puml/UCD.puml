@@ -2,61 +2,22 @@
 title Pandemic Vaccination Management System (PVMS) - Use Case Diagram
 left to right direction
 
-actor "SNS User" as User
-actor "Receptionist" as Receptionist
-actor "Nurse" as Nurse
-actor "Administrator (DGS Staff)" as Admin
+actor "ADMIN" as admin
 
 
-  (Register / Authenticate) as UC1
-  (Schedule Vaccination) as UC2
-  (Consult / Cancel Appointment) as UC3
-  (Obtain Vaccination Certificate) as UC4
-  (View Vaccination History) as UC5
-  (Receive Notification) as UC6
 
-  (Register Arrival) as UC7
-  (Confirm Appointment) as UC8
-  (Assist In-Person Scheduling) as UC9
-  (Update User Status) as UC10
+  (US10 - As Administrator, I want to specify a new vaccine type.) as UC1
+  (US11 - As Administrator, I want to register a vaccine.) as UC2
+  (US14 - As Administrator, I want to register an employee.) as UC3
+  (US15 - As Administrator, I want to get a list of employees assigned to a specific function/role.) as UC4
 
-  (View Waiting List) as UC11
-  (Administer Vaccine) as UC12
-  (Record Vaccination Event) as UC13
-  (Issue Certificate) as UC14
-  (Record Adverse Reaction) as UC15
-
-  (Manage Vaccination Centers) as UC16
-  (Manage Staff) as UC17
-  (Manage Vaccines / Vaccine Types) as UC18
-  (Monitor Outbreak Data) as UC19
-  (Generate Reports / Statistics) as UC20
 
 
 '--- Associations ---
-User --> UC1
-User --> UC2
-User --> UC3
-User --> UC4
-User --> UC5
-User --> UC6
-
-Receptionist --> UC7
-Receptionist --> UC8
-Receptionist --> UC9
-Receptionist --> UC10
-
-Nurse --> UC11
-Nurse --> UC12
-Nurse --> UC14
-Nurse --> UC15
-
-Admin --> UC16
-Admin --> UC17
-Admin --> UC18
-Admin --> UC19
-Admin --> UC20
-Admin --> UC13
 
 
+admin --> UC1
+admin --> UC2
+admin --> UC3
+admin --> UC4
 @enduml
