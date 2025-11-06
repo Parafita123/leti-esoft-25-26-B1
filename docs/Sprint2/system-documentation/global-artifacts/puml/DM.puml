@@ -27,7 +27,6 @@ class Facility {
     - opening_hours
     - closing_hours
     - max_vaccines_per_hour
-    - facility_type
 }
 
 class Employee {
@@ -35,7 +34,6 @@ class Employee {
     - postal_adress
     - phone_number
     - email
-    - employee_role
 }
 
 
