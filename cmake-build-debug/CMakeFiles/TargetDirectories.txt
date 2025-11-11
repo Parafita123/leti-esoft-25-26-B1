@@ -1,0 +1,3 @@
+C:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/cmake-build-debug/CMakeFiles/untitled1.dir
+C:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
