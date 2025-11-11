@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autoactivate on
+autonumber
+
+actor "Admin" as Admin
+participant ":RegisterVaccineView" as View
+participant ":RegisterVaccineController" as Ctrl
+participant ":Administrator" as AdministratorDomain
+participant "container:VaccineContainer" as Container
+participant "vac:Vaccine" as Vaccine
+
+activate Admin
+
+Admin -> View: asks to register a new vaccine
+View --> Admin: requests data (name, brand, technology)
+Admin -> View: types requested data
+View -> Ctrl: registerVaccine(name, brand, technology)
+Ctrl -> AdministratorDomain: getVaccinesContainer()
+AdministratorDomain --> Ctrl: container
+Ctrl -> Container: create(name, brand, technology)
+Container --> Vaccine**: create(name, brand, technology)
+Container --> Ctrl: vac
+Ctrl --> View: ok
+View --> Admin: shows all data and requests confirmation
+Admin -> View: confirms the data
+View -> Ctrl: saveCreatedVaccine()
+Ctrl -> Container: save(vac)
+Container -> Container: validate(vac)
+Container --> Container: ok
+Container -> Container: add(vac)
+Container --> Container: ok
+Container --> Ctrl: ok
+Ctrl --> View: ok
+View --> Admin: informs operation success
+
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title US15 - Get List of Employees by Role - System Sequence Diagram
+
+autonumber
+
+actor "System Administrator" as Administrator
+participant ":System" as System
+
+activate Administrator
+
+Administrator -> System: requests list of employees by role
+System --> Administrator: asks for role selection
+
+Administrator -> System: selects desired role
+System --> Administrator: shows list of employees with that role
+
+@enduml

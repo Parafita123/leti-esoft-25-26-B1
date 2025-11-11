@@ -1,0 +1,26 @@
+@startuml
+
+title US15 - Domain Model
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class Employee {
+  +id
+  +name
+  +email
+  +phone
+  +role
+}
+
+class EmployeeContainer {
+  +employees
+  +getByRole(role)
+}
+
+class Admin
+
+Admin --> EmployeeContainer : requests list by role
+EmployeeContainer --> Employee : filters by role
+
+@enduml

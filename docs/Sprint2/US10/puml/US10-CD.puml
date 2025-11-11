@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide circle
+skinparam classAttributeIconSize 0
+
+title Specify New Vaccine Type - Class Diagram
+
+class CreateNewVaccineTypeView {
+}
+
+class  CreateNewVaccineTypeController {
+    +createNewVaccineType(string type_code, string disease, string short_description): void
+    +saveCreatedNewVaccineType(): Result
+}
+
+class VaccineType {
+    - type_code
+    - disease
+    - short_description
+    VaccineType(int type_code, string disease, string short_description)
+}
+
+class App {
+    - name
+    +getVaccineTypeContainer(): VaccineTypeContainer
+}
+
+class VaccineTypeContainer {
++ create(string type_code, string disease, string short_description): VaccineType
++ save(VaccineType obj): Result
++ validate(VaccineType obj): Result
+}
+
+
+App "1" -right-> "1" VaccineTypeContainer: maintains
+VaccineTypeContainer "1" -right-> "0..*" VaccineType: records
+
+CreateNewVaccineTypeView ..> CreateNewVaccineTypeController
+CreateNewVaccineTypeController ..> App
+CreateNewVaccineTypeController ..> VaccineTypeContainer
+CreateNewVaccineTypeController ..> VaccineType
+
+@enduml
