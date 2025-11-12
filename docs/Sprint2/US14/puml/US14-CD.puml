@@ -1,0 +1,54 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class RegisterEmployeeView {
+}
+
+class RegisterEmployeeController {
+    +registerEmployee(name, postalAddress, phoneNumber, email, citizenCardNumber, role): Result
+}
+
+class Administrator {
+    - name
+    - email
+    - phoneNumber
+    +getEmployeeContainer(): EmployeeContainer
+}
+
+class EmployeeContainer {
+    +create(name, postalAddress, phoneNumber, email, citizenCardNumber, role): Employee
+    +add(Employee obj): Result
+    +findById(string id): Employee
+    +getAll(): List<Employee>
+}
+
+class Employee {
+    - name
+    - postalAddress
+    - phoneNumber
+    - email
+    - citizenCardNumber
+    - role
+}
+
+class Nurse {
+}
+
+class Receptionist {
+}
+
+Employee <|-- Nurse
+Employee <|-- Receptionist
+
+Administrator "1" -right-> "1" EmployeeContainer: maintains
+EmployeeContainer "1" -right-> "0..*" Employee: records
+
+RegisterEmployeeView ..> RegisterEmployeeController
+RegisterEmployeeController ..> Administrator
+RegisterEmployeeController ..> EmployeeContainer
+RegisterEmployeeController ..> Employee
+
+@enduml
