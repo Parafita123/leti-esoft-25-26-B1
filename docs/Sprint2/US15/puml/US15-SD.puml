@@ -6,10 +6,9 @@ autoactivate on
 autonumber
 
 actor "Admin" as admin
-participant ":ListEmployeesByRoleView" as view
-participant ":ListEmployeesByRoleController" as ctrl
-participant ":App" as app
-participant "container:EmployeeContainer" as container
+participant "ListEmployeesByRoleView" as view
+participant "ListEmployeesByRoleController" as ctrl
+participant "EmployeeContainer" as container
 
 activate admin
 
@@ -18,11 +17,10 @@ admin -> view: Request list of employees by role
 view --> admin: Display role selection options
 admin -> view: Select desired role
 view -> ctrl: requestEmployeeList(role)
-ctrl -> app: getEmployeeContainer()
-app --> ctrl: EmployeeContainer
-ctrl -> container: findByRole(role)
-container --> ctrl: employees[]
-ctrl --> view: employees[]
-view --> admin: Shows list of employees
+ctrl -> container: getEmployeeListByRole(role)
+container --> ctrl: list with employees
+ctrl --> view: list with employees
+view --> admin: view list of employees
+
 
 @enduml

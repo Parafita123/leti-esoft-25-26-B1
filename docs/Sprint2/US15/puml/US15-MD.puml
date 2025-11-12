@@ -4,23 +4,35 @@ title US15 - Domain Model
 
 hide circle
 skinparam classAttributeIconSize 0
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
 
 class Employee {
-  +id
-  +name
-  +email
-  +phone
-  +role
+  - name
+  - postal_adress
+  - phone_number
+  - email
+  - role
 }
 
-class EmployeeContainer {
-  +employees
-  +getByRole(role)
+class Nurse {
+    - name
+    - postal_adress
+    - phone_number
+    - email
+}
+
+class Receptionist {
+    - name
+    - postal_adress
+    - phone_number
+    - email
 }
 
 class Admin
-
-Admin --> EmployeeContainer : requests list by role
-EmployeeContainer --> Employee : filters by role
+Employee <|-- Nurse
+Employee <|-- Receptionist
+Admin "1" -right-- "1..*" Employee: register >
 
 @enduml

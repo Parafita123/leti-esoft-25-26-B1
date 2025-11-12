@@ -10,26 +10,28 @@ class Admin
 
 
 class Employee {
-  -id
-  -name
-  -email
-  -phone
-  -role
+  - name
+  - postal_adress
+  - phone_number
+  - email
+  - role
 }
 
 class EmployeeContainer {
-  +employees
-  +getByRole(role)
+  +getEmployeeListByRole(role)
 }
 
-class ListEmployeesByRoleView
-class ListEmployeesByRoleController
-class App
+class ListEmployeesByRoleView{
+  -controller : ListEmployeesByRoleController
+}
+class ListEmployeesByRoleController{
+  -container : EmployeeContainer
+  +requestEmployeeList(role) : List<Employee>
+}
 
 Admin --> ListEmployeesByRoleView
 ListEmployeesByRoleView --> ListEmployeesByRoleController
-ListEmployeesByRoleController --> App
-App --> EmployeeContainer
+ListEmployeesByRoleController --> EmployeeContainer
 EmployeeContainer --> Employee
 
 @enduml
