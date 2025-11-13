@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+class Administrator {
+    - name
+}
+
+class VaccineContainer {
+}
+
+class Vaccine {
+    - commercialName
+    - brand
+    - technology
+}
+
+class VaccineType {
+    - type_code
+    - disease
+    - short_description
+}
+
+Administrator "1" -right-- "1" VaccineContainer:  maintains
+VaccineContainer "1" -right-- "0..*" Vaccine:  records
+Vaccine "1" -down-- "1" VaccineType:  has >
+
+@enduml

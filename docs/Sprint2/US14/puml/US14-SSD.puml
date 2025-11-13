@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autoactivate on
+autonumber
+
+actor "Administrator" as Admin
+participant ":System" as System
+
+activate Admin
+
+Admin -> System: asks to register a new employee
+System --> Admin: requests employee data (name, phone number, email, citizen card number, role)
+
+Admin -> System: provides employee data
+System --> Admin: validates data
+
+Admin -> System: confirms registration
+System --> Admin: informs operation success or failure
+
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+
+title US15 - Class Diagram
+
+hide circle
+skinparam classAttributeIconSize 0
+
+
+class Admin
+
+
+class Employee {
+  - name
+  - postal_adress
+  - phone_number
+  - email
+  - role
+}
+
+class EmployeeContainer {
+  +getEmployeeListByRole(role)
+}
+
+class ListEmployeesByRoleView{
+  -controller : ListEmployeesByRoleController
+}
+class ListEmployeesByRoleController{
+  -container : EmployeeContainer
+  +requestEmployeeList(role) : List<Employee>
+}
+
+Admin --> ListEmployeesByRoleView
+ListEmployeesByRoleView --> ListEmployeesByRoleController
+ListEmployeesByRoleController --> EmployeeContainer
+EmployeeContainer --> Employee
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+
+title US15 - Get List of Employees by Role - Sequence Diagram
+
+autoactivate on
+autonumber
+
+actor "Admin" as admin
+participant "ListEmployeesByRoleView" as view
+participant "ListEmployeesByRoleController" as ctrl
+participant "EmployeeContainer" as container
+
+activate admin
+
+
+admin -> view: Request list of employees by role
+view --> admin: Display role selection options
+admin -> view: Select desired role
+view -> ctrl: requestEmployeeList(role)
+ctrl -> container: getEmployeeListByRole(role)
+container --> ctrl: list with employees
+ctrl --> view: list with employees
+view --> admin: view list of employees
+
+
+@enduml

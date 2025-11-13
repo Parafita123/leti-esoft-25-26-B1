@@ -1,0 +1,41 @@
+@startuml
+
+title Specify New Vaccine Type - Sequence Diagram
+
+autoactivate on
+autonumber
+
+actor "Admin" as admin
+participant ":CreateNewVaccineTypeView" as view
+participant ":CreateNewVaccineTypeController" as ctrl
+participant ":App" as app
+participant "container:VaccineTypeContainer" as container
+
+activate admin
+
+admin -> view: Asks to specify a new vaccine type
+view --> admin: Requests data (type_code, disease, short_description)
+admin -> view: Types requested data
+view -> ctrl: createNewVaccineType(string type_code, string disease, string short_description)
+
+ctrl -> app: getVaccineTypeContainer()
+app --> ctrl: VaccineTypeContainer
+ctrl -> container: create(string type_code, string disease, string short_description)
+container --> ctrl: VaccineType
+ctrl --> view: Confirmation
+view --> admin: Shows all data and request confirmation
+admin -> view: Confirms the data
+view -> ctrl: saveCreatedNewVaccineType()
+ctrl -> container: save(VaccineType obj)
+container -> container: validate(VaccineType obj)
+container --> container: Data confirmed
+container -> container: save(VaccineType obj)
+container --> container: Data confirmed
+container --> ctrl: Data confirmed
+ctrl --> view: Data confirmed
+view --> admin: Informs operation sucess
+
+
+
+
+@enduml

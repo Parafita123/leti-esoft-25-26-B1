@@ -1,0 +1,38 @@
+@startuml
+
+title US15 - Domain Model
+
+hide circle
+skinparam classAttributeIconSize 0
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+class Employee {
+  - name
+  - postal_adress
+  - phone_number
+  - email
+  - role
+}
+
+class Nurse {
+    - name
+    - postal_adress
+    - phone_number
+    - email
+}
+
+class Receptionist {
+    - name
+    - postal_adress
+    - phone_number
+    - email
+}
+
+class Admin
+Employee <|-- Nurse
+Employee <|-- Receptionist
+Admin "1" -right-- "1..*" Employee: register >
+
+@enduml

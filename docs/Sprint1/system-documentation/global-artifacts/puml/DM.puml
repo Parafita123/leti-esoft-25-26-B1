@@ -7,7 +7,6 @@ hide methods
 
 
 class Vaccine {
-    - vaccine_id
     - commercial_name
     - brand
     - type
@@ -15,43 +14,11 @@ class Vaccine {
 }
 
 class Vaccine_Type {
-    - type_id
     - disease
     - short_description
 }
 
-
-
-class SNS_User {
-    - user_ID
-    - name
-    - date_birth
-    - sex
-    - postal_adress
-    - phone_number
-    - email
-    - CC_number
-    - SNS_user_number
-
-}
-
-class Disease {
-    - name
-}
-
-
-class Vaccination_Appointment {
-    - appointment_id
-    - SNS_user_number
-    - facility
-    - status
-    - date
-    - time
-    - vaccine_type
-}
-
 class Facility {
-    - facility_id
     - name
     - postal_adress
     - phone_number
@@ -62,33 +29,49 @@ class Facility {
     - center_capacity
 }
 
+class Employee {
+    - name
+    - postal_adress
+    - phone_number
+    - email
+}
 
-class Type_of_Facility {
-    -community_mass_vaccination_center
-    -healthcare_center
 
+class SNS_User {
+    - name
+    - date_birth
+    - sex
+    - postal_adress
+    - phone_number
+    - email
+    - CC_number
+    - SNS_user_number
+}
+
+
+
+class Vaccination_Appointment {
+    - SNS_user_number
+    - facility
+    - status
+    - date
+    - time
 }
 
 class Current_Outbreak {
-    - outbreak_id
     - disease
     - start_date
     - end_date
     - is_current
-    - vaccine_type
 }
 
 class Community_Mass_Vaccination_Center {
-    - area
 }
 
 class Healthcare_Center {
-    - medical_services
-    - area
 }
 
 class Nurse {
-    - nurse_id
     - name
     - postal_adress
     - phone_number
@@ -96,7 +79,6 @@ class Nurse {
 }
 
 class Receptionist {
-    - receptionist_id
     - name
     - postal_adress
     - phone_number
@@ -104,9 +86,7 @@ class Receptionist {
 }
 
 class Event {
-    - event_id
-    - user_arrival
-    - vaccine_type
+    - user_arrival_time
     - brand
     - lot_number
     - reaction_notes
@@ -119,48 +99,52 @@ class Administrator {
 }
 
 class Vaccine_Certificate {
-    - certificate_id
-    - event_id
-    - nurse_id
     - issue_day
 }
 
+Employee <|-- Nurse
+Employee <|-- Receptionist
 
-Administrator "1" -right-- "1..*" Nurse: register
+Facility <|-- Community_Mass_Vaccination_Center
+Facility <|-- Healthcare_Center
 
-Administrator "1" -left-- "1..*" Receptionist: register
+Administrator "1" -right--> "1..*" Nurse: register
 
-Administrator "1" -down-- "1..*" Vaccine: register
+Administrator "1" -left--> "1..*" Receptionist: register
 
-Administrator "1" -left-- "1..*" Facility: register
+Administrator "1" -down--> "1..*" Vaccine: register
 
-SNS_User "1" -down-- "0..1" Vaccination_Appointment: makes a
+Administrator "1" -right--> "1..*" Community_Mass_Vaccination_Center: register
 
-Facility "1..*" -down-- "1" Type_of_Facility: organized by
+Administrator "1" -up--> "1..*" Healthcare_Center: register
 
-Type_of_Facility "1" -down-- "1..*" Community_Mass_Vaccination_Center: divided by
-Type_of_Facility "1" -down-- "1..*" Healthcare_Center: divided by
+Administrator "1" -down--> "1..*" Vaccine_Type: specify a
 
-Nurse "1..*" -left-- "1" Facility:works in
-Receptionist "1..*" -up-- "1" Facility:works in
+SNS_User "1" -down--> "0..1" Vaccination_Appointment: makes a
 
-Current_Outbreak "0..*" -right-- "0..1*" Disease: have
+Nurse "1..*" -down--> "1" Community_Mass_Vaccination_Center:works in
+Nurse "1..*" -left--> "1" Healthcare_Center:works in
 
-Current_Outbreak "1" -left-- "1" Vaccine_Type: correlated
+Receptionist "1..*" -up--> "1" Community_Mass_Vaccination_Center:works in
+Receptionist "1..*" -up--> "1" Healthcare_Center:works in
 
-Vaccine "0..*" -right-- "1" Vaccine_Type: has
+Current_Outbreak "1" -left--> "1" Vaccine_Type: correlated
 
-Nurse "1" -down-- "0..*" Vaccine_Certificate: creates
+Vaccine "0..*" -right--> "1" Vaccine_Type: has
 
-Vaccine_Certificate "0..1" -down- "1" Event: issued for
+Nurse "1" -down--> "0..*" Vaccine_Certificate: creates >
 
-Vaccination_Appointment "1" -down-- "1" Vaccine_Type: correlated
+Vaccine_Certificate "0..1" -down--> "1" Event: issued for
 
-Vaccination_Appointment "1" -up-- "0..1" Event: generates
+Vaccination_Appointment "1" -down--> "1" Vaccine_Type: correlated
 
-Event "0..*" -right-- "1" SNS_User: belongs
+Vaccination_Appointment "1" -up--> "0..1" Event: generates
 
-SNS_User "1"  -left-- "0..1" Vaccine_Certificate: belongs
+Event "0..*" -right--> "1" SNS_User: belongs
+
+Event "1" -down--> "1" Vaccine_Type:has
+
+SNS_User "1"  -left--> "0..1" Vaccine_Certificate: belongs
 
 
 

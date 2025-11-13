@@ -1,0 +1,23 @@
+@startuml
+title Pandemic Vaccination Management System (PVMS) - Use Case Diagram
+left to right direction
+
+actor "ADMIN" as admin
+
+
+
+  (US10 - As Administrator, I want to specify a new vaccine type.) as UC1
+  (US11 - As Administrator, I want to register a vaccine.) as UC2
+  (US14 - As Administrator, I want to register an employee.) as UC3
+  (US15 - As Administrator, I want to get a list of employees assigned to a specific function/role.) as UC4
+
+
+
+'--- Associations ---
+
+
+admin --> UC1
+admin --> UC2
+admin --> UC3
+admin --> UC4
+@enduml

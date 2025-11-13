@@ -1,0 +1,47 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autoactivate on
+autonumber
+
+actor "Administrator" as Admin
+participant ":RegisterEmployeeView" as View
+participant ":RegisterEmployeeController" as Ctrl
+participant ":Administrator" as Administrator
+participant "container:EmployeeContainer" as Container
+participant "Cat:Employee" as Employee
+
+activate Admin
+
+Admin -> View: asks to register a new employee
+View --> Admin: requests employee data \n (name, phone number, email, function, CC, etc.)
+
+Admin -> View: provides requested data
+View -> Ctrl: createEmployee(name, phone, email, function, CC)
+Ctrl -> Administrator: getEmployeeContainer()
+Administrator --> Ctrl: container
+
+Ctrl -> Container: create(name, phone, email, function, CC)
+Container --> Employee**: create(name, phone, email, function, CC)
+Container --> Ctrl: cat
+Ctrl -> Container: validate(cat)
+Container -> Employee: isValid()
+Employee --> Container: ok
+Container -> Container: checkDuplicates(cat)
+Container --> Container: ok
+Container --> Ctrl: ok
+Ctrl --> View: ok
+View --> Admin: shows all employee data and requests confirmation
+
+Admin -> View: confirms employee registration
+View -> Ctrl: saveRegisteredEmployee(Cat)
+Ctrl -> Container: save(Cat)
+Container -> Container: validate(Cat)
+Container --> Container: ok
+Container -> Container: add(Cat)
+Container --> Container: ok
+Container --> Ctrl: ok
+Ctrl --> View: ok
+View --> Admin: informs operation success
+
+@enduml
