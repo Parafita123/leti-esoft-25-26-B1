@@ -23,25 +23,36 @@ VaccineType VaccineTypeContainer::create(const string& type_code,
 }
 
 Result VaccineTypeContainer::validate(const VaccineType& vaccineType) const {
+    // 1. type_code não pode estar vazio
     if (vaccineType.getTypeCode().empty()) {
         return Result::NOK(L"Type code cannot be empty.");
     }
 
+    // 2. type_code tem de ter exatamente 5 caracteres
+    if (vaccineType.getTypeCode().size() != 5) {
+        return Result::NOK(L"Type code must have exactly 5 characters.");
+    }
+
+    // 3. único
     if (existsTypeCode(vaccineType.getTypeCode())) {
         return Result::NOK(L"Type code already exists.");
     }
 
+    // 4. doença não pode ser vazia
     if (vaccineType.getDisease().empty()) {
         return Result::NOK(L"Disease name cannot be empty.");
     }
 
+    // 5. descrição não pode ser vazia
     if (vaccineType.getShortDescription().empty()) {
         return Result::NOK(L"Short description cannot be empty.");
     }
 
+    // 6. limitar tamanho da descrição (nao foi pedido)
     if (vaccineType.getShortDescription().size() > 100) {
         return Result::NOK(L"Short description must be under 100 characters.");
     }
+
 
     return Result::OK(L"Validation successful.");
 }
