@@ -6,3 +6,7 @@
 VaccineTypeContainer& App::getVaccineTypeContainer() {
     return vaccineTypeContainer;
 }
+
+VaccineContainer& App::getVaccineContainer() {
+    return vaccineContainer;
+}

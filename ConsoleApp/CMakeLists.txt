@@ -9,6 +9,10 @@ add_executable(ConsoleApp ConsoleApp.cpp
         sources/views/CreateNewVaccineTypeView.cpp
         ../Core/sources/domain/model/VaccineTypeContainer.cpp
         headers/views/MainView.h
-        sources/views/MainView.cpp)
+        sources/views/MainView.cpp
+        # US11 - Register Vaccine
+        headers/views/RegisterVaccineView.h
+        sources/views/RegisterVaccineView.cpp
+)
 
 target_link_libraries(ConsoleApp Core)
