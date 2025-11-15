@@ -1,6 +1,11 @@
-#include <iostream>
+#include "Core/headers/controllers/ui/App.h"
+#include "ConsoleApp/headers/views/MainView.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    App app;
+    MainView mainView(app);
+
+    mainView.show();
+
     return 0;
 }

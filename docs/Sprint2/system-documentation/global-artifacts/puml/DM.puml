@@ -9,11 +9,11 @@ hide methods
 class Vaccine {
     - commercial_name
     - brand
-    - type
     - technology
 }
 
 class Vaccine_Type {
+    - type_code
     - disease
     - short_description
 }
