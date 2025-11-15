@@ -1,14 +1,17 @@
 @startuml
-'https://plantuml.com/class-diagram
-
 hide circle
 skinparam classAttributeIconSize 0
 
 class RegisterEmployeeView {
+    +requestEmployeeData(): EmployeeData
+    +requestRoleSelection(): Role
+    +showEmployeeData(employee: Employee)
+    +requestConfirmation(): boolean
 }
 
 class RegisterEmployeeController {
-    +registerEmployee(name, postalAddress, phoneNumber, email, citizenCardNumber, role): Result
+    +createEmployee(name, postalAddress, phoneNumber, email, citizenCardNumber, role): Employee
+    +saveRegisteredEmployee(employee: Employee): Result
 }
 
 class Administrator {
@@ -20,18 +23,21 @@ class Administrator {
 
 class EmployeeContainer {
     +create(name, postalAddress, phoneNumber, email, citizenCardNumber, role): Employee
-    +add(Employee obj): Result
-    +findById(string id): Employee
+    +add(employee: Employee): Result
+    +checkDuplicates(employee: Employee): boolean
+    +findById(id: string): Employee
     +getAll(): List<Employee>
 }
 
 class Employee {
+    -Employee_id
     - name
     - postalAddress
     - phoneNumber
     - email
     - citizenCardNumber
     - role
+    +isValid(): boolean
 }
 
 class Nurse {
@@ -43,8 +49,8 @@ class Receptionist {
 Employee <|-- Nurse
 Employee <|-- Receptionist
 
-Administrator "1" -right-> "1" EmployeeContainer: maintains
-EmployeeContainer "1" -right-> "0..*" Employee: records
+Administrator "1" -right-> "1" EmployeeContainer : maintains
+EmployeeContainer "1" -right-> "0..*" Employee : records
 
 RegisterEmployeeView ..> RegisterEmployeeController
 RegisterEmployeeController ..> Administrator

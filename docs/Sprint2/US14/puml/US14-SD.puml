@@ -14,33 +14,37 @@ participant "Cat:Employee" as Employee
 activate Admin
 
 Admin -> View: asks to register a new employee
-View --> Admin: requests employee data \n (name, phone number, email, function, CC, etc.)
+View --> Admin: requests employee data \n(name, phone number, email, function, CC, etc.)
 
 Admin -> View: provides requested data
-View -> Ctrl: createEmployee(name, phone, email, function, CC)
+View --> Admin: selects role for employee ( nurse or receptionist )
+Admin -> View: provides selected role
+View -> Ctrl: createEmployee(name, phone, email, function, CC, role)
+
 Ctrl -> App: getEmployeeContainer()
 App --> Ctrl: container
 
 Ctrl -> Container: create(name, phone, email, function, CC)
-Container --> Employee**: create(name, phone, email, function, CC)
+Container --> Employee**: create(...)
 Container --> Ctrl: cat
-Ctrl -> Container: validate(cat)
-Container -> Employee: isValid()
-Employee --> Container: ok
-Container -> Container: checkDuplicates(cat)
-Container --> Container: ok
-Container --> Ctrl: ok
+
 Ctrl --> View: ok
-View --> Admin: shows all employee data and requests confirmation
+View --> Admin: shows all employee data\nand requests confirmation
 
 Admin -> View: confirms employee registration
-View -> Ctrl: saveRegisteredEmployee(Cat)
-Ctrl -> Container: save(Cat)
-Container -> Container: validate(Cat)
+View -> Ctrl: saveRegisteredEmployee(cat)
+
+Ctrl -> Container: save(cat)
+Container -> Employee: isValid()
+Employee --> Container: ok
+
+Container -> Container: checkDuplicates(cat)
 Container --> Container: ok
-Container -> Container: add(Cat)
-Container --> Container: ok
+
+Container -> Container: add(cat)
 Container --> Ctrl: ok
+deactivate Container
+
 Ctrl --> View: ok
 View --> Admin: informs operation success
 

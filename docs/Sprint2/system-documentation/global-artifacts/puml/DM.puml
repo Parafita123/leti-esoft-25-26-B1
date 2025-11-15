@@ -30,6 +30,7 @@ class Facility {
 }
 
 class Employee {
+    - Employee_id
     - name
     - postal_adress
     - phone_number
@@ -72,17 +73,11 @@ class Healthcare_Center {
 }
 
 class Nurse {
-    - name
-    - postal_adress
-    - phone_number
-    - email
+
 }
 
 class Receptionist {
-    - name
-    - postal_adress
-    - phone_number
-    - email
+
 }
 
 class Event {
