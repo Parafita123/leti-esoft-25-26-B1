@@ -26,6 +26,7 @@ class EmployeeContainer {
 }
 
 class Employee {
+    -Employee_id
     - name
     - postalAddress
     - phoneNumber
