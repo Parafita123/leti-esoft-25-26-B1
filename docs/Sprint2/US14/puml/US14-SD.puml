@@ -7,7 +7,7 @@ autonumber
 actor "Administrator" as Admin
 participant ":RegisterEmployeeView" as View
 participant ":RegisterEmployeeController" as Ctrl
-participant ":Administrator" as Administrator
+participant ":App" as App
 participant "container:EmployeeContainer" as Container
 participant "Cat:Employee" as Employee
 
@@ -18,8 +18,8 @@ View --> Admin: requests employee data \n (name, phone number, email, function, 
 
 Admin -> View: provides requested data
 View -> Ctrl: createEmployee(name, phone, email, function, CC)
-Ctrl -> Administrator: getEmployeeContainer()
-Administrator --> Ctrl: container
+Ctrl -> App: getEmployeeContainer()
+App --> Ctrl: container
 
 Ctrl -> Container: create(name, phone, email, function, CC)
 Container --> Employee**: create(name, phone, email, function, CC)
