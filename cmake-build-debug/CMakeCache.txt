@@ -157,7 +157,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=untitled1
+CMAKE_PROJECT_NAME:STATIC=leti_esoft_25_26_B1
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=C:/Program Files/JetBrains/CLion 2024.1.2/bin/mingw/bin/ranlib.exe
@@ -241,6 +241,33 @@ CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 // during the make.  This is useful for debugging only. With Visual
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
+
+//Value Computed by CMake
+ConsoleApp_BINARY_DIR:STATIC=C:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/cmake-build-debug/ConsoleApp
+
+//Value Computed by CMake
+ConsoleApp_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+ConsoleApp_SOURCE_DIR:STATIC=C:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/ConsoleApp
+
+//Value Computed by CMake
+Core_BINARY_DIR:STATIC=C:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/cmake-build-debug/Core
+
+//Value Computed by CMake
+Core_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+Core_SOURCE_DIR:STATIC=C:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+
+//Value Computed by CMake
+leti_esoft_25_26_B1_BINARY_DIR:STATIC=C:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/cmake-build-debug
+
+//Value Computed by CMake
+leti_esoft_25_26_B1_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+leti_esoft_25_26_B1_SOURCE_DIR:STATIC=C:/Users/diogo/CLionProjects/leti-esoft-25-26-B1
 
 //Value Computed by CMake
 untitled1_BINARY_DIR:STATIC=C:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/cmake-build-debug
@@ -354,7 +381,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
