@@ -15,3 +15,8 @@ void CreateNewVaccineTypeController::createNewVaccineType(const std::string& typ
 Result CreateNewVaccineTypeController::saveCreatedNewVaccineType() {
     return vaccineTypeContainer.save(currentVaccineType);
 }
+
+const VaccineType& CreateNewVaccineTypeController::getCurrentVaccineType() const {
+    return currentVaccineType;
+}
+

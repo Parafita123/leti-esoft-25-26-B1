@@ -21,6 +21,8 @@ public:
                               const std::string& short_description);
 
     Result saveCreatedNewVaccineType();
+
+    const VaccineType& getCurrentVaccineType() const;
 };
 
 #endif //LETI_ESOFT_25_26_B1_CREATENEWVACCINETYPECONTROLLER_H
