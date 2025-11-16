@@ -24,6 +24,7 @@ public:
     Result save(const Employee& e);
 
     bool checkDuplicates(const Employee& e) const;
+    std::vector<Employee> getEmployeesByRole(const std::string &role);
 };
 
 

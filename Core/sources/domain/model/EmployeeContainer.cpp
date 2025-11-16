@@ -33,3 +33,13 @@ bool EmployeeContainer::checkDuplicates(const Employee& e) const {
     }
     return false;
 }
+
+std::vector<Employee> EmployeeContainer::getEmployeesByRole(const std::string &role) {
+    std::vector<Employee> result;
+    for (const auto &e : employees) {
+        if (e.getRole() == role) {
+            result.push_back(e);
+        }
+    }
+    return result;
+}

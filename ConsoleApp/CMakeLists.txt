@@ -13,6 +13,9 @@ add_executable(ConsoleApp ConsoleApp.cpp
         # US11 - Register Vaccine
         headers/views/RegisterVaccineView.h
         sources/views/RegisterVaccineView.cpp
+        headers/views/ListEmployeesByRoleView.h
+        sources/views/ListEmployeesByRoleView.cpp
+        sources/views/RegisterEmployeeView.cpp
 )
 
 target_link_libraries(ConsoleApp Core)

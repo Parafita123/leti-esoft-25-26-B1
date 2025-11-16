@@ -10,12 +10,16 @@
 #include "../Core/headers/controllers/ui/CreateNewVaccineTypeController.h"
 #include "../ConsoleApp/headers/views/CreateNewVaccineTypeView.h"
 #include "../Core/headers/domain/model/VaccineTypeContainer.h"
+#include "../Core/headers/controllers/ui/ListEmployeesByRoleController.h"
+#include "../ConsoleApp/headers/views/ListEmployeesByRoleView.h"
+#include "../Core/headers/controllers/ui/App.h"
 
 MainView::MainView(App& app) : app(app) {}
 
 void MainView::showMenu() const {
     std::cout << "\n=========== MAIN MENU ===========" << std::endl;
     std::cout << "1 - Create new vaccine type" << std::endl;
+    std::cout << "2 - List Employees" << std::endl;
     std::cout << "0 - Exit" << std::endl;
     std::cout << "Choose an option: ";
 }
@@ -29,6 +33,14 @@ void MainView::handleOption(int option) {
             CreateNewVaccineTypeView view(controller);
 
             view.show();
+            break;
+        }
+        case 2: {
+
+            ListEmployeesByRoleController controller(app);
+            ListEmployeesByRoleView view(controller);
+
+            view.listEmployeesByRole();
             break;
         }
         case 0:

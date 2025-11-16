@@ -2,10 +2,13 @@
 // Created by diogo on 16/11/2025.
 //
 #include "../../headers/views/RegisterEmployeeView.h"
+
+#include <codecvt>
 #include <iostream>
+#include <locale>
 
 static std::string ws2s(const std::wstring& w) {
-    std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
+    wstring_convert<codecvt_utf8<wchar_t>> conv;
     return conv.to_bytes(w);
 }
 RegisterEmployeeView::RegisterEmployeeView(RegisterEmployeeController controller)

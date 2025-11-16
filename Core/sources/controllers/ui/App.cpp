@@ -10,3 +10,8 @@ VaccineTypeContainer& App::getVaccineTypeContainer() {
 VaccineContainer& App::getVaccineContainer() {
     return vaccineContainer;
 }
+
+EmployeeContainer &App::getEmployeeContainer() {
+    return employeeContainer;
+}
+

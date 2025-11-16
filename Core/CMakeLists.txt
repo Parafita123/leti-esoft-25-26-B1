@@ -24,4 +24,11 @@ add_library(Core
         sources/domain/model/VaccineContainer.cpp
         headers/controllers/ui/RegisterVaccineController.h
         sources/controllers/ui/RegisterVaccineController.cpp
+        headers/controllers/ui/ListEmployeesByRoleController.h
+        sources/controllers/ui/ListEmployeesByRoleController.cpp
+        sources/domain/model/EmployeeContainer.cpp
+        sources/domain/model/Employee.cpp
+        sources/controllers/ui/RegisterEmployeeControllerRegisterEmployeeController.cpp
+        ../ConsoleApp/sources/views/RegisterEmployeeView.cpp
+        ../ConsoleApp/sources/views/ListEmployeesByRoleView.cpp
 )

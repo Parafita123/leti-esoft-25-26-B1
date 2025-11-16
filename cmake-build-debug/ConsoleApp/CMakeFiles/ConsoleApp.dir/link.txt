@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2024.1.1\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\ConsoleApp.dir/objects.a
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\ar.exe qc CMakeFiles\ConsoleApp.dir/objects.a @CMakeFiles\ConsoleApp.dir\objects1.rsp
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE -g -Wl,--whole-archive CMakeFiles\ConsoleApp.dir/objects.a -Wl,--no-whole-archive -o ConsoleApp.exe -Wl,--out-implib,libConsoleApp.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\ConsoleApp.dir\linkLibs.rsp
