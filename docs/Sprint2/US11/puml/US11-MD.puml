@@ -5,11 +5,11 @@ hide circle
 hide methods
 
 class Administrator {
-    - name
+ - name
+ - email
+ - phone_number
 }
 
-class VaccineContainer {
-}
 
 class Vaccine {
     - commercialName
@@ -23,8 +23,7 @@ class VaccineType {
     - short_description
 }
 
-Administrator "1" -right-- "1" VaccineContainer:  maintains
-VaccineContainer "1" -right-- "0..*" Vaccine:  records
+Administrator "1" -right-- "0..*" Vaccine:  records
 Vaccine "1" -down-- "1" VaccineType:  has >
 
 @enduml
