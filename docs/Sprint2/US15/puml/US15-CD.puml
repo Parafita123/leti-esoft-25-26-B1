@@ -1,37 +1,48 @@
 @startuml
-
-title US15 - Class Diagram
+'https://plantuml.com/class-diagram
 
 hide circle
 skinparam classAttributeIconSize 0
 
+class ListEmployeesByRoleView {
+}
 
-class Admin
+class ListEmployeesByRoleController {
+    +getEmployeesByRole(role: string): List<Employee>
+}
 
-
-class Employee {
-  - name
-  - postal_adress
-  - phone_number
-  - email
-  - role
+class Admin {
+    - name
+    - email
+    - phoneNumber
+    +getEmployeeContainer(): EmployeeContainer
 }
 
 class EmployeeContainer {
-  +getEmployeeListByRole(role)
+    +getEmployeesByRole(role: string): List<Employee>
 }
 
-class ListEmployeesByRoleView{
-  -controller : ListEmployeesByRoleController
-}
-class ListEmployeesByRoleController{
-  -container : EmployeeContainer
-  +requestEmployeeList(role) : List<Employee>
+class Employee {
+    - name
+    - postal_address
+    - phone_number
+    - email
+    - role
+    Employee(name, postal_address, phone_number, email, role)
+    +getName(): string
+    +getPostalAddress(): string
+    +getPhoneNumber(): string
+    +getEmail(): string
+    +getRole(): string
 }
 
-Admin --> ListEmployeesByRoleView
-ListEmployeesByRoleView --> ListEmployeesByRoleController
-ListEmployeesByRoleController --> EmployeeContainer
-EmployeeContainer --> Employee
+' Associations
+Admin "1" -right-> "1" EmployeeContainer : maintains
+EmployeeContainer "1" -right-> "0..*" Employee : stores
+
+ListEmployeesByRoleView ..> ListEmployeesByRoleController
+ListEmployeesByRoleView ..> Employee
+ListEmployeesByRoleController ..> Admin
+ListEmployeesByRoleController ..> EmployeeContainer
 
 @enduml
