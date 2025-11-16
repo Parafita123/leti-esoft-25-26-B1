@@ -6,38 +6,40 @@ class RegisterEmployeeView {
     +requestEmployeeData(): EmployeeData
     +requestRoleSelection(): Role
     +showEmployeeData(employee: Employee)
-    +requestConfirmation(): boolean
+    +requestConfirmation(): bool
 }
 
 class RegisterEmployeeController {
-    +createEmployee(name, postalAddress, phoneNumber, email, citizenCardNumber, role): Employee
-    +saveRegisteredEmployee(employee: Employee): Result
+    +createEmployee(string name, string postalAddress, string phoneNumber, string email, string citizenCardNumber, string role): Employee
+    +saveRegisteredEmployee(Employee employee): Result
 }
 
 class Administrator {
-    - name
-    - email
-    - phoneNumber
+    -name
+    -email
+    -phoneNumber
     +getEmployeeContainer(): EmployeeContainer
 }
 
 class EmployeeContainer {
-    +create(name, postalAddress, phoneNumber, email, citizenCardNumber, role): Employee
-    +add(employee: Employee): Result
-    +checkDuplicates(employee: Employee): boolean
-    +findById(id: string): Employee
+    +create(string name, string postalAddress, string phoneNumber, string email, string citizenCardNumber, string role): Employee
+    +save(Employee employee): Result
+    +checkDuplicates(Employee employee): bool
+    +findById(string id): Employee
     +getAll(): List<Employee>
+
+    -add(Employee employee): void
 }
 
 class Employee {
-    -Employee_id
-    - name
-    - postalAddress
-    - phoneNumber
-    - email
-    - citizenCardNumber
-    - role
-    +isValid(): boolean
+    -employee_id
+    -name
+    -postalAddress
+    -phoneNumber
+    -email
+    -citizenCardNumber
+    -role
+    +isValid(): bool
 }
 
 class Nurse {
