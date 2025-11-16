@@ -4,140 +4,176 @@ The construction process of the domain model is based on client specifications, 
 
 ## Rationale to identify domain conceptual classes
 
-To identify domain conceptual classes, start by making a list of candidate conceptual classes inspired by the list of categories suggested in the book *"Applying UML and Patterns: An Introduction to Object-Oriented Analysis and Design and Iterative Development."*
+To identify domain conceptual classes, we start by making a list of candidate conceptual classes inspired by the categories suggested in the book *"Applying UML and Patterns: An Introduction to Object-Oriented Analysis and Design and Iterative Development."*
+
+Sprint 2 introduces and consolidates concepts related to:
+
+* **Vaccine type specification** (US10)
+* **Vaccine registration** (US11)
+* **Employee registration** (US14)
+* **Listing employees by role** (US15)
+
+These user stories extend the domain with new concepts such as **VaccineType**, **Vaccine**, **VaccineTechnology**, **Employee**, **Role**, and their corresponding registries/containers.
+
+---
 
 ### *Conceptual Class Category List*
 
-**Business Transactions**
+#### **Business Transactions**
 
-* Appointment – vaccination appointment request made by a patient.
+* Appointment – vaccination appointment request made by a patient (SNS user).
 * Vaccination Process – record of the administration of a vaccine dose to a patient, including observation and adverse reactions.
+* Vaccine Type Specification – creation of a new vaccine type by an Administrator (US10).
+* Vaccine Registration – registration of a new vaccine, based on a defined type and technology (US11).
+* Employee Registration – registration of a new employee (Nurse or Receptionist) by an Administrator (US14).
+* Employee Listing by Role – retrieval of employees filtered by role (US15).
 
 ---
 
-**Transaction Line Items**
+#### **Transaction Line Items**
 
-* (No direct correspondence in the current domain)
+* (No direct correspondence in the current domain.)
 
 ---
 
-**Product/Service related to a Transaction or Transaction Line Item**
+#### **Product/Service related to a Transaction or Transaction Line Item**
 
-* Vaccine – biological product administered to induce immunity.
-* Vaccine Type – general classification (mRNA, recombinant protein, inactivated virus, etc.).
+* Vaccine – biological product administered to induce immunity, associated with a vaccine type and a technology (US11).
+* Vaccine Type – general classification of vaccines, including code, disease, and technology platform (US10).
 * Vaccine Brand – commercial designation and manufacturer of a specific vaccine.
+* Vaccine Technology – predefined technology platform (e.g. live-attenuated, inactivated, subunit, toxoid, viral vector, mRNA).
 
 ---
 
-**Transaction Records**
+#### **Transaction Records**
 
 * Vaccination Certificate – document issued after completing the vaccination schedule.
 * Vaccination History – collection of vaccination records for a patient.
 * Adverse Reaction Record – record of observed adverse reactions.
+* Employee Record – persistent record of an employee with identity and contact details (US14).
+* Vaccine Type Record – persistent record describing a vaccine type (US10).
+* Vaccine Record – persistent record describing a vaccine (US11).
 
 ---
 
-**Roles of People or Organizations**
+#### **Roles of People or Organizations**
 
-* SNS User – individual with an NHS number who can schedule and receive vaccines.
-* Receptionist – staff member who confirms attendance and records appointment status.
-* Nurse – professional who administers vaccines and records the act.
-* DGS Administrator – person who manages centers, staff, and configurations.
-
----
-
-**Places**
-
-* Vaccination Center – vaccination location (fixed and temporary centers).
+* SNS User – individual with an SNS/NHS number who can schedule and receive vaccines.
+* Receptionist – employee who confirms attendance and manages appointments (US14/US15).
+* Nurse – employee who administers vaccines and records the vaccination process (US14/US15).
+* Administrator / DGS Administrator – user who manages vaccine types, vaccines and employees (US10, US11, US14, US15).
+* Employee – abstraction representing staff working in the vaccination system (specialised as Nurse and Receptionist).
+* DGS – Directorate-General of Health, responsible for the vaccination programme.
 
 ---
 
-**Noteworthy Events**
+#### **Places**
+
+* Vaccination Center – location where vaccines are administered (fixed or temporary centres).
+
+---
+
+#### **Noteworthy Events**
 
 * Appointment Created – when a patient books a vaccination.
 * Vaccination Performed – when a vaccine is administered.
 * Adverse Reaction Observed – when an adverse reaction is recorded.
+* Vaccine Type Created – when a new vaccine type is specified by an Administrator (US10).
+* Vaccine Registered – when a new vaccine is added to the system (US11).
+* Employee Registered – when a new employee is created in the system (US14).
+* Employees Listed by Role – when the system presents the list of employees filtered by a given role (US15).
 
 ---
 
-**Physical Objects**
+#### **Physical Objects**
 
-* Vaccine Dose – physical unit administered.
+* Vaccine Dose – physical unit administered to a patient.
+* Vaccine – concrete product prepared for administration.
 
 ---
 
-**Descriptions of Things**
+#### **Descriptions of Things**
 
-* Vaccination Center – includes name, address, schedule, and maximum capacity.
-* Vaccine – code, target disease, description, batch, expiration date.
-* Vaccine Type – technology (mRNA, protein subunit, etc.).
+* Vaccination Center – name, address, opening hours, maximum capacity, etc.
+* Vaccine – commercial name, brand, type code, disease target, batch, expiration date, technology (US11).
+* Vaccine Type – unique code (ID), disease, short description, technology platform (US10).
+* Vaccine Technology – label/identifier of the technology platform (live-attenuated, inactivated, subunit, toxoid, viral vector, mRNA).
 * Vaccine Brand – trade name and manufacturer.
-* User – name, date of birth, gender, address, contact, and identifiers.
-* Personnel – data of receptionists and nurses.
-* Appointment – date, time, center, and vaccine type.
-* Vaccination Process – date, time, type, brand, batch, notes.
-* Vaccination Certificate – identifies patient, vaccines, and dates.
+* User / SNS User – name, date of birth, gender, address, phone, email, identification numbers.
+* Employee – name, postal address, phone number, email, citizen card number, role (US14).
+* Role – function performed by an employee (Nurse, Receptionist, Administrator).
+* Appointment – date, time, centre, vaccine type requested, status.
+* Vaccination Process – date/time, vaccine, batch, nurse, observations, adverse reactions.
+* Vaccination Certificate – identifies patient, vaccines, and administration dates.
 
 ---
 
-**Catalogs**
+#### **Catalogs**
 
-* Vaccine Type Catalog – list of the various approved vaccine technologies.
-* Vaccine Brand Catalog – list of available commercial brands.
-* Vaccination Centers Catalog – list of active centers (fixed and temporary).
-
----
-
-**Containers**
-
-* User Registry – collection of all patients registered in the system.
-* Personnel Registry – list of all employees (receptionists and nurses).
-* Appointment Registry – list of all scheduled appointments.
-* Vaccine Inventory – stock of vaccines and their available batches at each center.
+* Vaccine Type Catalog – list of vaccine types that can be used when registering vaccines or scheduling appointments (US10).
+* Vaccine Catalog – list of vaccines registered in the system (US11).
+* Vaccination Centers Catalog – list of active fixed and temporary vaccination centres.
+* Employee Catalog – list of all employees registered in the system and their roles (US14/US15).
 
 ---
 
-**Elements of Containers**
+#### **Containers**
 
-* (No additional elements identified)
-
----
-
-**(Other) Organizations**
-
-* DGS – Directorate-General of Health.
-
----
-
-**Other (External/Collaborating) Systems**
-
-* NHS – National Health Service.
-* Adverse Reaction Reporting Systems – external notification systems.
+* User Registry – collection of all SNS users.
+* Personnel / Employee Registry – collection of all employees (Nurses, Receptionists, Administrators) (US14).
+* Appointment Registry – collection of all appointments in the system.
+* Vaccine Type Container – container responsible for storing and managing all vaccine types (US10).
+* Vaccine Container – container responsible for storing and managing all vaccines (US11).
+* Employee Container – container responsible for storing and managing employees (US14/US15).
 
 ---
 
-**Records of finance, work, contracts, legal matters**
+#### **Elements of Containers**
 
-* (Not applicable)
-
----
-
-**Financial Instruments**
-
-* (Not applicable)
+* Individual User – element of the User Registry.
+* Individual Employee – element of the Employee Container.
+* Individual Vaccine Type – element of the Vaccine Type Container.
+* Individual Vaccine – element of the Vaccine Container.
+* Individual Appointment – element of the Appointment Registry.
 
 ---
 
-**Documents mentioned/used to perform some work**
+#### **(Other) Organizations**
+
+* DGS – Directorate-General of Health, that defines vaccination policies and requirements.
+
+---
+
+#### **Other (External/Collaborating) Systems**
+
+* SNS / NHS – national health system, where users and health information are registered.
+* Adverse Reaction Reporting Systems – external systems that receive adverse reaction reports.
+
+---
+
+#### **Records of finance, work, contracts, legal matters**
+
+* Not applicable in the current scope.
+
+---
+
+#### **Financial Instruments**
+
+* Not applicable.
+
+---
+
+#### **Documents mentioned/used to perform some work**
 
 * Vaccination Certificate – proof issued after vaccination.
-* Adverse Reaction Report – documents sent for clinical analysis.
+* Adverse Reaction Report – document with clinical details of adverse events.
+* Employee Record – internal administrative document with employee personal and contact details.
 
 ---
 
 ## Rationale to identify associations between conceptual classes
 
-An association is a relationship between instances of objects that indicates a relevant connection worth remembering, or one that can be derived from the List of Common Associations:
+An association is a relationship between instances of objects that indicates a relevant connection that should be remembered or can be derived from common association patterns:
 
 * ***A*** is physically or logically part of ***B***
 * ***A*** is physically or logically contained in/on ***B***
@@ -147,29 +183,49 @@ An association is a relationship between instances of objects that indicates a r
 * ***A*** is related to a transaction (item) of ***B***
 * etc.
 
-| **Concept (A)**     |     **Association**     |         **Concept (B)** |
-| :------------------ | :---------------------: | ----------------------: |
-| SNS User            |        schedules        |             Appointment |
-| SNS User            |           owns          |     Vaccination History |
-| SNS User            | receives vaccination at |      Vaccination Center |
-| SNS User            |         obtains         | Vaccination Certificate |
-| Receptionist        |         manages         |             Appointment |
-| Nurse               |       administers       |                 Vaccine |
-| Nurse               |         records         |     Vaccination Process |
-| DGS Administrator   |         manages         |      Vaccination Center |
-| DGS Administrator   |         manages         |               Personnel |
-| DGS Administrator   |         manages         |         Vaccine Catalog |
-| Vaccination Center  |          hosts          |               Personnel |
-| Vaccination Center  |          stores         |                 Vaccine |
-| Vaccine             |        belongs to       |            Vaccine Type |
-| Vaccine             |       produced by       |           Vaccine Brand |
-| Appointment         |       scheduled at      |      Vaccination Center |
-| Appointment         |         requests        |            Vaccine Type |
-| Vaccination Process |        refers to        |                 Vaccine |
-| Vaccination Process |         reports         |        Adverse Reaction |
+The following table summarises the main associations relevant for Sprint 2 (US10, US11, US14, US15):
+
+| **Concept (A)**      | **Association**         | **Concept (B)**         |
+| -------------------- | ----------------------- | ----------------------- |
+| SNS User             | schedules               | Appointment             |
+| SNS User             | owns                    | Vaccination History     |
+| SNS User             | receives vaccination at | Vaccination Center      |
+| SNS User             | obtains                 | Vaccination Certificate |
+| Receptionist         | manages                 | Appointment             |
+| Nurse                | administers             | Vaccine                 |
+| Nurse                | records                 | Vaccination Process     |
+| Administrator        | manages                 | Vaccination Center      |
+| Administrator        | manages                 | Employee                |
+| Administrator        | creates                 | Vaccine Type            |
+| Administrator        | registers               | Vaccine                 |
+| Administrator        | registers               | Employee                |
+| Administrator        | lists                   | Employee (by Role)      |
+| Vaccination Center   | hosts                   | Employee                |
+| Vaccination Center   | stores                  | Vaccine                 |
+| Vaccine              | belongs to              | Vaccine Type            |
+| Vaccine              | uses technology         | Vaccine Technology      |
+| Vaccine              | produced by             | Vaccine Brand           |
+| Appointment          | scheduled at            | Vaccination Center      |
+| Appointment          | requests                | Vaccine Type            |
+| Vaccination Process  | refers to               | Vaccine                 |
+| Vaccination Process  | reports                 | Adverse Reaction        |
+| Vaccine Type Catalog | contains                | Vaccine Type            |
+| Vaccine Container    | contains                | Vaccine                 |
+| Employee Container   | contains                | Employee                |
+| Employee             | has                     | Role                    |
+| Employee             | works at                | Vaccination Center      |
 
 ---
 
 ## Domain Model
+
+The domain model for Sprint 2 incorporates all the above conceptual classes and associations. It includes at least the following core concepts:
+
+* **Actors / People**: SNS User, Administrator, Nurse, Receptionist, Employee
+* **Medical domain**: Vaccine, VaccineType, VaccineBrand, VaccineTechnology, VaccinationProcess, VaccinationCenter
+* **Administration / Staff management**: Employee, Role, EmployeeContainer
+* **Catalogs / Containers**: VaccineTypeCatalog, VaccineContainer, EmployeeContainer, AppointmentRegistry
+
+These classes, together with their attributes and associations, are represented in the domain model diagram:
 
 ![DM.svg](svg/DM.svg)
