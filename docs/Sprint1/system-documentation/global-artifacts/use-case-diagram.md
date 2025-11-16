@@ -6,7 +6,7 @@ However, be aware, this is a pedagogical simplification. On further projects and
 
 By analyzing the problem statement, it is possible **to infer** the use cases depicted in the following diagram.
 
-![Use Case Diagram](svg/UCD_FirstDraft.svg)
+![Use Case Diagram](svg/First draft UCD.svg)
 
 **It is worth noting that (some of) these UC were inferred. Therefore, it is important to validate its existence with the SW Client as well as in what each UC actually consists of.**
 
@@ -17,10 +17,9 @@ After receiving the User Stories of Sprint 2, the previous Use Case Diagram was 
 **For each UC/US, it must be provided evidences of applying main activities of the software development process (requirements, analysis, design, tests and code). Gather those evidences on a separate file for each UC/US and set up a link as suggested below.**
 
 # Use Cases / User Stories
-| UC/US  | Description                                 |                   
-|:----|:--------------------------------------------|
-| US01 |           |
-| US02 |       |
-| US03 | |
-| US04 |          |
-| US05 |              |
+| UC/US | Description                                                                                                          |                   
+|:------|:---------------------------------------------------------------------------------------------------------------------|
+| US10  | [As Administrator, I want to specify a new vaccine type.](../docs/Sprint2/US10/US10.md)                              |
+| US11  | [As Administrator, I want to register a vaccine.](../Sprint2/US11/US11.md)                                           |
+| US14  | [As Administrator, I want to register an employee.](../Sprint2/US14/US14.md)                                         |
+| US15  | [As Administrator, I want to get a list of employees assigned to a specific function/role.](../Sprint2/US15/US15.md) |
