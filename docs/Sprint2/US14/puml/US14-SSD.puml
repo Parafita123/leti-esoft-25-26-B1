@@ -13,10 +13,10 @@ Admin -> System: asks to register a new employee
 System --> Admin: requests employee data (name, phone number, email, citizen card number, role)
 
 Admin -> System: provides employee data
-System --> Admin: validates data
+System --> Admin:  confirms data
 
 Admin -> System: selects role for employee ( nurse or receptionist )
-System --> Admin: confirms selected role
+System --> Admin: validates data
 
 Admin -> System: confirms registration
 System --> Admin: informs operation success or failure
