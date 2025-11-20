@@ -23,11 +23,13 @@ class EmployeeContainer {
 }
 
 class Employee {
-    - name
-    - postal_address
-    - phone_number
-    - email
-    - role
+    -employee_id
+        -name
+        -postalAddress
+        -phoneNumber
+        -email
+        -citizenCardNumber
+        -role
     Employee(name, postal_address, phone_number, email, role)
     +getName(): string
     +getPostalAddress(): string
