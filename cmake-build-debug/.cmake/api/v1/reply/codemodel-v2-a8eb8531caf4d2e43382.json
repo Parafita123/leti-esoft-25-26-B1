@@ -1,0 +1,138 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.27"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "Core",
+					"jsonFile" : "directory-Core-Debug-b3854b2db255c35a81c1.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.27"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "Core",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "ConsoleApp",
+					"jsonFile" : "directory-ConsoleApp-Debug-a271567d42a40f104c0d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.27"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "ConsoleApp",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "leti_esoft_25_26_B1",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "Core",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "ConsoleApp",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "ConsoleApp::@094f471c0171374cf8fe",
+					"jsonFile" : "target-ConsoleApp-Debug-b929b228b0bebfd41994.json",
+					"name" : "ConsoleApp",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Core::@94795ff35dabbbd3a8ca",
+					"jsonFile" : "target-Core-Debug-cd8a4f346e47ed70f88d.json",
+					"name" : "Core",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "leti-esoft-25-26-B1::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-leti-esoft-25-26-B1-Debug-41fedcb4fdc31da21492.json",
+					"name" : "leti-esoft-25-26-B1",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug",
+		"source" : "C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

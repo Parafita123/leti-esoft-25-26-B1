@@ -5,22 +5,25 @@ title US15 - Get List of Employees by Role - Sequence Diagram
 autoactivate on
 autonumber
 
-actor "Admin" as admin
-participant "ListEmployeesByRoleView" as view
-participant "ListEmployeesByRoleController" as ctrl
-participant "EmployeeContainer" as container
+actor "Admin" as Admin
 
-activate admin
+activate Admin
 
+participant ":ListEmployeesByRoleView" as view
+participant ":ListEmployeesByRoleController" as ctrl
+participant ":App" as app
+participant "container:EmployeeContainer" as container
 
-admin -> view: Request list of employees by role
-view --> admin: Display role selection options
-admin -> view: Select desired role
+Admin -> view: request employee list by role
+view --> Admin: show role selection options
+Admin -> view: selects desired role
 view -> ctrl: requestEmployeeList(role)
+ctrl -> app: getEmployeeContainer()
+app --> ctrl: container
 ctrl -> container: getEmployeeListByRole(role)
-container --> ctrl: list with employees
-ctrl --> view: list with employees
-view --> admin: view list of employees
+container --> ctrl: list of employees
+ctrl --> view: list of employees
+view --> Admin: display list
 
 
 @enduml

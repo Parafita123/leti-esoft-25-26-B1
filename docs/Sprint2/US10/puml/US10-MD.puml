@@ -18,6 +18,6 @@ class Admin {
        - short_description
   }
 
-Admin --> VaccineType: registers
+Admin --> VaccineType: specify a
 
 @enduml

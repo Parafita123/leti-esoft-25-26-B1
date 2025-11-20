@@ -1,8 +1,3 @@
-//
-// Created by Filipe on 13/11/2025.
-//
-
-
 #include <iostream>
 #include <limits>
 
@@ -10,12 +5,21 @@
 #include "../Core/headers/controllers/ui/CreateNewVaccineTypeController.h"
 #include "../ConsoleApp/headers/views/CreateNewVaccineTypeView.h"
 #include "../Core/headers/domain/model/VaccineTypeContainer.h"
+#include "../Core/headers/controllers/ui/ListEmployeesByRoleController.h"
+#include "../ConsoleApp/headers/views/ListEmployeesByRoleView.h"
+#include "../Core/headers/controllers/ui/App.h"
+
+// US11 - Register vaccine
+#include "../Core/headers/controllers/ui/RegisterVaccineController.h"
+#include "../ConsoleApp/headers/views/RegisterVaccineView.h"
 
 MainView::MainView(App& app) : app(app) {}
 
 void MainView::showMenu() const {
     std::cout << "\n=========== MAIN MENU ===========" << std::endl;
     std::cout << "1 - Create new vaccine type" << std::endl;
+    std::cout << "2 - List employees by role" << std::endl;
+    std::cout << "3 - Register new vaccine" << std::endl;   // US11
     std::cout << "0 - Exit" << std::endl;
     std::cout << "Choose an option: ";
 }
@@ -23,10 +27,30 @@ void MainView::showMenu() const {
 void MainView::handleOption(int option) {
     switch (option) {
         case 1: {
+            // US10 - Create new vaccine type
             VaccineTypeContainer& container = app.getVaccineTypeContainer();
 
             CreateNewVaccineTypeController controller(container);
             CreateNewVaccineTypeView view(controller);
+
+            view.show();
+            break;
+        }
+        case 2: {
+            // List employees by role
+            ListEmployeesByRoleController controller(app);
+            ListEmployeesByRoleView view(controller);
+
+            view.listEmployeesByRole();
+            break;
+        }
+        case 3: {
+            // US11 - Register a new vaccine
+            VaccineContainer& vaccineContainer = app.getVaccineContainer();
+            VaccineTypeContainer& typeContainer = app.getVaccineTypeContainer();
+
+            RegisterVaccineController controller(vaccineContainer, typeContainer);
+            RegisterVaccineView view(controller);
 
             view.show();
             break;

@@ -9,6 +9,7 @@ hide circle
 hide methods
 
 class Employee {
+  - Employee_id
   - name
   - postal_adress
   - phone_number
@@ -17,20 +18,18 @@ class Employee {
 }
 
 class Nurse {
-    - name
-    - postal_adress
-    - phone_number
-    - email
+
 }
 
 class Receptionist {
-    - name
-    - postal_adress
-    - phone_number
-    - email
+
 }
 
-class Admin
+class Admin{
+    - name
+    - email
+    - phoneNumber
+}
 Employee <|-- Nurse
 Employee <|-- Receptionist
 Admin "1" -right-- "1..*" Employee: register >

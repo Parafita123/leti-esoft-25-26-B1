@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: untitled1
+# Project: leti_esoft_25_26_B1
 # Configurations: Debug
 # =============================================================================
 
@@ -41,40 +41,80 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/cmake-build-debug/
 # =============================================================================
-# Object build statements for EXECUTABLE target untitled1
+# Object build statements for EXECUTABLE target leti-esoft-25-26-B1
 
 
 #############################################
-# Order-only phony target for untitled1
+# Order-only phony target for leti-esoft-25-26-B1
 
-build cmake_object_order_depends_target_untitled1: phony || CMakeFiles/untitled1.dir
+build cmake_object_order_depends_target_leti-esoft-25-26-B1: phony || cmake_object_order_depends_target_Core
 
-build CMakeFiles/untitled1.dir/main.cpp.obj: CXX_COMPILER__untitled1_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/main.cpp || cmake_object_order_depends_target_untitled1
-  DEP_FILE = CMakeFiles\untitled1.dir\main.cpp.obj.d
+build CMakeFiles/leti-esoft-25-26-B1.dir/main.cpp.obj: CXX_COMPILER__leti-esoft-25-26-B1_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/main.cpp || cmake_object_order_depends_target_leti-esoft-25-26-B1
+  DEP_FILE = CMakeFiles\leti-esoft-25-26-B1.dir\main.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\untitled1.dir
-  OBJECT_FILE_DIR = CMakeFiles\untitled1.dir
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_PDB = untitled1.pdb
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = CMakeFiles\leti-esoft-25-26-B1.dir
+  OBJECT_FILE_DIR = CMakeFiles\leti-esoft-25-26-B1.dir
+
+build CMakeFiles/leti-esoft-25-26-B1.dir/Core/sources/controllers/ui/App.cpp.obj: CXX_COMPILER__leti-esoft-25-26-B1_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core/sources/controllers/ui/App.cpp || cmake_object_order_depends_target_leti-esoft-25-26-B1
+  DEP_FILE = CMakeFiles\leti-esoft-25-26-B1.dir\Core\sources\controllers\ui\App.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = CMakeFiles\leti-esoft-25-26-B1.dir
+  OBJECT_FILE_DIR = CMakeFiles\leti-esoft-25-26-B1.dir\Core\sources\controllers\ui
+
+build CMakeFiles/leti-esoft-25-26-B1.dir/Core/sources/controllers/ui/CreateNewVaccineTypeController.cpp.obj: CXX_COMPILER__leti-esoft-25-26-B1_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core/sources/controllers/ui/CreateNewVaccineTypeController.cpp || cmake_object_order_depends_target_leti-esoft-25-26-B1
+  DEP_FILE = CMakeFiles\leti-esoft-25-26-B1.dir\Core\sources\controllers\ui\CreateNewVaccineTypeController.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = CMakeFiles\leti-esoft-25-26-B1.dir
+  OBJECT_FILE_DIR = CMakeFiles\leti-esoft-25-26-B1.dir\Core\sources\controllers\ui
+
+build CMakeFiles/leti-esoft-25-26-B1.dir/Core/sources/domain/model/VaccineType.cpp.obj: CXX_COMPILER__leti-esoft-25-26-B1_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core/sources/domain/model/VaccineType.cpp || cmake_object_order_depends_target_leti-esoft-25-26-B1
+  DEP_FILE = CMakeFiles\leti-esoft-25-26-B1.dir\Core\sources\domain\model\VaccineType.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = CMakeFiles\leti-esoft-25-26-B1.dir
+  OBJECT_FILE_DIR = CMakeFiles\leti-esoft-25-26-B1.dir\Core\sources\domain\model
+
+build CMakeFiles/leti-esoft-25-26-B1.dir/ConsoleApp/sources/views/CreateNewVaccineTypeView.cpp.obj: CXX_COMPILER__leti-esoft-25-26-B1_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/ConsoleApp/sources/views/CreateNewVaccineTypeView.cpp || cmake_object_order_depends_target_leti-esoft-25-26-B1
+  DEP_FILE = CMakeFiles\leti-esoft-25-26-B1.dir\ConsoleApp\sources\views\CreateNewVaccineTypeView.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = CMakeFiles\leti-esoft-25-26-B1.dir
+  OBJECT_FILE_DIR = CMakeFiles\leti-esoft-25-26-B1.dir\ConsoleApp\sources\views
+
+build CMakeFiles/leti-esoft-25-26-B1.dir/Core/sources/domain/model/VaccineTypeContainer.cpp.obj: CXX_COMPILER__leti-esoft-25-26-B1_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core/sources/domain/model/VaccineTypeContainer.cpp || cmake_object_order_depends_target_leti-esoft-25-26-B1
+  DEP_FILE = CMakeFiles\leti-esoft-25-26-B1.dir\Core\sources\domain\model\VaccineTypeContainer.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = CMakeFiles\leti-esoft-25-26-B1.dir
+  OBJECT_FILE_DIR = CMakeFiles\leti-esoft-25-26-B1.dir\Core\sources\domain\model
+
+build CMakeFiles/leti-esoft-25-26-B1.dir/ConsoleApp/sources/views/MainView.cpp.obj: CXX_COMPILER__leti-esoft-25-26-B1_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/ConsoleApp/sources/views/MainView.cpp || cmake_object_order_depends_target_leti-esoft-25-26-B1
+  DEP_FILE = CMakeFiles\leti-esoft-25-26-B1.dir\ConsoleApp\sources\views\MainView.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = CMakeFiles\leti-esoft-25-26-B1.dir
+  OBJECT_FILE_DIR = CMakeFiles\leti-esoft-25-26-B1.dir\ConsoleApp\sources\views
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target untitled1
+# Link build statements for EXECUTABLE target leti-esoft-25-26-B1
 
 
 #############################################
-# Link the executable untitled1.exe
+# Link the executable leti-esoft-25-26-B1.exe
 
-build untitled1.exe: CXX_EXECUTABLE_LINKER__untitled1_Debug CMakeFiles/untitled1.dir/main.cpp.obj
+build leti-esoft-25-26-B1.exe: CXX_EXECUTABLE_LINKER__leti-esoft-25-26-B1_Debug CMakeFiles/leti-esoft-25-26-B1.dir/main.cpp.obj CMakeFiles/leti-esoft-25-26-B1.dir/Core/sources/controllers/ui/App.cpp.obj CMakeFiles/leti-esoft-25-26-B1.dir/Core/sources/controllers/ui/CreateNewVaccineTypeController.cpp.obj CMakeFiles/leti-esoft-25-26-B1.dir/Core/sources/domain/model/VaccineType.cpp.obj CMakeFiles/leti-esoft-25-26-B1.dir/ConsoleApp/sources/views/CreateNewVaccineTypeView.cpp.obj CMakeFiles/leti-esoft-25-26-B1.dir/Core/sources/domain/model/VaccineTypeContainer.cpp.obj CMakeFiles/leti-esoft-25-26-B1.dir/ConsoleApp/sources/views/MainView.cpp.obj | Core/libCore.a || Core/libCore.a
   FLAGS = -g
-  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = CMakeFiles\untitled1.dir
+  LINK_LIBRARIES = Core/libCore.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\leti-esoft-25-26-B1.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = CMakeFiles\untitled1.dir\
-  TARGET_FILE = untitled1.exe
-  TARGET_IMPLIB = libuntitled1.dll.a
-  TARGET_PDB = untitled1.pdb
+  TARGET_FILE = leti-esoft-25-26-B1.exe
+  TARGET_IMPLIB = libleti-esoft-25-26-B1.dll.a
+  TARGET_PDB = leti-esoft-25-26-B1.exe.dbg
 
 
 #############################################
@@ -100,9 +140,230 @@ build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
 build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 # =============================================================================
+# Write statements declared in CMakeLists.txt:
+# C:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target Core
+
+
+#############################################
+# Order-only phony target for Core
+
+build cmake_object_order_depends_target_Core: phony || Core/CMakeFiles/Core.dir
+
+build Core/CMakeFiles/Core.dir/sources/domain/shared/Result.cpp.obj: CXX_COMPILER__Core_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core/sources/domain/shared/Result.cpp || cmake_object_order_depends_target_Core
+  DEP_FILE = Core\CMakeFiles\Core.dir\sources\domain\shared\Result.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = Core\CMakeFiles\Core.dir
+  OBJECT_FILE_DIR = Core\CMakeFiles\Core.dir\sources\domain\shared
+
+build Core/CMakeFiles/Core.dir/sources/domain/shared/StringUtils.cpp.obj: CXX_COMPILER__Core_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core/sources/domain/shared/StringUtils.cpp || cmake_object_order_depends_target_Core
+  DEP_FILE = Core\CMakeFiles\Core.dir\sources\domain\shared\StringUtils.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = Core\CMakeFiles\Core.dir
+  OBJECT_FILE_DIR = Core\CMakeFiles\Core.dir\sources\domain\shared
+
+build Core/CMakeFiles/Core.dir/sources/controllers/ui/App.cpp.obj: CXX_COMPILER__Core_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core/sources/controllers/ui/App.cpp || cmake_object_order_depends_target_Core
+  DEP_FILE = Core\CMakeFiles\Core.dir\sources\controllers\ui\App.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = Core\CMakeFiles\Core.dir
+  OBJECT_FILE_DIR = Core\CMakeFiles\Core.dir\sources\controllers\ui
+
+build Core/CMakeFiles/Core.dir/sources/controllers/ui/CreateNewVaccineTypeController.cpp.obj: CXX_COMPILER__Core_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core/sources/controllers/ui/CreateNewVaccineTypeController.cpp || cmake_object_order_depends_target_Core
+  DEP_FILE = Core\CMakeFiles\Core.dir\sources\controllers\ui\CreateNewVaccineTypeController.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = Core\CMakeFiles\Core.dir
+  OBJECT_FILE_DIR = Core\CMakeFiles\Core.dir\sources\controllers\ui
+
+build Core/CMakeFiles/Core.dir/sources/domain/model/VaccineType.cpp.obj: CXX_COMPILER__Core_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core/sources/domain/model/VaccineType.cpp || cmake_object_order_depends_target_Core
+  DEP_FILE = Core\CMakeFiles\Core.dir\sources\domain\model\VaccineType.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = Core\CMakeFiles\Core.dir
+  OBJECT_FILE_DIR = Core\CMakeFiles\Core.dir\sources\domain\model
+
+build Core/CMakeFiles/Core.dir/__/ConsoleApp/sources/views/CreateNewVaccineTypeView.cpp.obj: CXX_COMPILER__Core_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/ConsoleApp/sources/views/CreateNewVaccineTypeView.cpp || cmake_object_order_depends_target_Core
+  DEP_FILE = Core\CMakeFiles\Core.dir\__\ConsoleApp\sources\views\CreateNewVaccineTypeView.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = Core\CMakeFiles\Core.dir
+  OBJECT_FILE_DIR = Core\CMakeFiles\Core.dir\__\ConsoleApp\sources\views
+
+build Core/CMakeFiles/Core.dir/sources/domain/model/VaccineTypeContainer.cpp.obj: CXX_COMPILER__Core_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core/sources/domain/model/VaccineTypeContainer.cpp || cmake_object_order_depends_target_Core
+  DEP_FILE = Core\CMakeFiles\Core.dir\sources\domain\model\VaccineTypeContainer.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = Core\CMakeFiles\Core.dir
+  OBJECT_FILE_DIR = Core\CMakeFiles\Core.dir\sources\domain\model
+
+build Core/CMakeFiles/Core.dir/__/ConsoleApp/sources/views/MainView.cpp.obj: CXX_COMPILER__Core_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/ConsoleApp/sources/views/MainView.cpp || cmake_object_order_depends_target_Core
+  DEP_FILE = Core\CMakeFiles\Core.dir\__\ConsoleApp\sources\views\MainView.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = Core\CMakeFiles\Core.dir
+  OBJECT_FILE_DIR = Core\CMakeFiles\Core.dir\__\ConsoleApp\sources\views
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target Core
+
+
+#############################################
+# Link the static library Core\libCore.a
+
+build Core/libCore.a: CXX_STATIC_LIBRARY_LINKER__Core_Debug Core/CMakeFiles/Core.dir/sources/domain/shared/Result.cpp.obj Core/CMakeFiles/Core.dir/sources/domain/shared/StringUtils.cpp.obj Core/CMakeFiles/Core.dir/sources/controllers/ui/App.cpp.obj Core/CMakeFiles/Core.dir/sources/controllers/ui/CreateNewVaccineTypeController.cpp.obj Core/CMakeFiles/Core.dir/sources/domain/model/VaccineType.cpp.obj Core/CMakeFiles/Core.dir/__/ConsoleApp/sources/views/CreateNewVaccineTypeView.cpp.obj Core/CMakeFiles/Core.dir/sources/domain/model/VaccineTypeContainer.cpp.obj Core/CMakeFiles/Core.dir/__/ConsoleApp/sources/views/MainView.cpp.obj
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = Core\CMakeFiles\Core.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = Core\libCore.a
+  TARGET_PDB = Core.a.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build Core/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\diogo\CLionProjects\leti-esoft-25-26-B1\cmake-build-debug\Core && "C:\Program Files\JetBrains\CLion 2024.1.2\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build Core/edit_cache: phony Core/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build Core/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\diogo\CLionProjects\leti-esoft-25-26-B1\cmake-build-debug\Core && "C:\Program Files\JetBrains\CLion 2024.1.2\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\diogo\CLionProjects\leti-esoft-25-26-B1 -BC:\Users\diogo\CLionProjects\leti-esoft-25-26-B1\cmake-build-debug"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build Core/rebuild_cache: phony Core/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# C:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for EXECUTABLE target ConsoleApp
+
+
+#############################################
+# Order-only phony target for ConsoleApp
+
+build cmake_object_order_depends_target_ConsoleApp: phony || cmake_object_order_depends_target_Core
+
+build ConsoleApp/CMakeFiles/ConsoleApp.dir/ConsoleApp.cpp.obj: CXX_COMPILER__ConsoleApp_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/ConsoleApp/ConsoleApp.cpp || cmake_object_order_depends_target_ConsoleApp
+  DEP_FILE = ConsoleApp\CMakeFiles\ConsoleApp.dir\ConsoleApp.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = ConsoleApp\CMakeFiles\ConsoleApp.dir
+  OBJECT_FILE_DIR = ConsoleApp\CMakeFiles\ConsoleApp.dir
+
+build ConsoleApp/CMakeFiles/ConsoleApp.dir/__/Core/sources/controllers/ui/App.cpp.obj: CXX_COMPILER__ConsoleApp_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core/sources/controllers/ui/App.cpp || cmake_object_order_depends_target_ConsoleApp
+  DEP_FILE = ConsoleApp\CMakeFiles\ConsoleApp.dir\__\Core\sources\controllers\ui\App.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = ConsoleApp\CMakeFiles\ConsoleApp.dir
+  OBJECT_FILE_DIR = ConsoleApp\CMakeFiles\ConsoleApp.dir\__\Core\sources\controllers\ui
+
+build ConsoleApp/CMakeFiles/ConsoleApp.dir/__/Core/sources/controllers/ui/CreateNewVaccineTypeController.cpp.obj: CXX_COMPILER__ConsoleApp_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core/sources/controllers/ui/CreateNewVaccineTypeController.cpp || cmake_object_order_depends_target_ConsoleApp
+  DEP_FILE = ConsoleApp\CMakeFiles\ConsoleApp.dir\__\Core\sources\controllers\ui\CreateNewVaccineTypeController.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = ConsoleApp\CMakeFiles\ConsoleApp.dir
+  OBJECT_FILE_DIR = ConsoleApp\CMakeFiles\ConsoleApp.dir\__\Core\sources\controllers\ui
+
+build ConsoleApp/CMakeFiles/ConsoleApp.dir/__/Core/sources/domain/model/VaccineType.cpp.obj: CXX_COMPILER__ConsoleApp_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core/sources/domain/model/VaccineType.cpp || cmake_object_order_depends_target_ConsoleApp
+  DEP_FILE = ConsoleApp\CMakeFiles\ConsoleApp.dir\__\Core\sources\domain\model\VaccineType.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = ConsoleApp\CMakeFiles\ConsoleApp.dir
+  OBJECT_FILE_DIR = ConsoleApp\CMakeFiles\ConsoleApp.dir\__\Core\sources\domain\model
+
+build ConsoleApp/CMakeFiles/ConsoleApp.dir/sources/views/CreateNewVaccineTypeView.cpp.obj: CXX_COMPILER__ConsoleApp_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/ConsoleApp/sources/views/CreateNewVaccineTypeView.cpp || cmake_object_order_depends_target_ConsoleApp
+  DEP_FILE = ConsoleApp\CMakeFiles\ConsoleApp.dir\sources\views\CreateNewVaccineTypeView.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = ConsoleApp\CMakeFiles\ConsoleApp.dir
+  OBJECT_FILE_DIR = ConsoleApp\CMakeFiles\ConsoleApp.dir\sources\views
+
+build ConsoleApp/CMakeFiles/ConsoleApp.dir/__/Core/sources/domain/model/VaccineTypeContainer.cpp.obj: CXX_COMPILER__ConsoleApp_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core/sources/domain/model/VaccineTypeContainer.cpp || cmake_object_order_depends_target_ConsoleApp
+  DEP_FILE = ConsoleApp\CMakeFiles\ConsoleApp.dir\__\Core\sources\domain\model\VaccineTypeContainer.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = ConsoleApp\CMakeFiles\ConsoleApp.dir
+  OBJECT_FILE_DIR = ConsoleApp\CMakeFiles\ConsoleApp.dir\__\Core\sources\domain\model
+
+build ConsoleApp/CMakeFiles/ConsoleApp.dir/sources/views/MainView.cpp.obj: CXX_COMPILER__ConsoleApp_unscanned_Debug C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/ConsoleApp/sources/views/MainView.cpp || cmake_object_order_depends_target_ConsoleApp
+  DEP_FILE = ConsoleApp\CMakeFiles\ConsoleApp.dir\sources\views\MainView.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core
+  OBJECT_DIR = ConsoleApp\CMakeFiles\ConsoleApp.dir
+  OBJECT_FILE_DIR = ConsoleApp\CMakeFiles\ConsoleApp.dir\sources\views
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target ConsoleApp
+
+
+#############################################
+# Link the executable ConsoleApp\ConsoleApp.exe
+
+build ConsoleApp/ConsoleApp.exe: CXX_EXECUTABLE_LINKER__ConsoleApp_Debug ConsoleApp/CMakeFiles/ConsoleApp.dir/ConsoleApp.cpp.obj ConsoleApp/CMakeFiles/ConsoleApp.dir/__/Core/sources/controllers/ui/App.cpp.obj ConsoleApp/CMakeFiles/ConsoleApp.dir/__/Core/sources/controllers/ui/CreateNewVaccineTypeController.cpp.obj ConsoleApp/CMakeFiles/ConsoleApp.dir/__/Core/sources/domain/model/VaccineType.cpp.obj ConsoleApp/CMakeFiles/ConsoleApp.dir/sources/views/CreateNewVaccineTypeView.cpp.obj ConsoleApp/CMakeFiles/ConsoleApp.dir/__/Core/sources/domain/model/VaccineTypeContainer.cpp.obj ConsoleApp/CMakeFiles/ConsoleApp.dir/sources/views/MainView.cpp.obj | Core/libCore.a || Core/libCore.a
+  FLAGS = -g
+  LINK_LIBRARIES = Core/libCore.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = ConsoleApp\CMakeFiles\ConsoleApp.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = ConsoleApp\ConsoleApp.exe
+  TARGET_IMPLIB = ConsoleApp\libConsoleApp.dll.a
+  TARGET_PDB = ConsoleApp.exe.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build ConsoleApp/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\diogo\CLionProjects\leti-esoft-25-26-B1\cmake-build-debug\ConsoleApp && "C:\Program Files\JetBrains\CLion 2024.1.2\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build ConsoleApp/edit_cache: phony ConsoleApp/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build ConsoleApp/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\diogo\CLionProjects\leti-esoft-25-26-B1\cmake-build-debug\ConsoleApp && "C:\Program Files\JetBrains\CLion 2024.1.2\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\diogo\CLionProjects\leti-esoft-25-26-B1 -BC:\Users\diogo\CLionProjects\leti-esoft-25-26-B1\cmake-build-debug"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build ConsoleApp/rebuild_cache: phony ConsoleApp/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
 # Target aliases.
 
-build untitled1: phony untitled1.exe
+build ConsoleApp: phony ConsoleApp/ConsoleApp.exe
+
+build ConsoleApp.exe: phony ConsoleApp/ConsoleApp.exe
+
+build Core: phony Core/libCore.a
+
+build leti-esoft-25-26-B1: phony leti-esoft-25-26-B1.exe
+
+build libCore.a: phony Core/libCore.a
 
 # =============================================================================
 # Folder targets.
@@ -112,7 +373,21 @@ build untitled1: phony untitled1.exe
 #############################################
 # Folder: C:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/cmake-build-debug
 
-build all: phony untitled1.exe
+build all: phony leti-esoft-25-26-B1.exe Core/all ConsoleApp/all
+
+# =============================================================================
+
+#############################################
+# Folder: C:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/cmake-build-debug/ConsoleApp
+
+build ConsoleApp/all: phony ConsoleApp/ConsoleApp.exe
+
+# =============================================================================
+
+#############################################
+# Folder: C:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/cmake-build-debug/Core
+
+build Core/all: phony Core/libCore.a
 
 # =============================================================================
 # Built-in targets
@@ -121,14 +396,14 @@ build all: phony untitled1.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCCompilerABI.c C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCXXCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCompilerIdDetection.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeDetermineCompileFeatures.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeDetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeDetermineRCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeFindBinUtils.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeParseImplicitIncludeInfo.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeParseImplicitLinkInfo.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeParseLibraryArchitecture.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeRCCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystem.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeTestCompilerCommon.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeTestRCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/ADSP-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/ARMCC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/ARMClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/AppleClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Borland-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Bruce-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Clang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Clang-DetermineCompilerInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Compaq-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Cray-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/CrayClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Embarcadero-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Fujitsu-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GHS-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-FindBinUtils.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/HP-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/HP-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/IAR-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Intel-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/LCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/MSVC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/NVHPC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/NVIDIA-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/OrangeC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/PGI-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/PathScale-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/SCO-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/SDCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/SunPro-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/TI-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Tasking-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Watcom-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/XL-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/XL-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/XLClang-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/zOS-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Internal/FeatureTesting.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-Determine-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/WindowsPaths.cmake C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/CMakeLists.txt CMakeCache.txt CMakeFiles/3.28.1/CMakeCCompiler.cmake CMakeFiles/3.28.1/CMakeCXXCompiler.cmake CMakeFiles/3.28.1/CMakeRCCompiler.cmake CMakeFiles/3.28.1/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/WindowsPaths.cmake C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/CMakeLists.txt C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/ConsoleApp/CMakeLists.txt C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core/CMakeLists.txt CMakeCache.txt CMakeFiles/3.28.1/CMakeCCompiler.cmake CMakeFiles/3.28.1/CMakeCXXCompiler.cmake CMakeFiles/3.28.1/CMakeRCCompiler.cmake CMakeFiles/3.28.1/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCCompilerABI.c C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCXXCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCompilerIdDetection.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeDetermineCompileFeatures.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeDetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeDetermineRCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeFindBinUtils.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeParseImplicitIncludeInfo.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeParseImplicitLinkInfo.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeParseLibraryArchitecture.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeRCCompiler.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystem.cmake.in C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeTestCompilerCommon.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeTestRCCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/ADSP-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/ARMCC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/ARMClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/AppleClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Borland-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Bruce-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Clang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Clang-DetermineCompilerInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Compaq-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Cray-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/CrayClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Embarcadero-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Fujitsu-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GHS-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-FindBinUtils.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/HP-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/HP-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/IAR-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Intel-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/LCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/MSVC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/NVHPC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/NVIDIA-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/OrangeC-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/PGI-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/PathScale-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/SCO-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/SDCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/SunPro-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/TI-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Tasking-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/Watcom-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/XL-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/XL-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/XLClang-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/zOS-C-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Internal/FeatureTesting.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-Determine-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/WindowsPaths.cmake C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/CMakeLists.txt CMakeCache.txt CMakeFiles/3.28.1/CMakeCCompiler.cmake CMakeFiles/3.28.1/CMakeCXXCompiler.cmake CMakeFiles/3.28.1/CMakeRCCompiler.cmake CMakeFiles/3.28.1/CMakeSystem.cmake: phony
+build C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2024.1.2/bin/cmake/win/x64/share/cmake-3.28/Modules/Platform/WindowsPaths.cmake C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/CMakeLists.txt C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/ConsoleApp/CMakeLists.txt C$:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/Core/CMakeLists.txt CMakeCache.txt CMakeFiles/3.28.1/CMakeCCompiler.cmake CMakeFiles/3.28.1/CMakeCXXCompiler.cmake CMakeFiles/3.28.1/CMakeRCCompiler.cmake CMakeFiles/3.28.1/CMakeSystem.cmake: phony
 
 
 #############################################

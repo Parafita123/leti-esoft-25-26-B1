@@ -1,6 +1,10 @@
 project(Core)
 
-add_library(Core headers/domain/shared/Result.h headers/domain/shared/StringUtils.h sources/domain/shared/Result.cpp sources/domain/shared/StringUtils.cpp
+add_library(Core
+        headers/domain/shared/Result.h
+        headers/domain/shared/StringUtils.h
+        sources/domain/shared/Result.cpp
+        sources/domain/shared/StringUtils.cpp
         headers/controllers/ui/CreateNewVaccineTypeController.h
         headers/domain/model/VaccineType.h
         sources/controllers/ui/App.cpp
@@ -10,4 +14,21 @@ add_library(Core headers/domain/shared/Result.h headers/domain/shared/StringUtil
         ../ConsoleApp/sources/views/CreateNewVaccineTypeView.cpp
         sources/domain/model/VaccineTypeContainer.cpp
         ../ConsoleApp/headers/views/MainView.h
-        ../ConsoleApp/sources/views/MainView.cpp)
+        ../ConsoleApp/sources/views/MainView.cpp
+        # US11 - Register Vaccine
+        headers/domain/model/VaccineTechnology.h
+        sources/domain/model/VaccineTechnology.cpp
+        headers/domain/model/Vaccine.h
+        sources/domain/model/Vaccine.cpp
+        headers/domain/model/VaccineContainer.h
+        sources/domain/model/VaccineContainer.cpp
+        headers/controllers/ui/RegisterVaccineController.h
+        sources/controllers/ui/RegisterVaccineController.cpp
+        headers/controllers/ui/ListEmployeesByRoleController.h
+        sources/controllers/ui/ListEmployeesByRoleController.cpp
+        sources/domain/model/EmployeeContainer.cpp
+        sources/domain/model/Employee.cpp
+        sources/controllers/ui/RegisterEmployeeControllerRegisterEmployeeController.cpp
+        ../ConsoleApp/sources/views/RegisterEmployeeView.cpp
+        ../ConsoleApp/sources/views/ListEmployeesByRoleView.cpp
+)

@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="leti_esoft_25_26_B1"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\ConsoleApp\;CMake Files\Core\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="leti-esoft-25-26-B1">
+				<Option output="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/leti-esoft-25-26-B1.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Makefile&quot;  VERBOSE=1 leti-esoft-25-26-B1"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="leti-esoft-25-26-B1/fast">
+				<Option output="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/leti-esoft-25-26-B1.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Makefile&quot;  VERBOSE=1 leti-esoft-25-26-B1/fast"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Core">
+				<Option output="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Core/libCore.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Core"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Core/Makefile&quot;  VERBOSE=1 Core"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Core/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Core/fast">
+				<Option output="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Core/libCore.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Core"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Core/Makefile&quot;  VERBOSE=1 Core/fast"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Core/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ConsoleApp">
+				<Option output="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/ConsoleApp/ConsoleApp.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/ConsoleApp"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/ConsoleApp/Makefile&quot;  VERBOSE=1 ConsoleApp"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/ConsoleApp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/ConsoleApp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/ConsoleApp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ConsoleApp/fast">
+				<Option output="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/ConsoleApp/ConsoleApp.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/ConsoleApp"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2024.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/ConsoleApp/Makefile&quot;  VERBOSE=1 ConsoleApp/fast"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/ConsoleApp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/ConsoleApp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/ConsoleApp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/ConsoleApp/ConsoleApp.cpp">
+			<Option target="ConsoleApp"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/ConsoleApp/headers/views/CreateNewVaccineTypeView.h">
+			<Option target="leti-esoft-25-26-B1"/>
+			<Option target="Core"/>
+			<Option target="ConsoleApp"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/ConsoleApp/headers/views/ListEmployeesByRoleView.h">
+			<Option target="ConsoleApp"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/ConsoleApp/headers/views/MainView.h">
+			<Option target="leti-esoft-25-26-B1"/>
+			<Option target="Core"/>
+			<Option target="ConsoleApp"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/ConsoleApp/headers/views/RegisterVaccineView.h">
+			<Option target="ConsoleApp"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/ConsoleApp/sources/views/CreateNewVaccineTypeView.cpp">
+			<Option target="leti-esoft-25-26-B1"/>
+			<Option target="Core"/>
+			<Option target="ConsoleApp"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/ConsoleApp/sources/views/ListEmployeesByRoleView.cpp">
+			<Option target="Core"/>
+			<Option target="ConsoleApp"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/ConsoleApp/sources/views/MainView.cpp">
+			<Option target="leti-esoft-25-26-B1"/>
+			<Option target="Core"/>
+			<Option target="ConsoleApp"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/ConsoleApp/sources/views/RegisterEmployeeView.cpp">
+			<Option target="Core"/>
+			<Option target="ConsoleApp"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/ConsoleApp/sources/views/RegisterVaccineView.cpp">
+			<Option target="ConsoleApp"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/headers/controllers/ui/App.h">
+			<Option target="leti-esoft-25-26-B1"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/headers/controllers/ui/CreateNewVaccineTypeController.h">
+			<Option target="leti-esoft-25-26-B1"/>
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/headers/controllers/ui/ListEmployeesByRoleController.h">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/headers/controllers/ui/RegisterVaccineController.h">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/headers/domain/model/Vaccine.h">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/headers/domain/model/VaccineContainer.h">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/headers/domain/model/VaccineTechnology.h">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/headers/domain/model/VaccineType.h">
+			<Option target="leti-esoft-25-26-B1"/>
+			<Option target="Core"/>
+			<Option target="ConsoleApp"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/headers/domain/shared/Result.h">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/headers/domain/shared/StringUtils.h">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/sources/controllers/ui/App.cpp">
+			<Option target="leti-esoft-25-26-B1"/>
+			<Option target="Core"/>
+			<Option target="ConsoleApp"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/sources/controllers/ui/CreateNewVaccineTypeController.cpp">
+			<Option target="leti-esoft-25-26-B1"/>
+			<Option target="Core"/>
+			<Option target="ConsoleApp"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/sources/controllers/ui/ListEmployeesByRoleController.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/sources/controllers/ui/RegisterEmployeeControllerRegisterEmployeeController.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/sources/controllers/ui/RegisterVaccineController.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/sources/domain/model/Employee.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/sources/domain/model/EmployeeContainer.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/sources/domain/model/Vaccine.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/sources/domain/model/VaccineContainer.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/sources/domain/model/VaccineTechnology.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/sources/domain/model/VaccineType.cpp">
+			<Option target="leti-esoft-25-26-B1"/>
+			<Option target="Core"/>
+			<Option target="ConsoleApp"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/sources/domain/model/VaccineTypeContainer.cpp">
+			<Option target="leti-esoft-25-26-B1"/>
+			<Option target="Core"/>
+			<Option target="ConsoleApp"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/sources/domain/shared/Result.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/sources/domain/shared/StringUtils.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/main.cpp">
+			<Option target="leti-esoft-25-26-B1"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/ConsoleApp/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\ConsoleApp\"/>
+		</Unit>
+		<Unit filename="C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/Core/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Core\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

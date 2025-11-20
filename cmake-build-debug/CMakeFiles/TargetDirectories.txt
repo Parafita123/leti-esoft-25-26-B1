@@ -1,3 +1,9 @@
-C:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/cmake-build-debug/CMakeFiles/untitled1.dir
-C:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/diogo/CLionProjects/leti-esoft-25-26-B1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/CMakeFiles/leti-esoft-25-26-B1.dir
+C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Core/CMakeFiles/Core.dir
+C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Core/CMakeFiles/edit_cache.dir
+C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/Core/CMakeFiles/rebuild_cache.dir
+C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/ConsoleApp/CMakeFiles/ConsoleApp.dir
+C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/ConsoleApp/CMakeFiles/edit_cache.dir
+C:/Users/bergu/Documents/GitHub/leti-esoft-25-26-B1/cmake-build-debug/ConsoleApp/CMakeFiles/rebuild_cache.dir

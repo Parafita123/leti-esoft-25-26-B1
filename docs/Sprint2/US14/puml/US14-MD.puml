@@ -11,6 +11,7 @@ class Administrator {
 }
 
 class Employee {
+    - Employee_id
     - name
     - postal_address
     - phone_number
