@@ -10,6 +10,7 @@ participant ":CreateNewVaccineTypeView" as view
 participant ":CreateNewVaccineTypeController" as ctrl
 participant ":App" as app
 participant "container:VaccineTypeContainer" as container
+participant "VaccineType" as VaccineType
 
 activate admin
 
@@ -21,6 +22,7 @@ view -> ctrl: createNewVaccineType(string type_code, string disease, string shor
 ctrl -> app: getVaccineTypeContainer()
 app --> ctrl: VaccineTypeContainer
 ctrl -> container: create(string type_code, string disease, string short_description)
+container --> VaccineType**: create(string type_code, stringdisease, string short_description)
 container --> ctrl: VaccineType
 ctrl --> view: Confirmation
 view --> admin: Shows all data and request confirmation

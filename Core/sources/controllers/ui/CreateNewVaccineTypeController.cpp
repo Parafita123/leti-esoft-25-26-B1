@@ -16,6 +16,7 @@ Result CreateNewVaccineTypeController::saveCreatedNewVaccineType() {
     return vaccineTypeContainer.save(currentVaccineType);
 }
 
+//nao de acordo com o diagrama de classes
 const VaccineType& CreateNewVaccineTypeController::getCurrentVaccineType() const {
     return currentVaccineType;
 }

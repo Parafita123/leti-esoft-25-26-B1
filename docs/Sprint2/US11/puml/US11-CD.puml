@@ -14,8 +14,6 @@ class RegisterVaccineController {
 
 class Administrator {
     - name
-    - email
-    -phone_number
     +getVaccinesContainer(): VaccineContainer
 }
 
