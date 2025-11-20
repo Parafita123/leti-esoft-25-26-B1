@@ -12,7 +12,7 @@ class RegisterVaccineController {
     +saveCreatedVaccine(): Result
 }
 
-class Administrator {
+class App {
     - name
     +getVaccinesContainer(): VaccineContainer
 }
@@ -35,12 +35,12 @@ class VaccineType {
     - short_description
 }
 
-Administrator "1" -right-> "1" VaccineContainer:  maintains
+App "1" -right-> "1" VaccineContainer:  maintains
 VaccineContainer "1" -right-> "0..*" Vaccine:  records
 Vaccine "1" -down-> "1" VaccineType:  has
 
 RegisterVaccineView ..> RegisterVaccineController
-RegisterVaccineController ..> Administrator
+RegisterVaccineController ..> App
 RegisterVaccineController ..> VaccineContainer
 RegisterVaccineController ..> Vaccine
 

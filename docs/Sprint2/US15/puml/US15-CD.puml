@@ -11,10 +11,7 @@ class ListEmployeesByRoleController {
     +getEmployeesByRole(role: string): List<Employee>
 }
 
-class Admin {
-    - name
-    - email
-    - phoneNumber
+class App {
     +getEmployeeContainer(): EmployeeContainer
 }
 
@@ -39,12 +36,12 @@ class Employee {
 }
 
 ' Associations
-Admin "1" -right-> "1" EmployeeContainer : maintains
+App "1" -right-> "1" EmployeeContainer : maintains
 EmployeeContainer "1" -right-> "0..*" Employee : stores
 
 ListEmployeesByRoleView ..> ListEmployeesByRoleController
 ListEmployeesByRoleView ..> Employee
-ListEmployeesByRoleController ..> Admin
+ListEmployeesByRoleController ..> App
 ListEmployeesByRoleController ..> EmployeeContainer
 
 @enduml
