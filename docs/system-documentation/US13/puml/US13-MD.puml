@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+hide circle
+skinparam classAttributeIconSize 0
+hide methods
+
+class Administrator {
+    - name
+    - email
+    - phone_number
+}
+
+class Facility {
+    - name
+    - postal_adress
+    - phone_number
+    - email
+    - website_adress
+    - opening_hours
+    - closing_hours
+    - max_vaccines_per_hour
+}
+
+class Community_Mass_Vaccination_Center {
+ - vaccine_type
+}
+
+class Healthcare_Center {
+}
+
+Administrator "1" -right-- "0..*" Facility: register >
+
+Facility <|-- Community_Mass_Vaccination_Center
+Facility <|-- Healthcare_Center
+
+@enduml

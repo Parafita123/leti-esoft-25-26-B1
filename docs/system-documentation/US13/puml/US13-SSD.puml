@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title US13:System Sequence Diagram
+
+autoactivate on
+autonumber
+
+actor "Admin" as user
+participant ":System" as system
+
+user -> system:requests to register a new type of facility
+
+system --> user:asks the facility type
+
+user -> system: selects facility type
+
+alt The user selects Community
+    system --> user: requests data
+    user -> system: types requested data
+    system --> user: asks the vaccine type
+    user -> system: selects a vaccine type
+else The user selects Healthcare
+    system --> user: requests data
+    user -> system: types requested data
+end
+   system --> user: shows all data for confirmation
+   user -> system: confirms the data
+   system --> user: informs the sucess of the operation
+
+@enduml

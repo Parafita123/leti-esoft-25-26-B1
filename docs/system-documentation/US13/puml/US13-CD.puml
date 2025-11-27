@@ -1,0 +1,112 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide methods
+
+' ===== Enums / DTOs =====
+enum FacilityType {
+  HEALTHCARE
+  COMMUNITY
+}
+
+class VaccinationCenterDTO {
+  -name : wstring
+  -postal_address : wstring
+  -phone_number : wstring
+  -email : wstring
+  -website_address : wstring
+  -opening_hours : wstring
+  -closing_hours : wstring
+  -max_vaccines_per_hour : int
+  -facilityType : FacilityType
+  -vaccineTypeCode : wstring
+}
+
+' ===== UI Layer =====
+class RegisterVaccinationCenterView {
+  +show()
+}
+
+class RegisterVaccinationCenterController {
+  +RegisterVaccinationCenterController(shared_ptr<VaccinationCenterService>)
+  +registerVaccinationCenter(dto : VaccinationCenterDTO) : Result
+  +listVaccineTypes() : vector<shared_ptr<VaccineType>>
+}
+
+class App {
+  +getRepositoryFactory() : shared_ptr<RepositoryFactory>
+}
+
+RegisterVaccinationCenterView ..> RegisterVaccinationCenterController
+RegisterVaccinationCenterController ..> VaccinationCenterDTO
+
+' ===== Service Layer =====
+class VaccinationCenterService {
+  +VaccinationCenterService(shared_ptr<VaccinationCenterRepository>,
+                            shared_ptr<VaccineTypeRepository>)
+  +registerCenter(dto : VaccinationCenterDTO) : Result
+}
+
+RegisterVaccinationCenterController ..> VaccinationCenterService
+
+' ===== Repository Interfaces =====
+interface VaccinationCenterRepository {
+  +save(center : shared_ptr<Facility>) : Result
+}
+
+interface VaccineTypeRepository {
+  +findAll() : vector<shared_ptr<VaccineType>>
+  +findByCode(code : wstring) : shared_ptr<VaccineType>
+  +exists(code : wstring) : bool
+}
+
+' ===== Concrete Repositories (Memory) =====
+class VaccinationCenterMemoryRepository
+VaccinationCenterMemoryRepository -up-|> VaccinationCenterRepository
+
+class VaccineTypeMemoryRepository
+VaccineTypeMemoryRepository -up-|> VaccineTypeRepository
+
+' ===== Repository Factory =====
+class RepositoryFactory {
+  +buildVaccinationCenterRepository() : shared_ptr<VaccinationCenterRepository>
+  +buildVaccineTypeRepository() : shared_ptr<VaccineTypeRepository>
+}
+
+App "1" o-- "1" RepositoryFactory
+RepositoryFactory ..> VaccinationCenterRepository
+RepositoryFactory ..> VaccineTypeRepository
+VaccinationCenterService ..> VaccinationCenterRepository
+VaccinationCenterService ..> VaccineTypeRepository
+
+' ===== Domain Model =====
+abstract class Facility {
+  -name : wstring
+  -postal_address : wstring
+  -phone_number : wstring
+  -email : wstring
+  -website_address : wstring
+  -opening_hours : wstring
+  -closing_hours : wstring
+  -max_vaccines_per_hour : int
+}
+
+class Healthcare_Center
+class Community_Mass_Vaccination_Center {
+  -vaccineType : shared_ptr<VaccineType>
+}
+
+Facility <|-- Healthcare_Center
+Facility <|-- Community_Mass_Vaccination_Center
+
+class VaccineType {
+  -type_code : wstring
+  -disease : wstring
+  -short_description : wstring
+}
+
+VaccinationCenterRepository "1" o-- "0..*" Facility : stores >
+VaccineTypeRepository "1" o-- "0..*" VaccineType : stores >
+
+Community_Mass_Vaccination_Center "1" --> "1" VaccineType : administered >
+
+@enduml

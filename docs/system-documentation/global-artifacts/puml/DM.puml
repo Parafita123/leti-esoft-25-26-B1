@@ -68,6 +68,7 @@ class Current_Outbreak {
 }
 
 class Community_Mass_Vaccination_Center {
+ - vaccine_type
 }
 
 class Healthcare_Center {
