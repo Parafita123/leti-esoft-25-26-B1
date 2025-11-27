@@ -35,6 +35,7 @@ class Employee {
     - postal_adress
     - phone_number
     - email
+    -citizenCardNumber
     - role
 }
 
@@ -105,13 +106,13 @@ Facility <|-- Healthcare_Center
 
 Employee "1" -up-- "0..*" Facility : works in >
 
-Administrator "1" -right-- "1..*" Employee: register >
+Administrator "1" -right-- "0..*" Employee: register >
 
-Administrator "1" -down-- "1..*" Vaccine: register >
+Administrator "1" -down-- "0..*" Vaccine: register >
 
-Administrator "1" -right-- "1..*" Facility: register >
+Administrator "1" -right-- "0..*" Facility: register >
 
-Administrator "1" -down-- "1..*" Vaccine_Type: specify a >
+Administrator "1" -down-- "0..*" Vaccine_Type: specify a >
 
 SNS_User "1" -down-- "0..1" Vaccination_Appointment: makes a >
 

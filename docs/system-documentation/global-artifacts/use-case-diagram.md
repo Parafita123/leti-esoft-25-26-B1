@@ -6,7 +6,7 @@ However, be aware, this is a pedagogical simplification. On further projects and
 
 By analyzing the problem statement, it is possible **to infer** the use cases depicted in the following diagram.
 
-![Use Case Diagram](svg/First draft UCD.svg)
+![Use Case Diagram](svg/First%20draft%20UCD.svg)
 
 **It is worth noting that (some of) these UC were inferred. Therefore, it is important to validate its existence with the SW Client as well as in what each UC actually consists of.**
 
