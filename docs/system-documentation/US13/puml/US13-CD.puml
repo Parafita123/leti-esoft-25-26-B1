@@ -1,93 +1,112 @@
 @startuml
+'https://plantuml.com/class-diagram
+
+hide circle
 skinparam classAttributeIconSize 0
-hide methods
+
 
 ' ===== Enums / DTOs =====
-enum FacilityType {
+  class FacilityType {
   HEALTHCARE
   COMMUNITY
 }
 
 class VaccinationCenterDTO {
-  -name : wstring
-  -postal_address : wstring
-  -phone_number : wstring
-  -email : wstring
-  -website_address : wstring
-  -opening_hours : wstring
-  -closing_hours : wstring
+  -name : string
+  -postal_address : string
+  -phone_number : string
+  -email : string
+  -website_address : string
+  -opening_hours : string
+  -closing_hours : string
   -max_vaccines_per_hour : int
   -facilityType : FacilityType
-  -vaccineTypeCode : wstring
+  -vaccineTypeCode : string
 }
 
 ' ===== UI Layer =====
 class RegisterVaccinationCenterView {
-  +show()
 }
 
 class RegisterVaccinationCenterController {
-  +RegisterVaccinationCenterController(shared_ptr<VaccinationCenterService>)
-  +registerVaccinationCenter(dto : VaccinationCenterDTO) : Result
+  +registerVaccinationCenter(dto : VaccinationCenterDTO) : void
+  +saveRegistedVaccinationCenter(): Result
   +listVaccineTypes() : vector<shared_ptr<VaccineType>>
 }
 
 class App {
-  +getRepositoryFactory() : shared_ptr<RepositoryFactory>
-}
+  +getVaccinationCenterService(): VaccinationCenterService
+ }
 
 RegisterVaccinationCenterView ..> RegisterVaccinationCenterController
 RegisterVaccinationCenterController ..> VaccinationCenterDTO
 
 ' ===== Service Layer =====
 class VaccinationCenterService {
-  +VaccinationCenterService(shared_ptr<VaccinationCenterRepository>,
-                            shared_ptr<VaccineTypeRepository>)
-  +registerCenter(dto : VaccinationCenterDTO) : Result
++ VaccinationCenterService(VaccineCenterRepository VCRepo, shared_ptr<VaccineTypeRepository>)
++ create((string name, string postal_adress, string phone_number, string email, string website_address, string opening_hours, string closing_hours, int max_vaccines_per_hour): VaccinationCenter
++addOrUpdate(VaccinationCenter obj): Result
 }
 
 RegisterVaccinationCenterController ..> VaccinationCenterService
 
 ' ===== Repository Interfaces =====
-interface VaccinationCenterRepository {
-  +save(center : shared_ptr<Facility>) : Result
+interface VaccinationCenterRepository <<interface>> {
+  +save(VaccinationCenter obj) : Result
 }
 
-interface VaccineTypeRepository {
+interface VaccineTypeRepository <<interface>> {
   +findAll() : vector<shared_ptr<VaccineType>>
-  +findByCode(code : wstring) : shared_ptr<VaccineType>
-  +exists(code : wstring) : bool
+  +findByCode(code : string) : shared_ptr<VaccineType>
+  +exists(code : string) : bool
 }
 
 ' ===== Concrete Repositories (Memory) =====
-class VaccinationCenterMemoryRepository
-VaccinationCenterMemoryRepository -up-|> VaccinationCenterRepository
+    class VaccinationCenterMemoryRepository{
++ getVaccinationCenterRepository(): VaccinationCenterRepository
+}
+VaccinationCenterMemoryRepository .up.|> VaccinationCenterRepository
 
-class VaccineTypeMemoryRepository
-VaccineTypeMemoryRepository -up-|> VaccineTypeRepository
+class VaccineTypeMemoryRepository {
+  +findAll() : vector<shared_ptr<VaccineType>>
+  +findByCode(code : string) : shared_ptr<VaccineType>
+  +exists(code : string) : bool
+}
+VaccineTypeMemoryRepository .up.|> VaccineTypeRepository
 
 ' ===== Repository Factory =====
-class RepositoryFactory {
-  +buildVaccinationCenterRepository() : shared_ptr<VaccinationCenterRepository>
-  +buildVaccineTypeRepository() : shared_ptr<VaccineTypeRepository>
+interface RepositoryFactory <<interface>>  {
+   + getVaccinationCenterRepository(): VaccineCenterRepository
+   + getVaccinationTypeRepository(): VaccineTypeRepository
+  }
+
+
+class MemoryRepositoryFactory {
+  + getVaccinationCenterRepository(): VaccineCenterRepository
+  + getVaccinationTypeRepository(): VaccineTypeRepository
 }
 
-App "1" o-- "1" RepositoryFactory
+App "1" -down-> "1" RepositoryFactory:  uses
+App --> VaccinationCenterService: adopts
 RepositoryFactory ..> VaccinationCenterRepository
 RepositoryFactory ..> VaccineTypeRepository
 VaccinationCenterService ..> VaccinationCenterRepository
 VaccinationCenterService ..> VaccineTypeRepository
+MemoryRepositoryFactory .up.|> RepositoryFactory
+MemoryRepositoryFactory .right.> VaccinationCenterMemoryRepository
+MemoryRepositoryFactory .right.> VaccineTypeMemoryRepository
 
 ' ===== Domain Model =====
-abstract class Facility {
-  -name : wstring
-  -postal_address : wstring
-  -phone_number : wstring
-  -email : wstring
-  -website_address : wstring
-  -opening_hours : wstring
-  -closing_hours : wstring
+ abstract class Facility {
+  -name : string
+  -postal_address : string
+  -phone_number : string
+  -email : string
+  -website_address : string
+  -opening_hours : string
+  -closing_hours : string
   -max_vaccines_per_hour : int
+  Facility(string name, string postal_adress, string phone_number, string email, string website_address, string opening_hours, string closing_hours, int max_vaccines_per_hour)
 }
 
 class Healthcare_Center
@@ -104,8 +123,8 @@ class VaccineType {
   -short_description : wstring
 }
 
-VaccinationCenterRepository "1" o-- "0..*" Facility : stores >
-VaccineTypeRepository "1" o-- "0..*" VaccineType : stores >
+VaccinationCenterRepository "1" --> "0..*" Facility : records >
+VaccineTypeRepository "1" --> "0..*" VaccineType : records >
 
 Community_Mass_Vaccination_Center "1" --> "1" VaccineType : administered >
 
