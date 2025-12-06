@@ -1,0 +1,53 @@
+@startuml
+
+autoactivate on
+autonumber
+
+actor "Administrator" as Admin
+participant ":ListVaccinesView" as View
+participant ":ListVaccinesController" as Ctrl
+participant ":App" as App
+participant "factory:RepositoryFactory" as Factory
+participant "mapper:VaccineMapper" as Mapper
+participant "service:VaccineService" as Service
+participant "repo:VaccineRepository" as Repo
+participant "listVaccines : List<Vaccine>" as ListVaccines
+participant "dtoList : List<VaccineDTO>" as ListDTO
+
+activate Admin
+
+Admin -> View: asks to list all vaccines
+View -> Ctrl: listAllVaccines()
+
+'--- 1. Orchestration / Dependency Injection ---
+Ctrl -> App: getVaccineService()
+App -> Factory : getVaccineRepository()
+Factory --> App: repo
+App --> Service**: create(repo)
+App --> Ctrl: service
+
+' Mapper is assumed to be available/injected
+
+'--- 2. Domain: Data Access and Business Rule ---
+Ctrl -> Service: getAllVaccines()
+Service -> Repo: findAll()
+
+Repo --> Service: listVaccines
+Service -> Service: sortByTypeThenBrand(listVaccines)
+Service --> Service: ok
+Service --> Ctrl: listVaccines
+
+'--- 3. DTO Mapping (UI never sees domain) ---
+Ctrl -> ListDTO**: create()
+loop for each vaccine in listVaccines
+    Ctrl -> Mapper: toDTO(vaccine)
+    Mapper --> Ctrl: vaccineDTO : VaccineDTO
+    Ctrl -> ListDTO: add(vaccineDTO)
+end loop
+ListDTO --> Ctrl : return ListDTO
+Ctrl --> View: dtoList
+
+'--- 4. Presentation ---
+View --> Admin: displays grouped and alphabetically ordered list
+
+@enduml

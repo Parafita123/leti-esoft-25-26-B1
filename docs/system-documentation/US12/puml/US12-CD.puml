@@ -1,0 +1,66 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class ListVaccinesView {
+}
+
+class ListVaccinesController {
+    + listAllVaccines(): List<VaccineDTO>
+}
+
+class Application {
+    + getVaccineService(): VaccineService
+}
+
+class VaccineService {
+    + VaccineService(VaccineRepository repo)
+    + getAllVaccines(): List<Vaccine>
+    + sortByTypeThenBrand(List<Vaccine>): List<Vaccine>
+}
+
+interface VaccineRepository <<interface>> {
+    + findAll(): List<Vaccine>
+}
+
+interface RepositoryFactory <<interface>> {
+    + getVaccineRepository(): VaccineRepository
+}
+
+class VaccineMapper {
+    + toDTO(Vaccine vaccine): VaccineDTO
+}
+
+class Vaccine {
+    - commercial_name
+    - brand
+    - technology
+}
+
+class VaccineDTO {
+    - commercial_name
+    - brand
+    - technology
+    - type
+}
+
+ListVaccinesView ..> ListVaccinesController
+ListVaccinesController ..> Application
+ListVaccinesController ..> VaccineMapper
+ListVaccinesController ..> VaccineDTO
+
+Application "1" -down-> "1" RepositoryFactory: uses
+Application -> VaccineService: adopts
+
+RepositoryFactory .right.> VaccineRepository
+
+VaccineService ..> VaccineRepository
+VaccineService ..> Vaccine
+
+VaccineRepository "1" -right-> "0..*" Vaccine: records
+
+VaccineMapper ..> Vaccine
+VaccineMapper ..> VaccineDTO
+
+@enduml

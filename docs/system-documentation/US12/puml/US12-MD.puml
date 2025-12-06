@@ -1,0 +1,28 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+' Classes de Domínio Ator/Entidade
+class Administrator {
+    - name
+    - email
+    - phone_number
+}
+
+class Vaccine {
+    - commercial_name
+    - brand
+    - technology
+}
+
+class Vaccine_Type {
+    - type_code
+    - disease
+    - short_description
+}
+
+Administrator "1" -down-- "0..*" Vaccine: register >
+Vaccine "0..*" -right-- "1" Vaccine_Type: has >
+
+@enduml
