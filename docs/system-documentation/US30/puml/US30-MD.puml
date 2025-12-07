@@ -1,0 +1,51 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+class Facility {
+    - name
+    - postal_adress
+    - phone_number
+    - email
+    - website_adress
+    - opening_hours
+    - closing_hours
+    - max_vaccines_per_hour
+}
+
+class Vaccine_Type {
+    - type_code
+    - disease
+    - short_description
+}
+
+class Vaccination_Appointment {
+    - facility
+    - status
+    - date
+    - time
+}
+
+class SNS_User {
+    - name
+    - date_of_birth
+    - sex
+    - postal_address
+    - phone_number
+    - email
+    - citizen_card_number
+    - sns_user_number
+}
+
+
+SNS_User "1" -- "0..*" Vaccination_Appointment : schedules >
+
+Vaccine_Type "1" -- "0..*" Vaccination_Appointment : for <
+
+Facility "1" -- "0..*" Vaccination_Appointment : has scheduled >
+
+Facility "0..*" -- "0..*" Vaccine_Type : can administer >
+
+@enduml
