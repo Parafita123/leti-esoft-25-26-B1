@@ -8,12 +8,14 @@
 #include "headers/domain/model/VaccineTypeContainer.h"
 #include "headers/domain/model/VaccineContainer.h"
 #include "headers/domain/model/EmployeeContainer.h"
+#include "headers/domain/model/SNSUserContainer.h"
 
 class App {
 private:
     VaccineTypeContainer vaccineTypeContainer;
     VaccineContainer vaccineContainer;
     EmployeeContainer employeeContainer;
+    SNSUserContainer snsUserContainer;
 
 public:
     App() = default;
@@ -25,6 +27,11 @@ public:
      */
     VaccineContainer& getVaccineContainer();
     EmployeeContainer &getEmployeeContainer();
+
+    /**
+     * Returns a reference to the SNS user container.
+     */
+    SNSUserContainer &getSNSUserContainer();
 };
 
 #endif //LETI_ESOFT_25_26_B1_APP_H

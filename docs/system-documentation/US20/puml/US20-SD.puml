@@ -1,0 +1,34 @@
+@startuml
+
+title Register SNS User – Sequence Diagram
+
+autoactivate on
+autonumber
+
+actor "Receptionist" as receptionist
+participant ":RegisterSNSUserView" as view
+participant ":RegisterSNSUserController" as ctrl
+participant "container:SNSUserContainer" as container
+participant "SNSUser" as snsuser
+
+activate receptionist
+
+receptionist -> view: ask to  register SNS user
+view --> receptionist: requests data (name, dateOfBirth, sex, postalAddress, phoneNumber, email, citizenCardNumber, snsUserNumber)
+receptionist -> view: enters data
+view -> ctrl: createSNSUser(name, dateOfBirth, sex, postalAddress, phoneNumber, email, citizenCardNumber, snsUserNumber)
+ctrl -> container: create(name, dateOfBirth, sex, postalAddress, phoneNumber, email, citizenCardNumber, snsUserNumber)
+container --> snsuser: create(...)
+container --> ctrl: SNSUser
+ctrl --> view: user created
+view --> receptionist: shows data and requests confirmation
+receptionist -> view: confirms registration
+view -> ctrl: saveRegisteredSNSUser(snsuser)
+ctrl -> container: save(snsuser)
+container -> container: validate(snsuser)
+container --> container: duplicates/format check
+container --> ctrl: Result
+ctrl --> view: Result
+view --> receptionist: informs operation success or failure
+
+@enduml

@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title Register SNS User – System Sequence Diagram
+
+autonumber
+
+actor "Receptionist" as Receptionist
+participant ":System" as System
+
+activate Receptionist
+
+Receptionist -> System: selects register SNS user
+System --> Receptionist: requests data (name)
+Receptionist -> System: types requested data
+System --> Receptionist: requests data (dateOfBirth)
+Receptionist -> System: types requested data
+System --> Receptionist: requests data (sex)
+Receptionist -> System: types requested data
+System --> Receptionist: requests data (postalAddress)
+Receptionist -> System: types requested data
+System --> Receptionist: requests data (phoneNumber)
+Receptionist -> System: types requested data
+System --> Receptionist: requests data (email)
+Receptionist -> System: types requested data
+System --> Receptionist: requests data (citizenCardNumber)
+Receptionist -> System: types requested data
+System --> Receptionist: requests data (snsUserNumber)
+Receptionist -> System: types requested data
+System --> Receptionist: shows all data and requests confirmation
+Receptionist -> System: confirms registration
+System --> Receptionist: informs operation success
+
+@enduml

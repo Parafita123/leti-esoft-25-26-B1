@@ -42,13 +42,13 @@ class Employee {
 
 class SNS_User {
     - name
-    - date_birth
+    - date_of_birth
     - sex
-    - postal_adress
+    - postal_address
     - phone_number
     - email
-    - CC_number
-    - SNS_user_number
+    - citizen_card_number
+    - sns_user_number
 }
 
 
@@ -79,6 +79,12 @@ class Nurse {
 }
 
 class Receptionist {
+    - name
+    - postal_address
+    - phone_number
+    - email
+    - citizen_card_number
+    - role
 
 }
 

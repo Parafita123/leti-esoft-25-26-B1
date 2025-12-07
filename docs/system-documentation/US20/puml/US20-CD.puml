@@ -1,0 +1,55 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide circle
+skinparam classAttributeIconSize 0
+
+title Register SNS User – Class Diagram
+
+class RegisterSNSUserView {
+    +run(): void
+}
+
+class RegisterSNSUserController {
+    +createSNS_User(name, dateOfBirth, sex, postalAddress, phoneNumber, email, citizenCardNumber, snsUserNumber): SNS_User
+    +saveRegisteredSNSUser(user: SNSUser): Result
+}
+
+class SNS_User {
+    - name
+    - date_of_birth
+    - sex
+    - postal_address
+    - phone_number
+    - email
+    - citizen_card_number
+    - sns_user_number
+    + isValid(): bool
+    + getName(): string
+    + getDateOfBirth(): string
+    + getSex(): string
+    + getPostalAddress(): string
+    + getPhoneNumber(): string
+    + getEmail(): string
+    + getCitizenCardNumber(): string
+    + getSNSUserNumber(): string
+}
+
+class SNSUserContainer {
+    + create(name, dateOfBirth, sex, postalAddress, phoneNumber, email, citizenCardNumber, snsUserNumber): SNSUser
+    + validate(user: SNSUser): Result
+    + save(user: SNSUser): Result
+    + getAll(): vector<SNSUser>
+}
+
+class App {
+    + getSNSUserContainer(): SNSUserContainer
+}
+
+App "1" -right-> "1" SNSUserContainer: maintains
+SNSUserContainer "1" -right-> "0..*" SNS_User: stores
+RegisterSNSUserView ..> RegisterSNSUserController
+RegisterSNSUserController ..> SNSUserContainer
+RegisterSNSUserController ..> SNS_User
+
+@enduml

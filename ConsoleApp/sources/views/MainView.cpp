@@ -9,6 +9,10 @@
 #include "../ConsoleApp/headers/views/ListEmployeesByRoleView.h"
 #include "../Core/headers/controllers/ui/App.h"
 
+// US20 - Register SNS user
+#include "../Core/headers/controllers/ui/RegisterSNSUserController.h"
+#include "../ConsoleApp/headers/views/RegisterSNSUserView.h"
+
 // US11 - Register vaccine
 #include "../Core/headers/controllers/ui/RegisterVaccineController.h"
 #include "../ConsoleApp/headers/views/RegisterVaccineView.h"
@@ -20,6 +24,7 @@ void MainView::showMenu() const {
     std::cout << "1 - Create new vaccine type" << std::endl;
     std::cout << "2 - List employees by role" << std::endl;
     std::cout << "3 - Register new vaccine" << std::endl;   // US11
+    std::cout << "4 - Register SNS user" << std::endl;      // US20
     std::cout << "0 - Exit" << std::endl;
     std::cout << "Choose an option: ";
 }
@@ -53,6 +58,14 @@ void MainView::handleOption(int option) {
             RegisterVaccineView view(controller);
 
             view.show();
+            break;
+        }
+        case 4: {
+            // US20 - Register SNS user
+            SNSUserContainer &snsContainer = app.getSNSUserContainer();
+            RegisterSNSUserController controller(&snsContainer);
+            RegisterSNSUserView view(controller);
+            view.run();
             break;
         }
         case 0:

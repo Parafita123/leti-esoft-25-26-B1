@@ -15,3 +15,7 @@ EmployeeContainer &App::getEmployeeContainer() {
     return employeeContainer;
 }
 
+SNSUserContainer &App::getSNSUserContainer() {
+    return snsUserContainer;
+}
+
