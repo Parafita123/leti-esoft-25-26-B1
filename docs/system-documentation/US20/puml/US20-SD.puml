@@ -1,24 +1,24 @@
 @startuml
+'https://plantuml.com/sequence-diagram
 autoactivate on
 autonumber
 
-actor Receptionist as Receptionist
+actor "Receptionist" as Receptionist
+participant ":RegisterSNSUserView" as View
+participant ":RegisterSNSUserController" as Ctrl
+participant ":SNSUserService" as Service
+participant "factory:RepositoryFactory" as Factory
+participant "repo:SNSUserRepository" as Repo
+participant "obj:SNSUser" as UserObj
+
 activate Receptionist
-
-
-participant RegisterSNSUserView as View
-participant RegisterSNSUserController as Controller
-participant SNSUserService as Service
-participant RepositoryFactory as Factory
-participant SNSUserRepository as Repo
-participant SNSUser as UserObj
 
 Receptionist -> View: requests to register an SNS user
 View --> Receptionist: asks for the user data
 Receptionist -> View: provide name, date of birth, sex, postal address, phone number, email, citizen card number, sns user number
 
-View -> Controller: registerUser(dto : SNSUserDTO)
-Controller -> Service: register(dto)
+View -> Ctrl: registerUser(dto : SNSUserDTO)
+Ctrl -> Service: register(dto)
 Service -> Factory: getSNSUserRepository()
 Factory --> Service: Repo
 
@@ -31,21 +31,25 @@ Service -> Repo: existsByCitizenCardNumber(dto.citizenCardNumber)
 Repo --> Service: bool
 Service -> Repo: existsBySNSUserNumber(dto.snsUserNumber)
 Repo --> Service: bool
+Service --> Ctrl: ok
 
-' Success path (all unique)
+' Show data to Receptionist for confirmation
+Ctrl --> View: ok
+View --> Receptionist: show all data for confirmation
+Receptionist -> View: confirms data
+activate View
+View --> Ctrl: confirmed data
+activate Ctrl
+Ctrl -> Service: createSNSUser(dto)
 Service -> Service: createSNSUser(dto)
-Service --> UserObj**: createSNSUser(dto)
+Service --> UserObj: createSNSUser(dto)
+activate UserObj
 UserObj --> Service: SNSUser
 Service -> Repo: save(UserObj)
 Repo --> Service: Result
-Service --> Controller: Result(success)
-Controller --> View: Result(success)
+Service --> Ctrl: Result(success)
+Ctrl --> View: Result(success)
 View --> Receptionist: informs registration success
 
-alt [duplicate found]
-    Service --> Controller: Result(failure)
-    Controller --> View: Result(failure)
-    View --> Receptionist: informs that phone/email/cc or sns user number already exists
-end
 
 @enduml
