@@ -28,6 +28,7 @@ Factory --> Service: Repo
 
 Service -> Service: createVaccinationProcess(dto)
 Service --> VaccinationProcess: create(dto)
+activate VaccinationProcess
 VaccinationProcess --> Service: VaccinationProcess
 Service -> Repo: save(VaccinationProcess)
 Repo --> Service: Result
