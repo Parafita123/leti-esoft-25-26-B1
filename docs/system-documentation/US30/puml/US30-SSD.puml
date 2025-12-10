@@ -1,0 +1,26 @@
+@startuml
+title US30 - Schedule Appointment - System Sequence Diagram
+
+autonumber
+autoactivate on
+hide footbox
+
+actor "SNS User" as User
+participant ":System" as System
+
+User -> System :  request to schedule appointment
+System --> User :  request center selection
+
+User -> System :selects vaccination center
+System --> User : shows available vaccine types
+
+User -> System : selects vaccine type
+System --> User :request date and time
+
+User -> System : provides SNS number,\n date and time
+System --> User : show appointment details and\nrequest confirmation
+
+User -> System : confirms appointment
+System --> User : success message\n(appointment created)
+
+@enduml

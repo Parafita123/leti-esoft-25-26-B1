@@ -1,0 +1,126 @@
+@startuml
+title US30 - Schedule Appointment - Class Diagram
+
+hide circle
+hide empty methods
+skinparam classAttributeIconSize 0
+
+' Domain Classes
+class Appointment {
+    - sns_user : SNS_User
+    - center : Facility
+    - vaccine_type : Vaccine_Type
+    - date : Date
+    - time : Time
+    - status : string
+}
+
+class SNS_User {
+    - sns_user_number : string
+    - name : string
+}
+
+class Facility {
+    - name : string
+    - max_vaccines_per_hour : int
+}
+
+class Vaccine_Type {
+    - type_code : string
+    - disease : string
+}
+
+' DTO
+class AppointmentDTO {
+    + sns_user_number
+    + centerID
+    + vaccineTypeCode
+    + date
+    + time
+}
+
+' UI & Controller
+class ScheduleAppointmentUI {
+    - controller : ScheduleAppointmentController
+    + scheduleAppointment()
+}
+
+class ScheduleAppointmentController {
+    - app : App
+    + requestVaccinationCenters()
+    + requestVaccineTypes(centerID)
+    + saveAppointment(dto : AppointmentDTO)
+}
+
+' Application Root
+class App {
+    + getVaccinationCenterRepository()
+    + getVaccineTypeRepository()
+    + getAppointmentService()
+}
+
+' Service Layer
+class AppointmentService {
+    - apptRepo : AppointmentRepository
+    - vcRepo : VaccinationCenterRepository
+    - vtRepo : VaccineTypeRepository
+    - mapper : AppointmentMapper
+    + addAppointment(dto : AppointmentDTO) : Appointment
+    + save(appointment : Appointment)
+}
+
+' Repositories
+class VaccinationCenterRepository {
+    + getAll() : List<Facility>
+    + checkCapacity()
+}
+
+class VaccineTypeRepository {
+    + getAll() : List<Vaccine_Type>
+    + exists(code)
+}
+
+class AppointmentRepository {
+    + add(appointment : Appointment)
+    + findConflicts()
+}
+
+' Mappers
+class VaccinationCenterMapper {
+    + toDTO(List<Facility>)
+}
+
+class VaccineTypeMapper {
+    + toDTO(List<Vaccine_Type>)
+}
+
+class AppointmentMapper {
+    + toModel(dto : AppointmentDTO) : Appointment
+    + toDTO(appt : Appointment) : AppointmentDTO
+}
+
+' ASSOCIATIONS
+
+SNS_User "1" -- "0..*" Appointment : schedules >
+Facility "1" -- "0..*" Appointment : hosts >
+Vaccine_Type "1" -- "0..*" Appointment : is_for >
+
+AppointmentRepository "1" *-- "0..*" Appointment : persists >
+VaccinationCenterRepository "1" *-- "0..*" Facility : manages >
+VaccineTypeRepository "1" *-- "0..*" Vaccine_Type : manages >
+
+AppointmentService --> AppointmentRepository
+AppointmentService --> VaccinationCenterRepository
+AppointmentService --> VaccineTypeRepository
+AppointmentService --> AppointmentMapper
+
+ScheduleAppointmentController --> AppointmentService
+ScheduleAppointmentController --> App
+ScheduleAppointmentUI --> ScheduleAppointmentController
+
+VaccinationCenterMapper ..> Facility
+VaccineTypeMapper ..> Vaccine_Type
+AppointmentMapper ..> AppointmentDTO
+AppointmentMapper ..> Appointment
+
+@enduml

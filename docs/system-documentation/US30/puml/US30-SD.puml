@@ -1,0 +1,82 @@
+@startuml US30 - Schedule Appointment
+
+autoactivate on
+autonumber
+' Lifelines: SNS User, UI, Controller, Service, Repositories, Mappers, DTOs, Entities, Database
+actor "SNS User" as User
+participant ":ScheduleAppointmentUI" as UI
+participant ":ScheduleAppointmentController" as Controller
+participant ":App" as app
+participant ":AppointmentService" as apptService
+
+participant ":VaccinationCenterRepository" as VCenterRepo <<vcRep>>
+participant ":VaccineTypeRepository" as VTypeRepo <<vtRep>>
+participant ":AppointmentRepository" as ApptRepo <<apptRep>>
+participant ":VaccinationCenterMapper" as VCMapper
+participant ":VaccineTypeMapper" as VTMapper
+participant ":AppointmentMapper" as ApptMapper
+participant "dto:appointment" as DTO
+participant "appt:appointment" as appt
+
+
+User -> UI: wants to schedule appointment
+
+UI -> Controller: RequestVaccinationCenters()
+
+Controller -> app : GetVaccinationCentersRepository()
+app --> Controller : vcRep
+
+Controller -> VCenterRepo: GetAll()
+Controller <-- VCenterRepo: centersList
+
+Controller -> VCMapper: getcentersListdto(centersList)
+VCMapper --> Controller: centersListDTO
+UI <-- Controller: centersListDTO
+User <-- UI: show centers list
+
+User -> UI: selects center
+UI -> Controller: RequestVaccineTypes(VCenterID)
+Controller -> app : GetVaccineTypesRepository()
+app --> Controller : vtRep
+Controller -> VTypeRepo: GetAll()
+Controller <-- VTypeRepo: typesList
+Controller -> VTMapper: toDTO(typesList)
+VTMapper --> Controller: typesListDTO
+
+UI <-- Controller: typesListDTO
+User <-- UI: show types List
+
+User -> UI: selects type
+
+UI --> User: requests date and time
+User -> UI: types date and time
+UI -> Controller: saveAppointment(data)
+Controller -> DTO**: saveAppointment(data)
+DTO --> Controller: dto
+Controller -> app: GetAppointmentService():
+app --> Controller: apptService
+Controller -> apptService: addAppointment(dto)
+apptService -> appt**: addAppointment(dto)
+appt-->apptService: Appointment
+apptService -> apptService: validate data
+apptService-->Controller: Appointment
+deactivate apptService
+Controller-->UI: Appointment
+UI-->User: Ask for confirmation
+User -> UI: Confirmed
+UI-> Controller: save()
+Controller -> apptService: save()
+apptService -> app: getAppointmentRepository()
+app --> apptService: apptRepo
+apptService -> ApptRepo: add()
+ApptRepo --> apptService: Done
+apptService --> Controller: Done
+Controller --> UI: Done
+UI--> User: Mensage of success
+
+
+
+
+
+
+@enduml
