@@ -79,12 +79,7 @@ class Nurse {
 }
 
 class Receptionist {
-    - name
-    - postal_address
-    - phone_number
-    - email
-    - citizen_card_number
-    - role
+
 
 }
 
@@ -123,7 +118,7 @@ Administrator "1" -down-- "0..*" Vaccine_Type: specify a >
 
 SNS_User "1" -down-- "0..1" Vaccination_Appointment: makes a >
 
-
+Receptionist "1" -right-- "0..*" SNS_User: registers >
 
 Current_Outbreak "1" -left-- "1" Vaccine_Type: correlated >
 
