@@ -15,7 +15,7 @@ Admin -> View: requests to register a new type of facility
 View --> Admin: asks the facility type
 
 Admin -> View: select facilityType (HEALTHCARE/COMMUNITY)
-View --> Admin: request data\n
+View --> Admin: request data
 
 Admin -> View: types request data
 
