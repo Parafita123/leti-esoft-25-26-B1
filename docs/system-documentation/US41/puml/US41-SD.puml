@@ -1,0 +1,42 @@
+@startuml
+' Sequence Diagram for US41 – Record vaccine administration
+autoactivate on
+autonumber
+
+actor "Nurse" as Nurse
+participant ":RecordVaccinationView" as View
+participant ":RecordVaccinationController" as Controller
+participant ":App" as App
+participant ":VaccinationProcessService" as Service
+participant "factory:RepositoryFactory" as Factory
+participant ":VaccinationProcessRepository" as Repo
+participant "obj:VaccinationProcess" as VaccinationProcess
+
+activate Nurse
+
+Nurse -> View: requests to record a vaccination
+View --> Nurse: asks for the user data
+Nurse -> View: provide SNS user number, vaccine code, lot number
+
+View -> Controller: recordVaccination(dto : VaccinationProcessDTO)
+Controller -> App: getVaccinationProcessService()
+App --> Controller: Service
+Controller -> Service: register(dto)
+
+Service -> Factory: getVaccinationProcessRepository()
+Factory --> Service: Repo
+
+Service -> Service: createVaccinationProcess(dto)
+Service --> VaccinationProcess: create(dto)
+VaccinationProcess --> Service: VaccinationProcess
+Service -> Repo: save(VaccinationProcess)
+Repo --> Service: Result
+
+' Assign SNS user to recovery room after saving
+Service -> Service: assignToRecoveryRoom(dto.snsUserNumber)
+
+Service --> Controller: Result(success)
+Controller --> View: Result(success)
+View --> Nurse: informs registration success
+
+@enduml

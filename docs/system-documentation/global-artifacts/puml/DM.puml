@@ -4,8 +4,6 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
-
-
 class Vaccine {
     - commercial_name
     - brand
@@ -39,7 +37,6 @@ class Employee {
     - role
 }
 
-
 class SNS_User {
     - name
     - date_of_birth
@@ -50,8 +47,6 @@ class SNS_User {
     - citizen_card_number
     - sns_user_number
 }
-
-
 
 class Vaccination_Appointment {
     - facility
@@ -68,19 +63,16 @@ class Current_Outbreak {
 }
 
 class Community_Mass_Vaccination_Center {
- - vaccine_type
+    - vaccine_type
 }
 
 class Healthcare_Center {
 }
 
 class Nurse {
-
 }
 
 class Receptionist {
-
-
 }
 
 class Event {
@@ -98,6 +90,18 @@ class Administrator {
 
 class Vaccine_Certificate {
     - issue_day
+}
+
+class VaccinationProcess {
+    - vaccination_date
+    - vaccine_type
+    - lot_number
+    - sns_user_number
+}
+
+class RecoveryRoom {
+    - recovery_start_time
+    - sns_user_number
 }
 
 Employee <|-- Nurse
@@ -138,6 +142,10 @@ Event "1" -down-- "1" Vaccine_Type:has >
 
 SNS_User "1"  -left-- "0..1" Vaccine_Certificate: has >
 
+VaccinationProcess "0..*" -left-- "1" SNS_User: registers in >
+
+
+SNS_User "1" -right-- "1" RecoveryRoom: assigned to >
 
 
 

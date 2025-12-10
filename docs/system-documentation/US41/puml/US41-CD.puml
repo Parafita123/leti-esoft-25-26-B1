@@ -1,0 +1,98 @@
+@startuml
+' Class diagram for US41 – Record vaccine administration
+hide circle
+skinparam classAttributeIconSize 0
+
+' ===== Data Transfer Object =====
+class VaccinationProcessDTO {
+  + snsUserNumber : string
+  + vaccineCode : string
+  + lotNumber : string
+}
+
+' ===== UI Layer =====
+class RecordVaccinationView {
+}
+
+class RecordVaccinationController {
+  + recordVaccination(dto : VaccinationProcessDTO) : Result
+}
+
+class App {
+  + getVaccinationProcessService() : VaccinationProcessService
+}
+
+RecordVaccinationView ..> RecordVaccinationController
+RecordVaccinationController ..> VaccinationProcessDTO
+
+' ===== Service Layer =====
+class VaccinationProcessService {
+  + VaccinationProcessService(VaccinationProcessRepository repo)
+  + create(string snsUserNumber, string vaccineCode, string lotNumber) : VaccinationProcess
+  + addOrUpdate(VaccinationProcess proc) : Result
+  + assignToRecoveryRoom(string snsUserNumber) : void
+}
+
+RecordVaccinationController ..> VaccinationProcessService
+
+' ===== Repository Interfaces =====
+interface VaccinationProcessRepository {
+  + save(VaccinationProcess process) : Result
+  + findAll() : list<VaccinationProcess>
+  + findBySNSUserAndDate(string snsUserNumber, date date) : optional<VaccinationProcess>
+}
+
+' ===== Concrete Repositories =====
+class VaccinationProcessMemoryRepository {
+  + save(VaccinationProcess process) : Result
+  + findAll() : list<VaccinationProcess>
+  + findBySNSUserAndDate(string snsUserNumber, date date) : optional<VaccinationProcess>
+}
+VaccinationProcessMemoryRepository .up.|> VaccinationProcessRepository
+
+' ===== Repository Factory =====
+interface RepositoryFactory {
+  + getVaccinationProcessRepository() : VaccinationProcessRepository
+}
+
+class MemoryRepositoryFactory {
+  + getVaccinationProcessRepository() : VaccinationProcessRepository
+}
+MemoryRepositoryFactory .up.|> RepositoryFactory
+MemoryRepositoryFactory .right.> VaccinationProcessMemoryRepository
+
+App "1" -down-> "1" RepositoryFactory : uses
+App --> VaccinationProcessService : creates
+RepositoryFactory ..> VaccinationProcessRepository
+VaccinationProcessService ..> VaccinationProcessRepository
+
+' ===== Domain Model =====
+class VaccinationProcess {
+  + snsUserNumber : string
+  + vaccineCode : string
+  + lotNumber : string
+  + administrationDateTime : datetime
+  + nurseId : string
+}
+
+class SNSUser {
+  + snsUserNumber : string
+  + name : string
+  + dateOfBirth : date
+}
+
+class Nurse {
+  + employeeId : string
+  + name : string
+}
+
+class Vaccine {
+  + code : string
+  + name : string
+}
+
+VaccinationProcess --> "1" SNSUser
+VaccinationProcess --> "1" Vaccine
+VaccinationProcess --> "1" Nurse
+
+@enduml

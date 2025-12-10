@@ -1,0 +1,26 @@
+@startuml
+' System Sequence Diagram for US41 – Record vaccine administration
+title Register vaccine administration – System Sequence Diagram
+
+autoactivate on
+autonumber
+
+actor "Nurse" as Nurse
+participant ":System" as System
+
+activate Nurse
+
+' Nurse initiates the recording of a vaccine administration
+Nurse -> System: selects record vaccine administration
+System --> Nurse: requests data (SNS user number)
+Nurse -> System: types SNS user number
+System --> Nurse: requests data (vaccine code)
+Nurse -> System: types vaccine code
+System --> Nurse: requests data (lot number)
+Nurse -> System: types lot number
+System --> Nurse: shows all data and requests confirmation
+Nurse -> System: confirms registration
+System --> Nurse: assigns user to recovery room
+System --> Nurse: informs operation success
+
+@enduml

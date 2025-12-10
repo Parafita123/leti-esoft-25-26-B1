@@ -1,0 +1,52 @@
+@startuml
+' Domain Model excerpt for US41 – Record vaccine administration
+hide circle
+skinparam classAttributeIconSize 0
+
+class SNSUser {
+    - name
+    - date_of_birth
+    - sex
+    - postal_address
+    - phone_number
+    - email
+    - citizen_card_number
+    - sns_user_number
+}
+
+
+class Nurse {
+    - Employee_id
+    - name
+    - postal_adress
+    - phone_number
+    - email
+    -citizenCardNumber
+    - role
+}
+
+
+class Vaccine {
+    - commercial_name
+    - brand
+    - technology
+}
+
+class VaccinationProcess {
+    - vaccination_date
+    - vaccine_type
+    - lot_number
+    - sns_user_number
+}
+
+class RecoveryRoom {
+    - recovery_start_time
+    - sns_user_number
+}
+
+VaccinationProcess --> "1" SNSUser : patient
+VaccinationProcess --> "1" Vaccine
+VaccinationProcess --> "1" Nurse
+SNSUser --> RecoveryRoom : assigned to *
+
+@enduml
