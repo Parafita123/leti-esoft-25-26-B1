@@ -1,34 +1,51 @@
 @startuml
-
-title Register SNS User – Sequence Diagram
-
 autoactivate on
 autonumber
 
-actor "Receptionist" as receptionist
-participant ":RegisterSNSUserView" as view
-participant ":RegisterSNSUserController" as ctrl
-participant "container:SNSUserContainer" as container
-participant "SNSUser" as snsuser
+actor Receptionist as Receptionist
+activate Receptionist
 
-activate receptionist
 
-receptionist -> view: ask to  register SNS user
-view --> receptionist: requests data (name, dateOfBirth, sex, postalAddress, phoneNumber, email, citizenCardNumber, snsUserNumber)
-receptionist -> view: enters data
-view -> ctrl: createSNSUser(name, dateOfBirth, sex, postalAddress, phoneNumber, email, citizenCardNumber, snsUserNumber)
-ctrl -> container: create(name, dateOfBirth, sex, postalAddress, phoneNumber, email, citizenCardNumber, snsUserNumber)
-container --> snsuser: create(...)
-container --> ctrl: SNSUser
-ctrl --> view: user created
-view --> receptionist: shows data and requests confirmation
-receptionist -> view: confirms registration
-view -> ctrl: saveRegisteredSNSUser(snsuser)
-ctrl -> container: save(snsuser)
-container -> container: validate(snsuser)
-container --> container: duplicates/format check
-container --> ctrl: Result
-ctrl --> view: Result
-view --> receptionist: informs operation success or failure
+participant RegisterSNSUserView as View
+participant RegisterSNSUserController as Controller
+participant SNSUserService as Service
+participant RepositoryFactory as Factory
+participant SNSUserRepository as Repo
+participant SNSUser as UserObj
+
+Receptionist -> View: requests to register an SNS user
+View --> Receptionist: asks for the user data
+Receptionist -> View: provide name, date of birth, sex, postal address, phone number, email, citizen card number, sns user number
+
+View -> Controller: registerUser(dto : SNSUserDTO)
+Controller -> Service: register(dto)
+Service -> Factory: getSNSUserRepository()
+Factory --> Service: Repo
+
+' Check uniqueness of data
+Service -> Repo: existsByPhoneNumber(dto.phoneNumber)
+Repo --> Service: bool
+Service -> Repo: existsByEmail(dto.email)
+Repo --> Service: bool
+Service -> Repo: existsByCitizenCardNumber(dto.citizenCardNumber)
+Repo --> Service: bool
+Service -> Repo: existsBySNSUserNumber(dto.snsUserNumber)
+Repo --> Service: bool
+
+' Success path (all unique)
+Service -> Service: createSNSUser(dto)
+Service --> UserObj**: createSNSUser(dto)
+UserObj --> Service: SNSUser
+Service -> Repo: save(UserObj)
+Repo --> Service: Result
+Service --> Controller: Result(success)
+Controller --> View: Result(success)
+View --> Receptionist: informs registration success
+
+alt [duplicate found]
+    Service --> Controller: Result(failure)
+    Controller --> View: Result(failure)
+    View --> Receptionist: informs that phone/email/cc or sns user number already exists
+end
 
 @enduml

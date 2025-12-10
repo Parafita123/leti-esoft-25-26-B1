@@ -8,11 +8,12 @@ hide methods
 title Register SNS User – Domain Model
 
 class Receptionist {
+    - Employee_id
     - name
-    - postal_address
+    - postal_adress
     - phone_number
     - email
-    - citizen_card_number
+    -citizenCardNumber
     - role
 }
 

@@ -5,8 +5,10 @@
 #ifndef LETI_ESOFT_25_26_B1_REGISTERSNSUSERCONTROLLER_H
 #define LETI_ESOFT_25_26_B1_REGISTERSNSUSERCONTROLLER_H
 
+
 #include <string>
-#include "headers/domain/model/SNSUserContainer.h"
+#include <memory>
+#include "headers/domain/services/SNSUserService.h"
 
 /**
  * Controller class that mediates between the view and the SNSUserContainer
@@ -16,28 +18,37 @@
  */
 class RegisterSNSUserController {
 private:
-    SNSUserContainer *container;
+    std::shared_ptr<SNSUserService> service;
 
 public:
-    explicit RegisterSNSUserController(SNSUserContainer *container);
+    explicit RegisterSNSUserController(std::shared_ptr<SNSUserService> service);
 
     /**
      * Creates an SNSUser instance based on the provided user input.
      */
-    SNSUser createSNSUser(const std::string &name,
-                          const std::string &dateOfBirth,
-                          const std::string &sex,
-                          const std::string &postalAddress,
-                          const std::string &phoneNumber,
-                          const std::string &email,
-                          const std::string &citizenCardNumber,
-                          const std::string &snsUserNumber);
+    /**
+     * Creates an SNSUser object using the service.  Returns a
+     * shared_ptr so that the view can store and later submit the user
+     * for registration.
+     */
+    std::shared_ptr<SNSUser> createSNSUser(const std::string &name,
+                                           const std::string &dateOfBirth,
+                                           const std::string &sex,
+                                           const std::string &postalAddress,
+                                           const std::string &phoneNumber,
+                                           const std::string &email,
+                                           const std::string &citizenCardNumber,
+                                           const std::string &snsUserNumber);
 
     /**
      * Persists a registered SNS user.  Validation and duplicate checks
      * are performed by the SNSUserContainer.
      */
-    Result saveRegisteredSNSUser(const SNSUser &user);
+    /**
+     * Persists the given SNS user through the service.  Validation and
+     * duplicate checks are performed by the service layer.
+     */
+    Result saveRegisteredSNSUser(std::shared_ptr<SNSUser> user);
 };
 
 #endif // LETI_ESOFT_25_26_B1_REGISTERSNSUSERCONTROLLER_H

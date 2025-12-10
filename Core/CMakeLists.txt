@@ -40,4 +40,14 @@ add_library(Core
         sources/controllers/ui/RegisterSNSUserControllerRegisterSNSUserController.cpp
         ../ConsoleApp/headers/views/RegisterSNSUserView.h
         ../ConsoleApp/sources/views/RegisterSNSUserView.cpp
+
+        # Service/repository pattern files for SNS user registration
+        headers/domain/repositories/SNSUserRepository.h
+        headers/domain/repositories/RepositoryFactory.h
+        headers/infrastructure/memory/MemoryRepositoryFactory.h
+        sources/infrastructure/memory/MemoryRepositoryFactory.cpp
+        headers/infrastructure/memory/SNSUserMemoryRepository.h
+        sources/infrastructure/memory/SNSUserMemoryRepository.cpp
+        headers/domain/services/SNSUserService.h
+        sources/domain/services/SNSUserService.cpp
 )

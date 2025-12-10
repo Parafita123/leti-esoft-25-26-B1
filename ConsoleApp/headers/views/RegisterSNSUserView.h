@@ -7,6 +7,8 @@
 
 #include "headers/controllers/ui/RegisterSNSUserController.h"
 
+#include <memory>
+
 /**
  * Console view responsible for interacting with the receptionist during
  * the SNS user registration process.  It gathers the necessary data
@@ -16,6 +18,9 @@
 class RegisterSNSUserView {
 private:
     RegisterSNSUserController controller;
+    // Store the user object created by the controller so it can be
+    // passed to the save method after confirmation.
+    std::shared_ptr<SNSUser> pendingUser;
 
     // Helper to convert wide strings into standard strings for console output
     static std::string ws2s(const std::wstring& w);

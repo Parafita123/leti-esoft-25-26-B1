@@ -12,6 +12,8 @@
 // US20 - Register SNS user
 #include "../Core/headers/controllers/ui/RegisterSNSUserController.h"
 #include "../ConsoleApp/headers/views/RegisterSNSUserView.h"
+#include "../Core/headers/domain/services/SNSUserService.h"
+#include <memory>
 
 // US11 - Register vaccine
 #include "../Core/headers/controllers/ui/RegisterVaccineController.h"
@@ -61,9 +63,9 @@ void MainView::handleOption(int option) {
             break;
         }
         case 4: {
-            // US20 - Register SNS user
-            SNSUserContainer &snsContainer = app.getSNSUserContainer();
-            RegisterSNSUserController controller(&snsContainer);
+            // US20 - Register SNS user (using service/repository pattern)
+            std::shared_ptr<SNSUserService> service = app.getSNSUserService();
+            RegisterSNSUserController controller(service);
             RegisterSNSUserView view(controller);
             view.run();
             break;

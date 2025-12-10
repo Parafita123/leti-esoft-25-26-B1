@@ -22,7 +22,7 @@ std::string RegisterSNSUserView::ws2s(const std::wstring &w) {
 }
 
 RegisterSNSUserView::RegisterSNSUserView(RegisterSNSUserController controller)
-        : controller(controller) {}
+        : controller(controller), pendingUser(nullptr) {}
 
 void RegisterSNSUserView::run() {
     // Gather all necessary information from the receptionist
@@ -52,7 +52,10 @@ void RegisterSNSUserView::run() {
     std::cout << "Enter SNS user number (9 digits): ";
     std::getline(std::cin, sns);
 
-    SNSUser user = controller.createSNSUser(name, dateOfBirth, sex, postalAddress, phone, email, cc, sns);
+    // Create the SNS user through the controller and store it.  A
+    // shared_ptr is returned so that ownership can be shared with the
+    // service and repository layers.
+    pendingUser = controller.createSNSUser(name, dateOfBirth, sex, postalAddress, phone, email, cc, sns);
 
     // Show the collected data and confirm with the receptionist
     std::cout << "\nReview the entered data:\n";
@@ -71,7 +74,7 @@ void RegisterSNSUserView::run() {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     if (c == 'y' || c == 'Y') {
-        Result r = controller.saveRegisteredSNSUser(user);
+        Result r = controller.saveRegisteredSNSUser(pendingUser);
         std::cout << ws2s(r.getMessage()) << "\n";
     } else {
         std::cout << "Operation cancelled.\n";

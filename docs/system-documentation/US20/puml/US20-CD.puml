@@ -4,52 +4,101 @@
 hide circle
 skinparam classAttributeIconSize 0
 
-title Register SNS User – Class Diagram
+' ===== DTO =====
+class SNSUserDTO {
+  - name : string
+  - dateOfBirth : string
+  - sex : string
+  - postalAddress : string
+  - phoneNumber : string
+  - email : string
+  - citizenCardNumber : string
+  - snsUserNumber : string
+}
 
+' ===== UI Layer =====
 class RegisterSNSUserView {
-    +run(): void
 }
 
 class RegisterSNSUserController {
-    +createSNS_User(name, dateOfBirth, sex, postalAddress, phoneNumber, email, citizenCardNumber, snsUserNumber): SNS_User
-    +saveRegisteredSNSUser(user: SNSUser): Result
-}
-
-class SNS_User {
-    - name
-    - date_of_birth
-    - sex
-    - postal_address
-    - phone_number
-    - email
-    - citizen_card_number
-    - sns_user_number
-    + isValid(): bool
-    + getName(): string
-    + getDateOfBirth(): string
-    + getSex(): string
-    + getPostalAddress(): string
-    + getPhoneNumber(): string
-    + getEmail(): string
-    + getCitizenCardNumber(): string
-    + getSNSUserNumber(): string
-}
-
-class SNSUserContainer {
-    + create(name, dateOfBirth, sex, postalAddress, phoneNumber, email, citizenCardNumber, snsUserNumber): SNSUser
-    + validate(user: SNSUser): Result
-    + save(user: SNSUser): Result
-    + getAll(): vector<SNSUser>
+  + registerSNSUser(dto : SNSUserDTO) : Result
+  + getAll() : vector<shared_ptr<SNSUser>>
 }
 
 class App {
-    + getSNSUserContainer(): SNSUserContainer
+  + getSNSUserService() : SNSUserService
+ }
+
+RegisterSNSUserView ..> RegisterSNSUserController
+RegisterSNSUserController ..> SNSUserDTO
+
+' ===== Service Layer =====
+class SNSUserService {
+  + SNSUserService(SNSUserRepository repo)
+  + create(string name, string dateOfBirth, string sex, string postalAddress, string phoneNumber, string email, string citizenCardNumber, string snsUserNumber) : SNSUser
+  + addOrUpdate(SNSUser obj) : Result
+  + list() : vector<shared_ptr<SNSUser>>
 }
 
-App "1" -right-> "1" SNSUserContainer: maintains
-SNSUserContainer "1" -right-> "0..*" SNS_User: stores
-RegisterSNSUserView ..> RegisterSNSUserController
-RegisterSNSUserController ..> SNSUserContainer
-RegisterSNSUserController ..> SNS_User
+RegisterSNSUserController ..> SNSUserService
+
+' ===== Repository Interfaces =====
+interface SNSUserRepository <<interface>> {
+  + save(SNSUser obj) : Result
+  + findAll() : vector<shared_ptr<SNSUser>>
+  + existsByPhoneNumber(phoneNumber : string) : bool
+  + existsByEmail(email : string) : bool
+  + existsByCitizenCardNumber(cc : string) : bool
+  + existsBySNSUserNumber(number : string) : bool
+}
+
+' ===== Concrete Repositories =====
+class SNSUserMemoryRepository {
+  + save(SNSUser obj) : Result
+  + findAll() : vector<shared_ptr<SNSUser>>
+  + existsByPhoneNumber(phoneNumber : string) : bool
+  + existsByEmail(email : string) : bool
+  + existsByCitizenCardNumber(cc : string) : bool
+  + existsBySNSUserNumber(number : string) : bool
+}
+SNSUserMemoryRepository .up.|> SNSUserRepository
+
+' ===== Repository Factory =====
+interface RepositoryFactory <<interface>> {
+  + getSNSUserRepository() : SNSUserRepository
+}
+
+class MemoryRepositoryFactory {
+  + getSNSUserRepository() : SNSUserRepository
+}
+MemoryRepositoryFactory .up.|> RepositoryFactory
+MemoryRepositoryFactory .right.> SNSUserMemoryRepository
+
+App "1" -down-> "1" RepositoryFactory : uses
+App --> SNSUserService : adopts
+RepositoryFactory ..> SNSUserRepository
+SNSUserService ..> SNSUserRepository
+
+' ===== Domain Model =====
+class SNSUser {
+  - name : string
+  - dateOfBirth : string
+  - sex : string
+  - postalAddress : string
+  - phoneNumber : string
+  - email : string
+  - citizenCardNumber : string
+  - snsUserNumber : string
+  + getName() : string
+  + getDateOfBirth() : string
+  + getSex() : string
+  + getPostalAddress() : string
+  + getPhoneNumber() : string
+  + getEmail() : string
+  + getCitizenCardNumber() : string
+  + getSNSUserNumber() : string
+}
+
+SNSUserRepository "1" --> "0..*" SNSUser : records >
 
 @enduml
