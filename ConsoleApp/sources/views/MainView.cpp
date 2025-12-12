@@ -18,6 +18,8 @@
 // US11 - Register vaccine
 #include "../Core/headers/controllers/ui/RegisterVaccineController.h"
 #include "../ConsoleApp/headers/views/RegisterVaccineView.h"
+#include "headers/controllers/ui/RegisterVaccinationCenterController.h"
+#include "../../headers/views/RegisterVaccinationCenterView.h"
 
 MainView::MainView(App& app) : app(app) {}
 
@@ -27,6 +29,7 @@ void MainView::showMenu() const {
     std::cout << "2 - List employees by role" << std::endl;
     std::cout << "3 - Register new vaccine" << std::endl;   // US11
     std::cout << "4 - Register SNS user" << std::endl;      // US20
+    std::cout <<"5 - Register Vaccination Center" << std::endl;
     std::cout << "0 - Exit" << std::endl;
     std::cout << "Choose an option: ";
 }
@@ -34,12 +37,10 @@ void MainView::showMenu() const {
 void MainView::handleOption(int option) {
     switch (option) {
         case 1: {
-            // US10 - Create new vaccine type
-            VaccineTypeContainer& container = app.getVaccineTypeContainer();
-
-            CreateNewVaccineTypeController controller(container);
+            // US10 - Create new vaccine type atualizado para repo
+            auto repo = app.getVaccineTypeRepository();
+            CreateNewVaccineTypeController controller(repo);
             CreateNewVaccineTypeView view(controller);
-
             view.show();
             break;
         }
@@ -52,14 +53,14 @@ void MainView::handleOption(int option) {
             break;
         }
         case 3: {
-            // US11 - Register a new vaccine
+            // US11 - Register a new vaccine  DEPOIS REVÊ ESTA US PQ ATUALIZEI A US10 PARA USAR VACCINETYPE COM REPOSITORY
             VaccineContainer& vaccineContainer = app.getVaccineContainer();
-            VaccineTypeContainer& typeContainer = app.getVaccineTypeContainer();
+            //VaccineTypeContainer& typeContainer = app.getVaccineTypeContainer();
 
-            RegisterVaccineController controller(vaccineContainer, typeContainer);
-            RegisterVaccineView view(controller);
+           // RegisterVaccineController controller(vaccineContainer, typeContainer);
+           // RegisterVaccineView view(controller);
 
-            view.show();
+           // view.show();
             break;
         }
         case 4: {
@@ -70,6 +71,14 @@ void MainView::handleOption(int option) {
             view.run();
             break;
         }
+        case 5: {
+            auto svc = app.getVaccinationCenterService();
+            RegisterVaccinationCenterController c(svc);
+            RegisterVaccinationCenterView v(c);
+            v.show();
+            break;
+        }
+
         case 0:
             std::cout << "Exiting application..." << std::endl;
             break;

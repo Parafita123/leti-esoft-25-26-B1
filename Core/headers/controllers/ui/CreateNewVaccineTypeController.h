@@ -7,20 +7,21 @@
 
 #include "headers/domain/model/VaccineType.h"
 #include "headers/domain/model/VaccineTypeContainer.h"
+#include "headers/domain/repositories/VaccineTypeRepository.h"
 
 class CreateNewVaccineTypeController {
 private:
-    VaccineTypeContainer& vaccineTypeContainer;
-    VaccineType currentVaccineType;
+    std::shared_ptr<VaccineTypeRepository> repo;
+    std::shared_ptr<VaccineType> current;
 
 public:
-    explicit CreateNewVaccineTypeController(VaccineTypeContainer& container);
+    CreateNewVaccineTypeController(std::shared_ptr<VaccineTypeRepository> repo);
 
     void createNewVaccineType(const std::string& type_code,
                               const std::string& disease,
                               const std::string& short_description);
 
-    Result saveCreatedNewVaccineType();
+    Result save();
 
     const VaccineType& getCurrentVaccineType() const;
 };

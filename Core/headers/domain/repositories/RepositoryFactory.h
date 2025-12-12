@@ -14,6 +14,8 @@
 
 #include <memory>
 #include "SNSUserRepository.h"
+#include "headers/domain/repositories/VaccinationCenterRepository.h"
+#include "headers/domain/repositories/VaccineTypeRepository.h"
 
 class RepositoryFactory {
 public:
@@ -26,6 +28,8 @@ public:
      * implementation (e.g. in memory or database) is returned.
      */
     virtual std::shared_ptr<SNSUserRepository> getSNSUserRepository() = 0;
+    virtual std::shared_ptr<VaccinationCenterRepository> getVaccinationCenterRepository() = 0;
+    virtual std::shared_ptr<VaccineTypeRepository> getVaccineTypeRepository() = 0;
 };
 
 #endif // LETI_ESOFT_25_26_B1_REPOSITORYFACTORY_H

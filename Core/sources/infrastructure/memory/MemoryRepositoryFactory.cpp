@@ -10,7 +10,8 @@
 #include "headers/infrastructure/memory/SNSUserMemoryRepository.h"
 
 MemoryRepositoryFactory::MemoryRepositoryFactory() {
-    // repositories will be lazily created in getters
+    vcRepo = std::make_shared<VaccinationCenterMemoryRepository>();
+    vtRepo = std::make_shared<VaccineTypeMemoryRepository>();
 }
 
 std::shared_ptr<SNSUserRepository> MemoryRepositoryFactory::getSNSUserRepository() {
@@ -18,4 +19,12 @@ std::shared_ptr<SNSUserRepository> MemoryRepositoryFactory::getSNSUserRepository
         this->snsRepo = std::make_shared<SNSUserMemoryRepository>();
     }
     return this->snsRepo;
+}
+
+std::shared_ptr<VaccinationCenterRepository> MemoryRepositoryFactory::getVaccinationCenterRepository() {
+    return vcRepo;
+}
+
+std::shared_ptr<VaccineTypeRepository> MemoryRepositoryFactory::getVaccineTypeRepository() {
+    return vtRepo;
 }

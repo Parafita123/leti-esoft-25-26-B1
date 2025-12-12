@@ -40,7 +40,7 @@ void CreateNewVaccineTypeView::show() {
         return;
     }
 
-    Result result = controller.saveCreatedNewVaccineType();
+    Result result = controller.save();
 
     if (result.isOK()) {
         std::wcout << "\nVaccine Type created successfully.\n";

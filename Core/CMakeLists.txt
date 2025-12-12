@@ -50,4 +50,31 @@ add_library(Core
         sources/infrastructure/memory/SNSUserMemoryRepository.cpp
         headers/domain/services/SNSUserService.h
         sources/domain/services/SNSUserService.cpp
+        headers/domain/model/FacilityType.h
+        headers/controllers/dto/VaccinationCenterDTO.h
+        headers/domain/model/Facility.h
+        sources/domain/model/Faclity.cpp
+        headers/domain/model/HealthcareCenter.h
+        headers/domain/model/CommunityMassVaccinationCenter.h
+        sources/domain/model/CommunityMassVaccinationCenter.cpp
+        headers/domain/repositories/VaccinationCenterRepository.h
+        headers/domain/repositories/VaccineTypeRepository.h
+        headers/domain/repositories/VaccineTypeRepository.h
+        headers/infrastructure/memory/VaccinationCenterMemoryRepository.h
+        headers/infrastructure/memory/VaccinationCenterMemoryRepository.h
+        sources/infrastructure/memory/VaccinationCenterMemoryRepository.cpp
+        sources/infrastructure/memory/VaccinationCenterMemoryRepository.cpp
+        headers/infrastructure/memory/VaccineTypeMemoryRepository.h
+        headers/infrastructure/memory/VaccineTypeMemoryRepository.h
+        sources/infrastructure/memory/VaccineTypeMemoryRepository.cpp
+        sources/infrastructure/memory/VaccineTypeMemoryRepository.cpp
+        headers/domain/services/VaccinationCenterService.h
+        headers/domain/services/VaccinationCenterService.h
+        sources/domain/services/VaccinationCenterService.cpp
+        sources/domain/services/VaccinationCenterService.cpp
+        headers/controllers/ui/RegisterVaccinationCenterController.h
+        headers/controllers/ui/RegisterVaccinationCenterController.h
+        sources/controllers/ui/RegisterVaccinationCenterController.cpp
+        ../ConsoleApp/headers/views/RegisterVaccinationCenterView.h
+        ../ConsoleApp/sources/views/RegisterVaccinationCenterView.cpp
 )
