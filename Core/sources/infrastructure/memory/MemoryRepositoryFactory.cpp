@@ -1,10 +1,4 @@
-//
-// MemoryRepositoryFactory.cpp
-//
-// Implements the MemoryRepositoryFactory which returns in‑memory
-// repository instances.  The SNSUserMemoryRepository is created on
-// first use and cached for subsequent calls.
-//
+
 
 #include "headers/infrastructure/memory/MemoryRepositoryFactory.h"
 #include "headers/infrastructure/memory/SNSUserMemoryRepository.h"

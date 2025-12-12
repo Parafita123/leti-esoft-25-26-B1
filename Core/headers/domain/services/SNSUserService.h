@@ -1,15 +1,4 @@
-//
-// SNSUserService.h
-//
-// Provides the business logic for registering SNS users.  The service
-// layer is responsible for creating domain objects, performing
-// mandatory field checks, validating formats according to the
-// Portuguese numbering and card schemes and enforcing uniqueness of
-// phone number, email, citizen card number and SNS user number.
-// This class delegates persistence to an SNSUserRepository.  The
-// separation of concerns between validation and storage adheres to
-// the Service and Repository patterns【687714786585861†L587-L596】.
-//
+
 
 #ifndef LETI_ESOFT_25_26_B1_SNSUSERSERVICE_H
 #define LETI_ESOFT_25_26_B1_SNSUSERSERVICE_H

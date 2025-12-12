@@ -1,5 +1,5 @@
 //
-// Created by ChatGPT on 2025-11-15.
+// Created by Guta on 2025-11-15.
 //
 
 #ifndef LETI_ESOFT_25_26_B1_VACCINE_H

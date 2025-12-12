@@ -1,13 +1,4 @@
-//
-// SNSUserMemoryRepository.cpp
-//
-// Implements the in‑memory repository for SNSUser entities.  The
-// repository simply stores shared pointers to SNSUser objects in a
-// list.  It does not perform any validation or duplicate checking –
-// those responsibilities are handled by the service layer.  Each
-// retrieval method performs a linear search over the container to
-// locate matching users.
-//
+
 
 #include "headers/infrastructure/memory/SNSUserMemoryRepository.h"
 

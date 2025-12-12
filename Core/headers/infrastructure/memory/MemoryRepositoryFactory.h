@@ -1,12 +1,4 @@
-//
-// MemoryRepositoryFactory.h
-//
-// Provides an in‑memory implementation of the RepositoryFactory.  It
-// creates repository objects backed by STL containers and returns
-// shared pointers to them.  This factory encapsulates the creation
-// details and complies with the Abstract Factory pattern
-//【687714786585861†L360-L545】.
-//
+
 
 #ifndef LETI_ESOFT_25_26_B1_MEMORYREPOSITORYFACTORY_H
 #define LETI_ESOFT_25_26_B1_MEMORYREPOSITORYFACTORY_H

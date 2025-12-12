@@ -1,13 +1,4 @@
-//
-// SNSUserRepository.h
-//
-// Defines the contract for repositories that manage SNSUser entities.  A
-// repository abstracts away the persistence details (e.g. in‑memory, file
-// based or database) and provides an interface for saving and retrieving
-// SNS users.  The service layer uses this interface to remain agnostic
-// about how data is stored.  This follows the Repository pattern
-// described in the design guidelines【687714786585861†L360-L545】.
-//
+
 
 #ifndef LETI_ESOFT_25_26_B1_SNSUSERREPOSITORY_H
 #define LETI_ESOFT_25_26_B1_SNSUSERREPOSITORY_H

@@ -1,5 +1,5 @@
 //
-// Created by ChatGPT on 2025-11-15.
+// Created by Guta on 2025-11-15.
 //
 
 #include "headers/domain/model/VaccineContainer.h"

@@ -1,5 +1,5 @@
 //
-// Created by ChatGPT on 07/12/2025.
+// Created by Guta on 07/12/2025.
 //
 
 #ifndef LETI_ESOFT_25_26_B1_SNSUSER_H

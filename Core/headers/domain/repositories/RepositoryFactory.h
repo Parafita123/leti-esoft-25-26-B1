@@ -1,13 +1,4 @@
-//
-// RepositoryFactory.h
-//
-// Declares an abstract factory for obtaining repository instances.  The
-// factory allows the application to switch between different
-// persistence mechanisms (e.g. memory, file, database) at runtime by
-// instantiating a different concrete factory.  Each concrete factory
-// returns concrete repository implementations appropriate for the chosen
-// storage mode【687714786585861†L360-L545】.
-//
+
 
 #ifndef LETI_ESOFT_25_26_B1_REPOSITORYFACTORY_H
 #define LETI_ESOFT_25_26_B1_REPOSITORYFACTORY_H
