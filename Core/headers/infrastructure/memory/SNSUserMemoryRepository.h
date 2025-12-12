@@ -1,12 +1,4 @@
-//
-// SNSUserMemoryRepository.h
-//
-// Provides an in‑memory repository for SNSUser entities.  The
-// repository uses a standard list to store shared pointers to users.
-// It implements the SNSUserRepository interface, allowing the service
-// layer to persist and query users without knowing the underlying
-// storage mechanism【687714786585861†L360-L545】.
-//
+
 
 #ifndef LETI_ESOFT_25_26_B1_SNSUSERMEMORYREPOSITORY_H
 #define LETI_ESOFT_25_26_B1_SNSUSERMEMORYREPOSITORY_H

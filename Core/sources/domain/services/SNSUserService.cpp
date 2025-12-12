@@ -1,12 +1,4 @@
-//
-// SNSUserService.cpp
-//
-// Implements the service responsible for creating and registering SNS
-// users.  Validation logic is centralized here to ensure that
-// business rules (mandatory fields, format compliance and uniqueness)
-// are enforced before persisting data.  Persistence is delegated to
-// an injected repository instance.
-//
+
 
 #include "headers/domain/services/SNSUserService.h"
 
