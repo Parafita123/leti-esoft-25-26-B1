@@ -53,7 +53,7 @@ target_sources(leti-esoft-25-26-B1 PRIVATE
         Core/headers/domain/model/SNSUserContainer.h
         Core/sources/domain/model/SNSUserContainer.cpp
         Core/headers/controllers/ui/RegisterSNSUserController.h
-        Core/sources/controllers/ui/RegisterSNSUserControllerRegisterSNSUserController.cpp
+        Core/sources/controllers/ui/RegisterSNSUserController.cpp
         ConsoleApp/headers/views/RegisterSNSUserView.h
         ConsoleApp/sources/views/RegisterSNSUserView.cpp)
 

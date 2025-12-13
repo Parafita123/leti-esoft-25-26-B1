@@ -28,7 +28,7 @@ add_library(Core
         sources/controllers/ui/ListEmployeesByRoleController.cpp
         sources/domain/model/EmployeeContainer.cpp
         sources/domain/model/Employee.cpp
-        sources/controllers/ui/RegisterEmployeeControllerRegisterEmployeeController.cpp
+        sources/controllers/ui/RegisterEmployeeController.cpp
         ../ConsoleApp/sources/views/RegisterEmployeeView.cpp
         ../ConsoleApp/sources/views/ListEmployeesByRoleView.cpp
         # US20 - Register SNS user
@@ -37,7 +37,7 @@ add_library(Core
         headers/domain/model/SNSUserContainer.h
         sources/domain/model/SNSUserContainer.cpp
         headers/controllers/ui/RegisterSNSUserController.h
-        sources/controllers/ui/RegisterSNSUserControllerRegisterSNSUserController.cpp
+        sources/controllers/ui/RegisterSNSUserController.cpp
         ../ConsoleApp/headers/views/RegisterSNSUserView.h
         ../ConsoleApp/sources/views/RegisterSNSUserView.cpp
 
