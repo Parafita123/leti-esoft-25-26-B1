@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title US13:System Sequence Diagram
+
+autoactivate on
+autonumber
+
+actor "Admin" as user
+participant ":System" as system
+
+ user -> system:requests to register a user arrival
+
+system --> user:asks the user SNS_number
+
+user -> system: types requested data
+
+system --> user: shows the user related event and requests confirmation
+
+user -> system: confirms the data
+
+system --> user: informs the sucess of the operation
+
+@enduml

@@ -1,5 +1,4 @@
 @startuml
-title Pandemic Vaccination Management System (PVMS) - Use Case Diagram
 left to right direction
 
 actor "Admin" as admin
@@ -17,7 +16,7 @@ actor "SNS User" as user
   (Register a vaccination center.) as US13
   (Register an SNS user.) as US20
   (Schedule a vaccine administration) as US30
-
+  (Register the arrival of an SNS user at the vaccination center to take the vaccine.) as US22
 
 '--- Associations ---
 
@@ -30,6 +29,7 @@ admin --> US12
 admin --> US13
 
 recep --> US20
+recep --> US22
 
 user --> US30
 

@@ -1,0 +1,89 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide circle
+skinparam classAttributeIconSize 0
+
+
+' ===== Enums / DTOs =====
+
+class UserArrivalDTO {
+  -name : string
+  -postal_address : string
+  -phone_number : string
+  -email : string
+  -website_address : string
+  -opening_hours : string
+  -closing_hours : string
+  -max_vaccines_per_hour : int
+  -facilityType : FacilityType
+  -vaccineTypeCode : string
+}
+
+' ===== UI Layer =====
+class RegisterUserArrivalView {
+}
+
+class RegisterUserArrivalController {
+  +registerVaccinationCenter(dto : VaccinationCenterDTO) : void
+  +saveRegistedVaccinationCenter(): Result
+  +listVaccineTypes() : vector<shared_ptr<VaccineType>>
+}
+
+class App {
+  +getUserArrivalService(): UserArrivalService
+ }
+
+RegisterUserArrivalView ..> RegisterUserArrivalController
+RegisterUserArrivalController ..> UserArrivalDTO
+
+' ===== Service Layer =====
+class UserArrivalService {
++ VaccinationCenterService(VaccineCenterRepository VCRepo, shared_ptr<VaccineTypeRepository>)
++ create((string name, string postal_adress, string phone_number, string email, string website_address, string opening_hours, string closing_hours, int max_vaccines_per_hour): VaccinationCenter
++addOrUpdate(VaccinationCenter obj): Result
+}
+
+RegisterUserArrivalController ..> UserArrivalService
+
+' ===== Repository Interfaces =====
+
+interface UserArrivalRepository <<interface>> {
+  +findAll() : vector<shared_ptr<VaccineType>>
+  +findByCode(code : string) : shared_ptr<VaccineType>
+  +exists(code : string) : bool
+}
+
+' ===== Concrete Repositories (Memory) =====
+    class UserArrivalMemoryRepository{
++ geUserArrivalRepository(): UserArrivalRepository
+}
+UserArrivalMemoryRepository .up.|> UserArrivalRepository
+
+
+' ===== Repository Factory =====
+interface RepositoryFactory <<interface>>  {
+   + getUserArrivalRepository(): UserArrivalRepository
+   }
+
+
+class MemoryRepositoryFactory {
+  + getVaccinationCenterRepository(): VaccineCenterRepository
+  + getVaccinationTypeRepository(): VaccineTypeRepository
+}
+
+App "1" -down-> "1" RepositoryFactory:  uses
+App --> UserArrivalService: adopts
+RepositoryFactory ..> UserArrivalRepository
+UserArrivalService ..> UserArrivalRepository
+MemoryRepositoryFactory .up.|> RepositoryFactory
+MemoryRepositoryFactory .right.> UserArrivalMemoryRepository
+
+' ===== Domain Model =====
+ abstract class UserArrival {
+    - user_arrival_id
+    - arrival_time
+ }
+
+UserArrivalRepository "1" --> "0..*" UserArrival : records >
+@enduml

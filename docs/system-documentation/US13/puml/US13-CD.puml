@@ -30,40 +30,44 @@ class RegisterVaccinationCenterView {
 
 class RegisterVaccinationCenterController {
   +registerVaccinationCenter(dto : VaccinationCenterDTO) : void
-  +saveRegistedVaccinationCenter(): Result
+  +registerVaccinationCenter(const VaccinationCenterDTO& dto)
   +listVaccineTypes() : vector<shared_ptr<VaccineType>>
 }
 
 class App {
-  +getVaccinationCenterService(): VaccinationCenterService
- }
+  +std::shared_ptr<VaccinationCenterService> getVaccinationCenterService()
+  +std::shared_ptr<VaccineTypeRepository> getVaccineTypeRepository()
+  +std::shared_ptr<RepositoryFactory> getRepositoryFactory()
+   }
 
 RegisterVaccinationCenterView ..> RegisterVaccinationCenterController
 RegisterVaccinationCenterController ..> VaccinationCenterDTO
 
 ' ===== Service Layer =====
 class VaccinationCenterService {
-+ VaccinationCenterService(VaccineCenterRepository VCRepo, shared_ptr<VaccineTypeRepository>)
-+ create((string name, string postal_adress, string phone_number, string email, string website_address, string opening_hours, string closing_hours, int max_vaccines_per_hour): VaccinationCenter
-+addOrUpdate(VaccinationCenter obj): Result
++VaccinationCenterService(std::shared_ptr<VaccinationCenterRepository> ctrRepo, std::shared_ptr<VaccineTypeRepository> vtRepo)
++std::vector<std::shared_ptr<VaccineType>> listVaccineTypes()
++registerCenter(const VaccinationCenterDTO& dto): Result
 }
 
 RegisterVaccinationCenterController ..> VaccinationCenterService
 
 ' ===== Repository Interfaces =====
 interface VaccinationCenterRepository <<interface>> {
-  +save(VaccinationCenter obj) : Result
+  +virtual Result save(std::shared_ptr<Facility> obj)
+  +virtual ~VaccinationCenterRepository() = default
 }
 
 interface VaccineTypeRepository <<interface>> {
-  +findAll() : vector<shared_ptr<VaccineType>>
-  +findByCode(code : string) : shared_ptr<VaccineType>
-  +exists(code : string) : bool
+  +virtual std::vector<std::shared_ptr<VaccineType>> findAll()
+  +virtual std::shared_ptr<VaccineType> findByCode(const std::string& code)
+  +virtual bool exists(const std::string& code)
+  +virtual Result save(std::shared_ptr<VaccineType> obj)
 }
 
 ' ===== Concrete Repositories (Memory) =====
     class VaccinationCenterMemoryRepository{
-+ getVaccinationCenterRepository(): VaccinationCenterRepository
++Result save(std::shared_ptr<Facility> obj) override;
 }
 VaccinationCenterMemoryRepository .up.|> VaccinationCenterRepository
 
@@ -76,14 +80,14 @@ VaccineTypeMemoryRepository .up.|> VaccineTypeRepository
 
 ' ===== Repository Factory =====
 interface RepositoryFactory <<interface>>  {
-   + getVaccinationCenterRepository(): VaccineCenterRepository
-   + getVaccinationTypeRepository(): VaccineTypeRepository
+   + virtual std::shared_ptr<VaccinationCenterRepository> getVaccinationCenterRepository() = 0;
+   + virtual std::shared_ptr<VaccineTypeRepository> getVaccineTypeRepository() = 0;
   }
 
 
 class MemoryRepositoryFactory {
   + getVaccinationCenterRepository(): VaccineCenterRepository
-  + getVaccinationTypeRepository(): VaccineTypeRepository
+  + getVaccineTypeRepository(): VaccineTypeRepository
 }
 
 App "1" -down-> "1" RepositoryFactory:  uses
@@ -118,9 +122,9 @@ Facility <|-- Healthcare_Center
 Facility <|-- Community_Mass_Vaccination_Center
 
 class VaccineType {
-  -type_code : wstring
-  -disease : wstring
-  -short_description : wstring
+  -type_code : string
+  -disease : string
+  -short_description : string
 }
 
 VaccinationCenterRepository "1" --> "0..*" Facility : records >

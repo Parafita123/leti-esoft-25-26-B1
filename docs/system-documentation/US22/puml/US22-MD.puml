@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+hide circle
+skinparam classAttributeIconSize 0
+hide methods
+
+class Receptionist {
+}
+
+class Event {
+    - brand
+    - lot_number
+    - reaction_notes
+}
+
+class User_Arrival{
+    - arrival_time
+}
+
+Receptionist "1" -down-- "1" User_Arrival: registers a >
+
+Event "1" -down-- "1" User_Arrival: has a >
+
+@enduml

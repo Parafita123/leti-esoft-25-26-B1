@@ -76,7 +76,6 @@ class Receptionist {
 }
 
 class Event {
-    - user_arrival_time
     - brand
     - lot_number
     - reaction_notes
@@ -102,6 +101,10 @@ class VaccinationProcess {
 class RecoveryRoom {
     - recovery_start_time
     - sns_user_number
+}
+
+class User_Arrival{
+    - arrival_time
 }
 
 Employee <|-- Nurse
@@ -131,6 +134,10 @@ Vaccine "0..*" -right-- "1" Vaccine_Type: has >
 Nurse "1" -down-- "0..*" Vaccine_Certificate: creates >
 
 Vaccine_Certificate "0..1" -down-- "1" Event: issued for >
+
+Receptionist "1" -down-- "1" User_Arrival: registers a >
+
+Event "1" -down-- "1" User_Arrival: has a >
 
 Vaccination_Appointment "0..*" -down-- "1" Vaccine_Type: correlated >
 
