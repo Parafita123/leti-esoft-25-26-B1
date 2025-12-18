@@ -24,47 +24,59 @@ class App {
 
 RecordVaccinationView ..> RecordVaccinationController
 RecordVaccinationController ..> VaccinationProcessDTO
+RecordVaccinationController ..> VaccinationProcessService
 
 ' ===== Service Layer =====
 class VaccinationProcessService {
-  + VaccinationProcessService(VaccinationProcessRepository repo)
-  + create(string snsUserNumber, string vaccineCode, string lotNumber) : VaccinationProcess
-  + addOrUpdate(VaccinationProcess proc) : Result
+  + create(dto : VaccinationProcessDTO) : VaccinationProcess
+  + save(proc : VaccinationProcess) : Result
+  + removeFromWaitingRoom(string snsUserNumber) : void
   + assignToRecoveryRoom(string snsUserNumber) : void
 }
 
-RecordVaccinationController ..> VaccinationProcessService
-
-' ===== Repository Interfaces =====
-interface VaccinationProcessRepository {
-  + save(VaccinationProcess process) : Result
-  + findAll() : list<VaccinationProcess>
-  + findBySNSUserAndDate(string snsUserNumber, date date) : optional<VaccinationProcess>
-}
-
-' ===== Concrete Repositories =====
-class VaccinationProcessMemoryRepository {
-  + save(VaccinationProcess process) : Result
-  + findAll() : list<VaccinationProcess>
-  + findBySNSUserAndDate(string snsUserNumber, date date) : optional<VaccinationProcess>
-}
-VaccinationProcessMemoryRepository .up.|> VaccinationProcessRepository
+App --> VaccinationProcessService : creates
 
 ' ===== Repository Factory =====
 interface RepositoryFactory {
   + getVaccinationProcessRepository() : VaccinationProcessRepository
+  + getWaitingRoomRepository() : WaitingRoomRepository
+  + getRecoveryRoomRepository() : RecoveryRoomRepository
 }
 
 class MemoryRepositoryFactory {
-  + getVaccinationProcessRepository() : VaccinationProcessRepository
 }
-MemoryRepositoryFactory .up.|> RepositoryFactory
-MemoryRepositoryFactory .right.> VaccinationProcessMemoryRepository
 
-App "1" -down-> "1" RepositoryFactory : uses
-App --> VaccinationProcessService : creates
-RepositoryFactory ..> VaccinationProcessRepository
+MemoryRepositoryFactory .up.|> RepositoryFactory
+
+' ===== Repository Interfaces =====
+interface VaccinationProcessRepository {
+  + save(VaccinationProcess process) : Result
+}
+
+interface WaitingRoomRepository {
+  + removeSNSUser(string snsUserNumber) : void
+}
+
+interface RecoveryRoomRepository {
+  + assignSNSUser(string snsUserNumber) : void
+}
+
+' ===== Concrete Repositories =====
+class VaccinationProcessMemoryRepository
+class WaitingRoomMemoryRepository
+class RecoveryRoomMemoryRepository
+
+VaccinationProcessMemoryRepository .up.|> VaccinationProcessRepository
+WaitingRoomMemoryRepository .up.|> WaitingRoomRepository
+RecoveryRoomMemoryRepository .up.|> RecoveryRoomRepository
+
+MemoryRepositoryFactory --> VaccinationProcessMemoryRepository
+MemoryRepositoryFactory --> WaitingRoomMemoryRepository
+MemoryRepositoryFactory --> RecoveryRoomMemoryRepository
+
 VaccinationProcessService ..> VaccinationProcessRepository
+VaccinationProcessService ..> WaitingRoomRepository
+VaccinationProcessService ..> RecoveryRoomRepository
 
 ' ===== Domain Model =====
 class VaccinationProcess {
@@ -72,13 +84,11 @@ class VaccinationProcess {
   + vaccineCode : string
   + lotNumber : string
   + administrationDateTime : datetime
-  + nurseId : string
 }
 
 class SNSUser {
   + snsUserNumber : string
   + name : string
-  + dateOfBirth : date
 }
 
 class Nurse {
@@ -91,8 +101,17 @@ class Vaccine {
   + name : string
 }
 
+class WaitingRoom {
+}
+
+class RecoveryRoom {
+}
+
 VaccinationProcess --> "1" SNSUser
 VaccinationProcess --> "1" Vaccine
 VaccinationProcess --> "1" Nurse
+
+WaitingRoom --> "*" SNSUser
+RecoveryRoom --> "*" SNSUser
 
 @enduml

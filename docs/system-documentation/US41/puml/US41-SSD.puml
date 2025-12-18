@@ -10,17 +10,11 @@ participant ":System" as System
 
 activate Nurse
 
-' Nurse initiates the recording of a vaccine administration
 Nurse -> System: selects record vaccine administration
-System --> Nurse: requests data (SNS user number)
-Nurse -> System: types SNS user number
-System --> Nurse: requests data (vaccine code)
-Nurse -> System: types vaccine code
-System --> Nurse: requests data (lot number)
-Nurse -> System: types lot number
-System --> Nurse: shows all data and requests confirmation
+System --> Nurse: requests data (SNS user number, vaccine code, lot number)
+Nurse -> System: types requested data
+System --> Nurse: removes SNS user from waiting room and shows all data and requests confirmation
 Nurse -> System: confirms registration
-System --> Nurse: assigns user to recovery room
-System --> Nurse: informs operation success
+System --> Nurse: assigns SNS user to recovery room and informs operation success
 
 @enduml
