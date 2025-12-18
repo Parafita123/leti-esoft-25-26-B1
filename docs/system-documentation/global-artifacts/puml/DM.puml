@@ -27,6 +27,11 @@ class Facility {
     - max_vaccines_per_hour
 }
 
+class Waiting_Room{
+    -SNS_User_List
+    }
+
+
 class Employee {
     - Employee_id
     - name
@@ -100,7 +105,6 @@ class VaccinationProcess {
 
 class RecoveryRoom {
     - recovery_start_time
-    - sns_user_number
 }
 
 class User_Arrival{
@@ -112,6 +116,11 @@ Employee <|-- Receptionist
 
 Facility <|-- Community_Mass_Vaccination_Center
 Facility <|-- Healthcare_Center
+
+Facility <|-- Waiting_Room
+Facility <|-- RecoveryRoom
+
+Waiting_Room "1" -down-- "*" SNS_User: >
 
 Employee "1" -up-- "0..*" Facility : works in >
 
@@ -155,6 +164,9 @@ SNS_User "1"  -left-- "0..1" Vaccine_Certificate: has >
 
 VaccinationProcess "0..*" -left-- "1" SNS_User: registers in >
 
+VaccinationProcess "0..*" -left-- "1" Nurse:  >
+
+VaccinationProcess "0..*" -left-- "1" Vaccine:  >
 
 SNS_User "1" -right-- "1" RecoveryRoom: assigned to >
 

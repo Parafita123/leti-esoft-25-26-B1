@@ -9,33 +9,54 @@ participant ":RecordVaccinationController" as Controller
 participant ":App" as App
 participant ":VaccinationProcessService" as Service
 participant "factory:RepositoryFactory" as Factory
-participant ":VaccinationProcessRepository" as Repo
+participant ":WaitingRoomRepository" as WaitingRepo
+participant ":VaccinationProcessRepository" as ProcessRepo
 participant "obj:VaccinationProcess" as VaccinationProcess
 
 activate Nurse
 
-Nurse -> View: requests to record a vaccination
-View --> Nurse: asks for the user data
-Nurse -> View: provide SNS user number, vaccine code, lot number
+' Nurse starts the process
+Nurse -> View: requests to record vaccine administration
+View --> Nurse: requests data (SNS user number, vaccine code, lot number)
+Nurse -> View: types SNS user number, vaccine code, lot number
 
-View -> Controller: recordVaccination(dto : VaccinationProcessDTO)
+' Send data to controller
+View -> Controller: recordVaccination(dto)
 Controller -> App: getVaccinationProcessService()
 App --> Controller: Service
 Controller -> Service: register(dto)
 
+' Obtain repositories
+Service -> Factory: getWaitingRoomRepository()
+Factory --> Service: WaitingRepo
 Service -> Factory: getVaccinationProcessRepository()
-Factory --> Service: Repo
+Factory --> Service: ProcessRepo
 
+' Remove SNS user from waiting room
+Service -> WaitingRepo: removeSNSUser(dto.snsUserNumber)
+WaitingRepo --> Service: removed
+
+
+' Ask for confirmation before persisting
+Service --> Controller: request confirmation
+Controller --> View: show all data and request confirmation
+View --> Nurse: shows all data for confirmation
+Nurse -> View: confirms data
+View -> Controller: confirmation received
+Controller -> Service: confirmRegistration()
+
+' Create and save vaccination process
 Service -> Service: createVaccinationProcess(dto)
-Service --> VaccinationProcess: create(dto)
+Service --> VaccinationProcess**: create(dto)
 activate VaccinationProcess
 VaccinationProcess --> Service: VaccinationProcess
-Service -> Repo: save(VaccinationProcess)
-Repo --> Service: Result
+Service -> ProcessRepo: save(VaccinationProcess)
+ProcessRepo --> Service: result
 
-' Assign SNS user to recovery room after saving
+' Assign SNS user to recovery room
 Service -> Service: assignToRecoveryRoom(dto.snsUserNumber)
 
+' Return success
 Service --> Controller: Result(success)
 Controller --> View: Result(success)
 View --> Nurse: informs registration success

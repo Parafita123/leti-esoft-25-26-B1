@@ -16,20 +16,26 @@ class SNSUser {
 
 
 class Nurse {
-    - Employee_id
-    - name
-    - postal_adress
-    - phone_number
-    - email
-    -citizenCardNumber
-    - role
+
 }
-
-
+class Facility {
+       - name
+       - postal_adress
+       - phone_number
+       - email
+       - website_adress
+       - opening_hours
+       - closing_hours
+       - max_vaccines_per_hour
+   }
 class Vaccine {
     - commercial_name
     - brand
     - technology
+}
+
+class Waiting_Room{
+SNS_User_List
 }
 
 class VaccinationProcess {
@@ -41,12 +47,14 @@ class VaccinationProcess {
 
 class RecoveryRoom {
     - recovery_start_time
-    - sns_user_number
 }
 
-VaccinationProcess --> "1" SNSUser : patient
+VaccinationProcess --> "1" SNSUser : register in
 VaccinationProcess --> "1" Vaccine
 VaccinationProcess --> "1" Nurse
-SNSUser --> RecoveryRoom : assigned to *
+SNSUser "*" --> "1" RecoveryRoom : assigned to *
+Facility "1" --> "1" RecoveryRoom
+Facility "1" --> "1" Waiting_Room
+Waiting_Room "1" --> "*" SNSUser
 
 @enduml
