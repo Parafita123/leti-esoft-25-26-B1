@@ -135,9 +135,13 @@ Nurse "1" -down-- "0..*" Vaccine_Certificate: creates >
 
 Vaccine_Certificate "0..1" -down-- "1" Event: issued for >
 
-Receptionist "1" -down-- "1" User_Arrival: registers a >
+Receptionist "1" -down-- "0..*" User_Arrival: registers a >
 
-Event "1" -down-- "1" User_Arrival: has a >
+User_Arrival "1" -down-- "0..1" Event: creates >
+
+SNS_User "1" -up-- "0..*" User_Arrival: has >
+
+Facility "1" -down-- "0..*" User_Arrival: has >
 
 Vaccination_Appointment "0..*" -down-- "1" Vaccine_Type: correlated >
 

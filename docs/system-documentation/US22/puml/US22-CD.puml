@@ -8,30 +8,25 @@ skinparam classAttributeIconSize 0
 ' ===== Enums / DTOs =====
 
 class UserArrivalDTO {
-  -name : string
-  -postal_address : string
-  -phone_number : string
-  -email : string
-  -website_address : string
-  -opening_hours : string
-  -closing_hours : string
-  -max_vaccines_per_hour : int
-  -facilityType : FacilityType
-  -vaccineTypeCode : string
+    - int facilityID
+    - int sns_user_number
 }
 
 ' ===== UI Layer =====
 class RegisterUserArrivalView {
+    + void show()
 }
 
 class RegisterUserArrivalController {
-  +registerVaccinationCenter(dto : VaccinationCenterDTO) : void
-  +saveRegistedVaccinationCenter(): Result
-  +listVaccineTypes() : vector<shared_ptr<VaccineType>>
+    + Result registerArrival(UserArrivalDTO dto)
+    + vector<Facility> listFacilities()
+    + getSNSUserSummary(snsNumber): optional<SNSUser>
 }
 
 class App {
-  +getUserArrivalService(): UserArrivalService
+    + std::shared_ptr<UserArrivalService> getUserArrivalService()
+    + std::shared_ptr<RepositoryFactory> getRepositoryFactory();
+
  }
 
 RegisterUserArrivalView ..> RegisterUserArrivalController
@@ -39,9 +34,9 @@ RegisterUserArrivalController ..> UserArrivalDTO
 
 ' ===== Service Layer =====
 class UserArrivalService {
-+ VaccinationCenterService(VaccineCenterRepository VCRepo, shared_ptr<VaccineTypeRepository>)
-+ create((string name, string postal_adress, string phone_number, string email, string website_address, string opening_hours, string closing_hours, int max_vaccines_per_hour): VaccinationCenter
-+addOrUpdate(VaccinationCenter obj): Result
+    + Result registerArrival(UserArrivalDTO dto)
+    + bool isDuplicateArrival(...)
+    + getCurrentDate()
 }
 
 RegisterUserArrivalController ..> UserArrivalService
@@ -49,40 +44,63 @@ RegisterUserArrivalController ..> UserArrivalService
 ' ===== Repository Interfaces =====
 
 interface UserArrivalRepository <<interface>> {
-  +findAll() : vector<shared_ptr<VaccineType>>
-  +findByCode(code : string) : shared_ptr<VaccineType>
-  +exists(code : string) : bool
+    + Result save(shared_ptr<UserArrival>)
+    + bool exists(string snsUserNumber, string facilityId, Date day)
+
 }
+
+interface VaccinationCenterRepository <<interface>> {
+  +virtual Result save(std::shared_ptr<Facility> obj)
+  +virtual ~VaccinationCenterRepository() = default
+}
+
 
 ' ===== Concrete Repositories (Memory) =====
     class UserArrivalMemoryRepository{
-+ geUserArrivalRepository(): UserArrivalRepository
+    + vector<shared_ptr<UserArrival>> data
 }
-UserArrivalMemoryRepository .up.|> UserArrivalRepository
 
+    interface SNSUserRepository <<interface>> {
+      + save(SNSUser obj) : Result
+      + findAll() : vector<shared_ptr<SNSUser>>
+      + existsByPhoneNumber(phoneNumber : string) : bool
+      + existsByEmail(email : string) : bool
+      + existsByCitizenCardNumber(cc : string) : bool
+      + existsBySNSUserNumber(number : string) : bool
+    }
+
+UserArrivalMemoryRepository .up.|> UserArrivalRepository
 
 ' ===== Repository Factory =====
 interface RepositoryFactory <<interface>>  {
-   + getUserArrivalRepository(): UserArrivalRepository
-   }
+     + virtual std::shared_ptr<VaccinationCenterRepository> getVaccinationCenterRepository() = 0;
+     + virtual shared_ptr<UserArrivalRepository> getUserArrivalRepository() = 0;
+     + getSNSUserRepository(): shared_ptr<SNSUserRepository>
+
+}
 
 
 class MemoryRepositoryFactory {
-  + getVaccinationCenterRepository(): VaccineCenterRepository
-  + getVaccinationTypeRepository(): VaccineTypeRepository
-}
+     + getVaccinationCenterRepository(): VaccineCenterRepository
+     + getSNSUserRepository(): SNSUserRepository
+     + getUserArrivaRepository(): UserArrivalRepository
+  }
 
 App "1" -down-> "1" RepositoryFactory:  uses
 App --> UserArrivalService: adopts
 RepositoryFactory ..> UserArrivalRepository
 UserArrivalService ..> UserArrivalRepository
+UserArrivalService ..> VaccinationCenterRepository
+UserArrivalService ..> SNSUserRepository
 MemoryRepositoryFactory .up.|> RepositoryFactory
 MemoryRepositoryFactory .right.> UserArrivalMemoryRepository
 
 ' ===== Domain Model =====
  abstract class UserArrival {
-    - user_arrival_id
-    - arrival_time
+    - time_point arrival_time
+    - shared_ptr<SNSUser> user
+    - shared_ptr<Facility> facility
+    UserArrival(time_point arrival_time, shared_ptr<UserArrival> user, shared_ptr<Facility> facility)
  }
 
 UserArrivalRepository "1" --> "0..*" UserArrival : records >

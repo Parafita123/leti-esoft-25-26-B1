@@ -1,94 +1,86 @@
 @startuml
+
 autonumber
-actor Admin
+actor Receptionist as R
 
-participant RegisterVaccinationCenterView as View
-participant RegisterVaccinationCenterController as Controller
-participant VaccinationCenterService as Service
-participant RepositoryFactory as RepoFactory
-participant VaccineTypeRepository as VTRepo
-participant VaccinationCenterRepository as VCRepo
-participant Healthcare_Center as Healthcare
-participant Community_Mass_Vaccination_Center as Community
+participant RegisterUserArrivalView as V
+participant RegisterUserArrivalController as C
+participant App as A
+participant UserArrivalService as S
 
-Admin -> View: requests to register a new type of facility
-View --> Admin: asks the facility type
+participant "RepositoryFactory" as RF
+participant "VaccinationCenterRepository" as VCR
+participant "SNSUserRepository" as SR
+participant "UserArrivalRepository" as UAR
 
-Admin -> View: select facilityType (HEALTHCARE/COMMUNITY)
-View --> Admin: request data
-
-Admin -> View: types request data
-
-alt [facilityType = COMMUNITY]
-
-  View -> Controller: listVaccineTypes()
-  Controller -> Service: listVaccineTypes()
-
-  Service -> RepoFactory: getVaccineTypeRepository()
-  RepoFactory --> Service: VTRepo
-
-  Service -> VTRepo: findAll()
-  VTRepo --> Service: list<VaccineType>
-
-  Service --> Controller: list<VaccineType>
-  Controller --> View: list<VaccineType>
-
-  View --> Admin: asks the vaccine type
-  Admin -> View: selects a vaccine type
-
-  View --> Admin: show all data for confirmation
-  Admin -> View: confirms the data
-
-  View -> Controller: registerVaccinationCenter(dto : VaccinationCenterDTO)
-  Controller -> Service: registerCenter(dto)
-
-  Service -> RepoFactory: getVaccinationCenterRepository()
-  RepoFactory --> Service: VCRepo
-
-else [facilityType = HEALTHCARE]
-  note right of View
-    No vaccine type is required
-    for Healthcare centers.
-  end note
-  View --> Admin: show all data for confirmation
-  Admin -> View: confirms the data
-
-  View -> Controller: registerVaccinationCenter(dto : VaccinationCenterDTO)
-  Controller -> Service: registerCenter(dto)
-
-  Service -> RepoFactory: getVaccinationCenterRepository()
-  RepoFactory --> Service: VCRepo
+participant "UserArrivalDTO" as DTO
+participant "Facility" as F
+participant "SNSUser" as U
+participant "UserArrival" as UA
 
 
-end
+R -> V: requests to register a user arrival
+V -> C: listFacilities()
+C -> A: getRepositoryFactory()
+A --> C: RF
+C -> RF: getVaccinationCenterRepository()
+RF --> C: VCR
+C -> VCR: findAll()
+VCR --> C: facilities
+C --> V: facilities
 
-alt [dto.facilityType == HEALTHCARE]
+V --> R: asks to select the facility
+R -> V: selects facility
 
-  Service -> Service: create Healthcare_Center\n(string name, string address, string phone_number, string website_adress, string opening_hours, string closing_hours, int max_vaccines_per_hour)
-  Service --> Healthcare**: create Healthcare_Center\n(string name, string address, string phone_number, string website_adress, string opening_hours, string closing_hours, int max_vaccines_per_hour)
-  Healthcare --> Service: Healthcare_Center
-  Service -> VCRepo: save(HealthcareCenter)
-  VCRepo --> Service: Result
 
-else [dto.facilityType == COMMUNITY]
+V --> R:  asks to select a SNS_User_Number
+R -> V: types a SNS_User_Number
 
-  Service -> RepoFactory: getVaccineTypeRepository()
-  RepoFactory --> Service: VTRepo
+V -> C: getSNSUserSummary(sns_user_number)
+C -> A: getRepositoryFactory()
+A --> C: RF
+C -> RF: getSNSUserRepository()
+RF --> C: SR
+C -> SR: findBySNSUserNumber(sns_user_number)
+SR --> C: U
+C --> V: U
 
-  Service -> VTRepo: findByCode(dto.vaccineTypeCode)
-  VTRepo --> Service: VaccineType
+V -> V: records arrival time (now)
 
-  Service -> Service: create Community_Mass_Vaccination_Center\n(from dto, VaccineType)
-    Service --> Community**: create Healthcare_Center\n(string name, string address, string phone_number, string website_adress, string opening_hours, string closing_hours, int max_vaccines_per_hour)
-    Community--> Service: Community_Mass_Vaccination_Center
-  Service -> VCRepo: save(Community_Mass_Vaccination_Center)
-  VCRepo --> Service: Result
+V -> V: builds DTO(facilityId, sns_user_number)
+V --> R: asks for confirmation (shows DTO data)
+R -> V: confirms data
 
-end
 
-Service --> Controller: Result
-Controller --> View: Result
-View --> Admin: informs the sucess of the operation
+V -> C: registerArrival(DTO)
+C -> A: getUserArrivalService()
+A --> C: S
+C -> S: registerArrival(DTO)
 
+S -> S: day = getCurrentDate()
+S -> S: arrival_time = now()
+
+S -> RF: getVaccinationCenterRepository()
+RF --> S: VCR
+S -> VCR: findById(DTO.facilityId)
+VCR --> S: F
+
+S -> RF: getSNSUserRepository()
+RF --> S: SR
+S -> SR: findBySNSUserNumber(DTO.sns_user_number)
+SR --> S: U
+
+create UA
+S -> UA: UserArrival(arrival_time, U, F)
+
+S -> RF: getUserArrivalRepository()
+RF --> S: UAR
+S -> UAR: save(UA)
+UAR --> S: Result OK
+
+S -> S: assigns SNS_User to waiting_room (implicit)
+S --> C: Result OK
+C --> V: Result OK
+V --> R: informs success of the operation
 
 @enduml

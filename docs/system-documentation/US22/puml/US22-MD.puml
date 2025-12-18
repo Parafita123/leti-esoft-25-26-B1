@@ -19,8 +19,34 @@ class User_Arrival{
     - arrival_time
 }
 
-Receptionist "1" -down-- "1" User_Arrival: registers a >
+class SNS_User {
+    - name
+    - date_of_birth
+    - sex
+    - postal_address
+    - phone_number
+    - email
+    - citizen_card_number
+    - sns_user_number
+}
 
-Event "1" -down-- "1" User_Arrival: has a >
+class Facility {
+    - name
+    - postal_adress
+    - phone_number
+    - email
+    - website_adress
+    - opening_hours
+    - closing_hours
+    - max_vaccines_per_hour
+}
+
+Receptionist "1" -down-- "0..*" User_Arrival: registers a >
+
+User_Arrival "1" -down-- "0..1" Event: creates >
+
+SNS_User "1" -up-- "0..*" User_Arrival: has >
+
+Facility "1" -down-- "0..*" User_Arrival: has >
 
 @enduml
