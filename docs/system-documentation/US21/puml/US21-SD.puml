@@ -1,0 +1,132 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+autoactivate on
+autonumber
+
+actor "Receptionist" as User
+participant ":ScheduleVaccinationView" as View
+participant ":ScheduleVaccinationController" as Ctrl
+participant ":App" as App
+participant "service:FacilityService" as FacilityService
+participant "service:VaccinationAppointmentService" as AppointmentService
+participant "factory:RepositoryFactory" as Factory
+participant "repo:FacilityRepository" as FacilityRepo
+participant "repo:VaccinationAppointmentRepository" as AppointmentRepo
+participant "dtoList:List<FacilityDto>" as FacilityDtoList
+participant "dto:VaccinationAppointmentDto" as AppointmentDto
+participant "appointment:Vaccination_Appointment" as Appointment
+
+activate User
+
+User -> View: asks to schedule a vaccine administration
+View -> Ctrl: startScheduling()
+
+'--- Get facilities to select ---
+Ctrl -> App: getFacilityService()
+App -> Factory: getFacilityRepository()
+Factory --> App: facilityRepo
+App --> FacilityService**: create(facilityRepo)
+App --> Ctrl: facilityService
+
+Ctrl -> FacilityService: getAll()
+FacilityService -> FacilityRepo: getAll()
+FacilityRepo --> FacilityService: facilities
+FacilityService --> Ctrl: facilities
+
+Ctrl -> FacilityDtoList**: create(facilities)
+Ctrl --> View: facilityDtoList
+View --> User: shows facilities and requests selection + other data
+
+'--- User provides selected data ---
+User -> View: selects facility and provides SNS user, date and time
+View -> Ctrl: createAppointment(snsUserNumber, date, time, facilityId)
+
+'--- Create appointment ---
+Ctrl -> App: getVaccinationAppointmentService()
+App -> Factory: getVaccinationAppointmentRepository()
+Factory --> App: appointmentRepo
+App --> AppointmentService**: create(appointmentRepo)
+App --> Ctrl: appointmentService
+
+Ctrl -> AppointmentService: create(snsUserNumber, date, time, facilityId)
+AppointmentService --> Appointment**: create(...)
+AppointmentService --> Ctrl: appointment
+
+'--- DTO for confirmation ---
+Ctrl -> AppointmentDto**: create(appointment)
+Ctrl --> View: appointmentDto
+View --> User: shows appointment data and requests confirmation
+
+'--- Save ---
+User -> View: confirms appointment
+View -> Ctrl: saveAppointment()
+
+Ctrl -> AppointmentService: save(appointment)
+AppointmentService -> AppointmentService: validate(appointment)
+AppointmentService --> AppointmentService: ok
+AppointmentService -> AppointmentRepo: save(appointment)
+AppointmentRepo --> AppointmentService: ok
+AppointmentService --> Ctrl: ok
+Ctrl --> View: ok
+View --> User: informs operation success
+@startuml
+'https://plantuml.com/sequence-diagram
+autoactivate on
+autonumber
+
+actor "Receptionist" as User
+participant ":ScheduleVaccinationView" as View
+participant ":ScheduleVaccinationController" as Ctrl
+participant ":App" as App
+participant "service:FacilityService" as FacilityService
+participant "service:VaccinationAppointmentService" as AppointmentService
+participant "factory:RepositoryFactory" as Factory
+participant "repo:FacilityRepository" as FacilityRepo
+participant "repo:VaccinationAppointmentRepository" as AppointmentRepo
+participant "dtoList:List<FacilityDto>" as FacilityDtoList
+participant "appointment:Vaccination_Appointment" as Appointment
+
+activate User
+
+User -> View: asks to schedule a vaccine administration
+View -> Ctrl: startScheduling()
+
+'--- Get facilities (selected data → DTO) ---
+Ctrl -> App: getFacilityService()
+App -> Factory: getFacilityRepository()
+Factory --> App: facilityRepo
+App --> FacilityService**: create(facilityRepo)
+App --> Ctrl: facilityService
+
+Ctrl -> FacilityService: getAll()
+FacilityService -> FacilityRepo: getAll()
+FacilityRepo --> FacilityService: facilities
+FacilityService --> Ctrl: facilities
+
+Ctrl -> FacilityDtoList**: create(facilities)
+Ctrl --> View: facilityDtoList
+View --> User: shows facilities and requests selection and data
+
+'--- User provides data ---
+User -> View: selects facility and provides SNS user, date and time
+View -> Ctrl: createAppointment(snsUserNumber, date, time, facilityId)
+
+'--- Create and save appointment ---
+Ctrl -> App: getVaccinationAppointmentService()
+App -> Factory: getVaccinationAppointmentRepository()
+Factory --> App: appointmentRepo
+App --> AppointmentService**: create(appointmentRepo)
+App --> Ctrl: appointmentService
+
+Ctrl -> AppointmentService: create(snsUserNumber, date, time, facilityId)
+AppointmentService --> Appointment**: create(...)
+AppointmentService -> AppointmentService: validate(appointment)
+AppointmentService --> AppointmentService: ok
+AppointmentService -> AppointmentRepo: save(appointment)
+AppointmentRepo --> AppointmentService: ok
+AppointmentService --> Ctrl: ok
+
+Ctrl --> View: ok
+View --> User: informs operation success
+
+@enduml
