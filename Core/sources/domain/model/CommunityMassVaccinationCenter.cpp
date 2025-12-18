@@ -1,6 +1,7 @@
 //
 // Created by Filipe on 12/12/2025.
 //
+#include <stdexcept>
 #include "headers/domain/model/CommunityMassVaccinationCenter.h"
 
 CommunityMassVaccinationCenter::CommunityMassVaccinationCenter(
@@ -16,7 +17,11 @@ CommunityMassVaccinationCenter::CommunityMassVaccinationCenter(
 ) : Facility(std::move(name), std::move(postal_address), std::move(phone_number), std::move(email),
              std::move(website_address), std::move(opening_hours), std::move(closing_hours),
              max_vaccines_per_hour),
-    vaccineType(std::move(vaccineType)) {}
+    vaccineType(std::move(vaccineType)) {
+    if (!this->vaccineType) {
+        throw std::invalid_argument("CommunityMassVaccinationCenter requires a VaccineType.");
+}
+
 
 std::shared_ptr<VaccineType> CommunityMassVaccinationCenter::getVaccineType() const {
     return vaccineType;

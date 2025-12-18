@@ -1,94 +1,101 @@
 @startuml
 autonumber
-actor Admin
+autoactivate on
 
-participant RegisterVaccinationCenterView as View
-participant RegisterVaccinationCenterController as Controller
-participant VaccinationCenterService as Service
-participant RepositoryFactory as RepoFactory
-participant VaccineTypeRepository as VTRepo
-participant VaccinationCenterRepository as VCRepo
-participant Healthcare_Center as Healthcare
-participant Community_Mass_Vaccination_Center as Community
+actor Admin as Admin
+activate Admin
 
-Admin -> View: requests to register a new type of facility
+participant ":RegisterVaccinationCenterView" as View
+participant ":RegisterVaccinationCenterController" as Controller
+participant "App" as App
+participant "service:VaccinationCenterService" as Service
+participant "factory:RepositoryFactory" as RepoFactory
+participant "dto:VaccinationCenterDTO" as CenterDto
+participant "repoVT:VaccineTypeRepository" as VTRepo
+participant "repoVC:VaccinationCenterRepository" as VCRepo
+
+
+participant "vt:VaccineType" as VT
+participant "hc:Healthcare_Center" as Healthcare
+participant "cm:Community_Mass_Vaccination_Center" as Community
+
+Admin -> View: requests to register a new vaccination center
 View --> Admin: asks the facility type
+Admin -> View: selects facilityType (HEALTHCARE/COMMUNITY)
 
-Admin -> View: select facilityType (HEALTHCARE/COMMUNITY)
-View --> Admin: request data
-
-Admin -> View: types request data
-
-alt [facilityType = COMMUNITY]
+alt facilityType = COMMUNITY
 
   View -> Controller: listVaccineTypes()
+  Controller -> App: getVaccinationCenterService()
+  App -> RepoFactory: getVaccineTypeRepository()
+  RepoFactory --> App: VTRepo
+  App --> Service**: create(VTRepo)
+  App --> Controller: service
   Controller -> Service: listVaccineTypes()
-
-  Service -> RepoFactory: getVaccineTypeRepository()
-  RepoFactory --> Service: VTRepo
-
   Service -> VTRepo: findAll()
   VTRepo --> Service: list<VaccineType>
 
-  Service --> Controller: list<VaccineType>
-  Controller --> View: list<VaccineType>
+  Service --> Service: map(list<VaccineType>) -> lstVTDto
+  Service --> Controller: LstVTDto
+  Controller --> View: LstVTDto
 
-  View --> Admin: asks the vaccine type
-  Admin -> View: selects a vaccine type
+  View --> Admin: asks to select a vaccine type
+  Admin -> View: selects vaccineTypeCode
 
-  View --> Admin: show all data for confirmation
-  Admin -> View: confirms the data
+  View --> Admin: requests facility data
+  Admin -> View: types requested data
 
-  View -> Controller: registerVaccinationCenter(dto : VaccinationCenterDTO)
-  Controller -> Service: registerCenter(dto)
+  View --> CenterDto**: create(facilityType, name, address, phone, email,\nwebsite, openingHours, closingHours,\nmaxVaccinesPerHour, vaccineTypeCode)
 
-  Service -> RepoFactory: getVaccinationCenterRepository()
-  RepoFactory --> Service: VCRepo
+else facilityType = HEALTHCARE
 
-else [facilityType = HEALTHCARE]
-  note right of View
-    No vaccine type is required
-    for Healthcare centers.
-  end note
-  View --> Admin: show all data for confirmation
-  Admin -> View: confirms the data
+  View --> Admin: requests facility data
+  Admin -> View: types requested data
 
-  View -> Controller: registerVaccinationCenter(dto : VaccinationCenterDTO)
-  Controller -> Service: registerCenter(dto)
-
-  Service -> RepoFactory: getVaccinationCenterRepository()
-  RepoFactory --> Service: VCRepo
-
+  View --> CenterDto**: create(facilityType, name, address, phone, email,\nwebsite, openingHours, closingHours,\nmaxVaccinesPerHour, null)
 
 end
 
-alt [dto.facilityType == HEALTHCARE]
+View --> Admin: shows all data and requests confirmation
+Admin -> View: confirms the data
 
-  Service -> Service: create Healthcare_Center\n(string name, string address, string phone_number, string website_adress, string opening_hours, string closing_hours, int max_vaccines_per_hour)
-  Service --> Healthcare**: create Healthcare_Center\n(string name, string address, string phone_number, string website_adress, string opening_hours, string closing_hours, int max_vaccines_per_hour)
-  Healthcare --> Service: Healthcare_Center
-  Service -> VCRepo: save(HealthcareCenter)
+View -> Controller: registerVaccinationCenter(dto)
+Controller -> Service: registerCenter(dto)
+
+Service -> RepoFactory: getVaccinationCenterRepository()
+RepoFactory --> Service: VCRepo
+
+alt dto.facilityType == HEALTHCARE
+
+  Service -> CenterDto: getName()
+  CenterDto --> Service: name
+  Service -> CenterDto: getOpeningHours()
+  CenterDto --> Service: openingHours
+
+  Service --> Healthcare**: create(from dto fields)
+  Healthcare --> Service: Healthcare
+  Service -> VCRepo: save(Healthcare)
   VCRepo --> Service: Result
 
-else [dto.facilityType == COMMUNITY]
+else dto.facilityType == COMMUNITY
+
+   Service -> CenterDto: getVaccineTypeCode()
+  CenterDto --> Service: vaccineTypeCode
 
   Service -> RepoFactory: getVaccineTypeRepository()
   RepoFactory --> Service: VTRepo
+  Service -> VTRepo: findByCode(vaccineTypeCode)
+  VTRepo --> Service: VT
 
-  Service -> VTRepo: findByCode(dto.vaccineTypeCode)
-  VTRepo --> Service: VaccineType
-
-  Service -> Service: create Community_Mass_Vaccination_Center\n(from dto, VaccineType)
-    Service --> Community**: create Healthcare_Center\n(string name, string address, string phone_number, string website_adress, string opening_hours, string closing_hours, int max_vaccines_per_hour)
-    Community--> Service: Community_Mass_Vaccination_Center
-  Service -> VCRepo: save(Community_Mass_Vaccination_Center)
+  Service --> Community**: create(from dto fields, VT)
+  Community --> Service: Community
+  Service -> VCRepo: save(Community)
   VCRepo --> Service: Result
 
 end
 
 Service --> Controller: Result
 Controller --> View: Result
-View --> Admin: informs the sucess of the operation
-
+View --> Admin: informs operation success
 
 @enduml

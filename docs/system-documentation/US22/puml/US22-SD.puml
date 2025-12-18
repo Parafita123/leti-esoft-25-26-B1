@@ -1,86 +1,86 @@
 @startuml
-
+'https://plantuml.com/sequence-diagram
+autoactivate on
 autonumber
-actor Receptionist as R
-
-participant RegisterUserArrivalView as V
-participant RegisterUserArrivalController as C
-participant App as A
-participant UserArrivalService as S
-
-participant "RepositoryFactory" as RF
-participant "VaccinationCenterRepository" as VCR
-participant "SNSUserRepository" as SR
-participant "UserArrivalRepository" as UAR
-
-participant "UserArrivalDTO" as DTO
-participant "Facility" as F
-participant "SNSUser" as U
-participant "UserArrival" as UA
 
 
-R -> V: requests to register a user arrival
-V -> C: listFacilities()
-C -> A: getRepositoryFactory()
-A --> C: RF
-C -> RF: getVaccinationCenterRepository()
-RF --> C: VCR
-C -> VCR: findAll()
-VCR --> C: facilities
-C --> V: facilities
+actor Receptionist as recep
+participant RegisterUserArrivalView as View
+participant RegisterUserArrivalController as controller
+participant App as app
 
-V --> R: asks to select the facility
-R -> V: selects facility
+activate recep
 
+participant "factory:RepositoryFactory" as repofact
+participant "vcr:VaccinationCenterRepository" as vaccentrepo
+participant "sr:SNSUserRepository" as userrepo
+participant "uar:UserArrivalRepository" as arrvlrepo
 
-V --> R:  asks to select a SNS_User_Number
-R -> V: types a SNS_User_Number
-
-V -> C: getSNSUserSummary(sns_user_number)
-C -> A: getRepositoryFactory()
-A --> C: RF
-C -> RF: getSNSUserRepository()
-RF --> C: SR
-C -> SR: findBySNSUserNumber(sns_user_number)
-SR --> C: U
-C --> V: U
-
-V -> V: records arrival time (now)
-
-V -> V: builds DTO(facilityId, sns_user_number)
-V --> R: asks for confirmation (shows DTO data)
-R -> V: confirms data
+participant "service:UserArrivalService" as service
+participant "arrival:UserArrival" as arrival
 
 
-V -> C: registerArrival(DTO)
-C -> A: getUserArrivalService()
-A --> C: S
-C -> S: registerArrival(DTO)
+recep -> View: requests to register a user arrival
 
-S -> S: day = getCurrentDate()
-S -> S: arrival_time = now()
+View -> controller: listFacilities()
+controller -> app: getRepositoryFactory()
+app --> controller: repofact
+controller -> repofact: getVaccinationCenterRepository()
+repofact --> controller: vaccentrepo
+controller -> vaccentrepo: findAll()
+vaccentrepo --> controller: facilities
+controller --> View: facilities
 
-S -> RF: getVaccinationCenterRepository()
-RF --> S: VCR
-S -> VCR: findById(DTO.facilityId)
-VCR --> S: F
+View --> recep: asks to select the facility
+recep -> View: selects facility
 
-S -> RF: getSNSUserRepository()
-RF --> S: SR
-S -> SR: findBySNSUserNumber(DTO.sns_user_number)
-SR --> S: U
+View --> recep: asks to select a SNS_User_Number
+recep -> View:  types a SNS_User_Numberr
 
-create UA
-S -> UA: UserArrival(arrival_time, U, F)
+View -> controller: getSNSUserSummary(sns_user_number)
+controller -> app: getRepositoryFactory()
+app --> controller: repofact
+controller -> repofact: getSNSUserRepository()
+repofact --> controller: userrepo
+controller -> userrepo: findBySNSUserNumber(sns_user_number)
+userrepo --> controller: user
+controller --> View: user
 
-S -> RF: getUserArrivalRepository()
-RF --> S: UAR
-S -> UAR: save(UA)
-UAR --> S: Result OK
+View -> View: prepares arrival data (arrival time + DTO)
+View --> recep: asks for confirmation
+recep -> View: confirms data
 
-S -> S: assigns SNS_User to waiting_room (implicit)
-S --> C: Result OK
-C --> V: Result OK
-V --> R: informs success of the operation
+View -> controller: registerArrival(DTO)
+
+controller -> app: getRepositoryFactory()
+app --> controller: repofact
+controller -> repofact: getUserArrivalRepository()
+repofact --> controller: arrvlrepo
+controller -> repofact: getSNSUserRepository()
+repofact --> controller: userrepo
+controller -> repofact: getVaccinationCenterRepository()
+repofact --> controller: vaccentrepo
+
+create service
+controller -> service: UserArrivalService(arrvlrepo, userrepo, vaccentrepo)
+
+controller -> service: registerArrival(DTO)
+
+service -> service: day = getCurrentDate()
+service -> userrepo: findBySNSUserNumber(DTO.sns_user_number)
+userrepo --> service: user
+service -> vaccentrepo: findById(DTO.facilityId)
+vaccentrepo --> service: facility
+
+create arrival
+service -> arrival: UserArrival(now, user, facility)
+
+service -> arrvlrepo: save(arrival)
+arrvlrepo --> service: Result OK
+
+service -> service: assigns SNS_User to waiting_room (implicit)
+service --> controller: Result OK
+controller --> View: Result OK
+View --> recep: informs success of the operation
 
 @enduml

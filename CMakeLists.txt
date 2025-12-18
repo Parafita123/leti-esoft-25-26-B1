@@ -44,7 +44,9 @@ add_executable(leti-esoft-25-26-B1 main.cpp
         Core/sources/domain/services/VaccinationCenterService.cpp
         Core/headers/controllers/ui/RegisterVaccinationCenterController.h
         ConsoleApp/headers/views/RegisterVaccinationCenterView.h
-        ConsoleApp/sources/views/RegisterVaccinationCenterView.cpp)
+        ConsoleApp/sources/views/RegisterVaccinationCenterView.cpp
+        CoreTests/domain/model/CommunityMassVaccinationCenterTests.cpp
+)
 
 # US20 - Register SNS user
 target_sources(leti-esoft-25-26-B1 PRIVATE
