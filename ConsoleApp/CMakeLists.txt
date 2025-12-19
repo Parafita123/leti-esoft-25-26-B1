@@ -22,7 +22,6 @@ add_executable(ConsoleApp ConsoleApp.cpp
         ../Core/sources/domain/model/Faclity.cpp
         ../Core/headers/domain/model/HealthcareCenter.h
         ../Core/headers/domain/model/CommunityMassVaccinationCenter.h
-        ../Core/sources/domain/model/CommunityMassVaccinationCenter.cpp
         ../Core/headers/domain/repositories/VaccinationCenterRepository.h
         ../Core/headers/domain/repositories/VaccineTypeRepository.h
         ../Core/headers/domain/repositories/VaccineTypeRepository.h

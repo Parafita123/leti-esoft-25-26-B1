@@ -1,24 +1,22 @@
+//
+// Created by Filipe on 04/11/2025.
+//
 #include "headers/controllers/ui/App.h"
 
-// Include service and repository implementation headers for SNS users
-#include "headers/infrastructure/memory/MemoryRepositoryFactory.h"
-#include "headers/domain/services/SNSUserService.h"
-#include "headers/domain/repositories/VaccinationCenterRepository.h"
+// Include repositories and service for vaccination process
+#include "headers/domain/repositories/VaccinationProcessRepository.h"
+#include "headers/domain/repositories/WaitingRoomRepository.h"
+#include "headers/domain/repositories/RecoveryRoomRepository.h"
+#include "headers/domain/services/VaccinationProcessService.h"
+#include "headers/infrastructure/memory/VaccinationProcessMemoryRepository.h"
+#include "headers/infrastructure/memory/WaitingRoomMemoryRepository.h"
+#include "headers/infrastructure/memory/RecoveryRoomMemoryRepository.h"
 #include "headers/domain/repositories/VaccineTypeRepository.h"
+#include "headers/domain/repositories/RepositoryFactory.h"
+#include "headers/infrastructure/memory/MemoryRepositoryFactory.h"
 
-App::App() {
-
-    this->repoFactory = std::make_shared<MemoryRepositoryFactory>();
-    // Create the SNS user service using the repository provided by the factory.
-    this->snsUserService = std::make_shared<SNSUserService>(repoFactory->getSNSUserRepository());
-    vaccineTypeRepo = repoFactory->getVaccineTypeRepository();
-
-    auto ctrRepo = repoFactory->getVaccinationCenterRepository();
-    auto vtRepo  = repoFactory->getVaccineTypeRepository();
-
-    vaccinationCenterService = std::make_shared<VaccinationCenterService>(
-            repoFactory->getVaccinationCenterRepository(),
-            vaccineTypeRepo);
+VaccineTypeContainer& App::getVaccineTypeContainer() {
+    return vaccineTypeContainer;
 }
 
 VaccineContainer& App::getVaccineContainer() {
@@ -29,18 +27,31 @@ EmployeeContainer &App::getEmployeeContainer() {
     return employeeContainer;
 }
 
-std::shared_ptr<SNSUserService> App::getSNSUserService() {
-    return this->snsUserService;
+SNSUserContainer &App::getSNSUserContainer() {
+    return snsUserContainer;
 }
 
-std::shared_ptr<VaccinationCenterService> App::getVaccinationCenterService() {
-    return vaccinationCenterService;
-}
-
-std::shared_ptr<RepositoryFactory> App::getRepositoryFactory() {
-    return repoFactory;
+std::shared_ptr<VaccinationProcessService> App::getVaccinationProcessService() {
+    // Lazy initialize on first use
+    if (!vaccinationProcessService) {
+        vaccinationProcessRepository = std::make_shared<VaccinationProcessMemoryRepository>();
+        waitingRoomRepository = std::make_shared<WaitingRoomMemoryRepository>();
+        recoveryRoomRepository = std::make_shared<RecoveryRoomMemoryRepository>();
+        vaccinationProcessService = std::make_shared<VaccinationProcessService>(
+                vaccinationProcessRepository, waitingRoomRepository, recoveryRoomRepository);
+    }
+    return vaccinationProcessService;
 }
 
 std::shared_ptr<VaccineTypeRepository> App::getVaccineTypeRepository() {
-    return vaccineTypeRepo;
+    return repositoryFactory->getVaccineTypeRepository();
+}
+
+App::App() {
+    repositoryFactory = std::make_shared<MemoryRepositoryFactory>();
+}
+
+std::shared_ptr<SNSUserService> App::getSNSUserService() {
+    auto repo = repositoryFactory->getSNSUserRepository();
+    return std::make_shared<SNSUserService>(repo);
 }
