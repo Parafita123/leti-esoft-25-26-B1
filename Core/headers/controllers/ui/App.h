@@ -1,43 +1,27 @@
-//
-// Created by Filipe on 04/11/2025.
-//
-
 #ifndef LETI_ESOFT_25_26_B1_APP_H
 #define LETI_ESOFT_25_26_B1_APP_H
 
-#include "headers/domain/repositories/VaccinationProcessRepository.h"
-#include "headers/domain/repositories/WaitingRoomRepository.h"
-#include "headers/domain/repositories/RecoveryRoomRepository.h"
-#include "headers/domain/services/VaccinationProcessService.h"
-#include "headers/domain/repositories/VaccineTypeRepository.h"
 #include "headers/domain/model/VaccineTypeContainer.h"
 #include "headers/domain/model/VaccineContainer.h"
 #include "headers/domain/model/EmployeeContainer.h"
-#include "headers/domain/model/SNSUserContainer.h"
+// Repository and service infrastructure headers for SNS user registration
 #include "headers/domain/repositories/RepositoryFactory.h"
+#include "headers/infrastructure/memory/MemoryRepositoryFactory.h"
 #include "headers/domain/services/SNSUserService.h"
+#include <memory>
+#include "headers/domain/services/VaccinationCenterService.h"
 
 class App {
 private:
-    VaccineTypeContainer vaccineTypeContainer;
     VaccineContainer vaccineContainer;
     EmployeeContainer employeeContainer;
-    SNSUserContainer snsUserContainer;
-
-
-    // Repositories and services for recording vaccination processes
-    std::shared_ptr<VaccinationProcessRepository> vaccinationProcessRepository;
-    std::shared_ptr<WaitingRoomRepository> waitingRoomRepository;
-    std::shared_ptr<RepositoryFactory> repositoryFactory;
-    std::shared_ptr<RecoveryRoomRepository> recoveryRoomRepository;
-    std::shared_ptr<VaccinationProcessService> vaccinationProcessService;
+    std::shared_ptr<RepositoryFactory> repoFactory;
+    std::shared_ptr<SNSUserService> snsUserService;
+    std::shared_ptr<VaccinationCenterService> vaccinationCenterService;
+    std::shared_ptr<VaccineTypeRepository> vaccineTypeRepo;
 
 public:
     App();
-
-    VaccineTypeContainer& getVaccineTypeContainer();
-    std::shared_ptr<VaccineTypeRepository> getVaccineTypeRepository();
-    std::shared_ptr<SNSUserService> getSNSUserService();
     /**
      * Returns a reference to the vaccine container.
      */
@@ -45,14 +29,16 @@ public:
     EmployeeContainer &getEmployeeContainer();
 
     /**
-     * Returns a reference to the SNS user container.
+     * Returns the service responsible for registering SNS users. It
+     * encapsulates both the creation of user domain objects and their
+     * persistence through the repository. Exposed so that UI
+     * controllers can obtain a service instance without being aware
+     * of the underlying persistence mechanism.
      */
-    SNSUserContainer &getSNSUserContainer();
-
-    /**
-     * Returns the service responsible for recording vaccination processes.
-     */
-    std::shared_ptr<VaccinationProcessService> getVaccinationProcessService();
+    std::shared_ptr<SNSUserService> getSNSUserService();
+    std::shared_ptr<VaccinationCenterService> getVaccinationCenterService();
+    std::shared_ptr<VaccineTypeRepository> getVaccineTypeRepository();
+    std::shared_ptr<RepositoryFactory> getRepositoryFactory();
 };
 
 #endif //LETI_ESOFT_25_26_B1_APP_H

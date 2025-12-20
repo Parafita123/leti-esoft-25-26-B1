@@ -12,14 +12,14 @@
 // US20 - Register SNS user
 #include "../Core/headers/controllers/ui/RegisterSNSUserController.h"
 #include "../ConsoleApp/headers/views/RegisterSNSUserView.h"
+#include "../Core/headers/domain/services/SNSUserService.h"
+#include <memory>
 
 // US11 - Register vaccine
 #include "../Core/headers/controllers/ui/RegisterVaccineController.h"
 #include "../ConsoleApp/headers/views/RegisterVaccineView.h"
-
-// US41 - Record vaccine administration
-#include "../Core/headers/controllers/ui/RecordVaccinationController.h"
-#include "../ConsoleApp/headers/views/RecordVaccinationView.h"
+#include "headers/controllers/ui/RegisterVaccinationCenterController.h"
+#include "../../headers/views/RegisterVaccinationCenterView.h"
 
 MainView::MainView(App& app) : app(app) {}
 
@@ -29,25 +29,21 @@ void MainView::showMenu() const {
     std::cout << "2 - List employees by role" << std::endl;
     std::cout << "3 - Register new vaccine" << std::endl;   // US11
     std::cout << "4 - Register SNS user" << std::endl;      // US20
-    std::cout << "5 - Record vaccine administration" << std::endl; // US41
+    std::cout <<"5 - Register Vaccination Center" << std::endl;
     std::cout << "0 - Exit" << std::endl;
     std::cout << "Choose an option: ";
 }
 
 void MainView::handleOption(int option) {
     switch (option) {
-    case 1: {
-            // US10 - Create new vaccine type
+        case 1: {
+            // US10 - Create new vaccine type atualizado para repo
             auto repo = app.getVaccineTypeRepository();
             CreateNewVaccineTypeController controller(repo);
             CreateNewVaccineTypeView view(controller);
             view.show();
-
-
             break;
-    }
-
-
+        }
         case 2: {
             // List employees by role
             ListEmployeesByRoleController controller(app);
@@ -57,36 +53,32 @@ void MainView::handleOption(int option) {
             break;
         }
         case 3: {
-            // US11 - Register a new vaccine
+            // US11 - Register a new vaccine  DEPOIS REVÊ ESTA US PQ ATUALIZEI A US10 PARA USAR VACCINETYPE COM REPOSITORY
             VaccineContainer& vaccineContainer = app.getVaccineContainer();
-            VaccineTypeContainer& typeContainer = app.getVaccineTypeContainer();
+            //VaccineTypeContainer& typeContainer = app.getVaccineTypeContainer();
 
-            RegisterVaccineController controller(vaccineContainer, typeContainer);
-            RegisterVaccineView view(controller);
+           // RegisterVaccineController controller(vaccineContainer, typeContainer);
+           // RegisterVaccineView view(controller);
 
-            view.show();
+           // view.show();
             break;
         }
-    case 4: {
-            // US20 - Register SNS user
-            auto service = app.getSNSUserService();
+        case 4: {
+            // US20 - Register SNS user (using service/repository pattern)
+            std::shared_ptr<SNSUserService> service = app.getSNSUserService();
             RegisterSNSUserController controller(service);
             RegisterSNSUserView view(controller);
             view.run();
-
-
-            break;
-    }
-
-
-        case 5: {
-            // US41 - Record vaccine administration
-            auto service = app.getVaccinationProcessService();
-            RecordVaccinationController controller(service);
-            RecordVaccinationView view(controller);
-            view.run();
             break;
         }
+        case 5: {
+            auto svc = app.getVaccinationCenterService();
+            RegisterVaccinationCenterController c(svc);
+            RegisterVaccinationCenterView v(c);
+            v.show();
+            break;
+        }
+
         case 0:
             std::cout << "Exiting application..." << std::endl;
             break;

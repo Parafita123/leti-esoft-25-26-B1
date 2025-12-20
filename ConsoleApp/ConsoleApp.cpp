@@ -4,15 +4,13 @@
 #include "../ConsoleApp/headers/views/CreateNewVaccineTypeView.h"
 #include "../Core/headers/controllers/ui/CreateNewVaccineTypeController.h"
 #include "../Core/headers/domain/model/VaccineTypeContainer.h"
-#include "../Core/headers/controllers/ui/App.h"
 
 int main() {
-    App app;
-
-    auto repo = app.getVaccineTypeRepository();
-    CreateNewVaccineTypeController controller(repo);
+    VaccineTypeContainer container;
+    CreateNewVaccineTypeController controller(container);
     CreateNewVaccineTypeView view(controller);
 
     view.show();
+
     return 0;
 }

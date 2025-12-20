@@ -32,6 +32,7 @@ add_executable(leti-esoft-25-26-B1 main.cpp
         Core/sources/domain/model/Faclity.cpp
         Core/headers/domain/model/HealthcareCenter.h
         Core/headers/domain/model/CommunityMassVaccinationCenter.h
+        Core/sources/domain/model/CommunityMassVaccinationCenter.cpp
         Core/headers/domain/repositories/VaccinationCenterRepository.h
         Core/headers/domain/repositories/VaccineTypeRepository.h
         Core/headers/domain/repositories/VaccineTypeRepository.h
@@ -44,6 +45,7 @@ add_executable(leti-esoft-25-26-B1 main.cpp
         Core/headers/controllers/ui/RegisterVaccinationCenterController.h
         ConsoleApp/headers/views/RegisterVaccinationCenterView.h
         ConsoleApp/sources/views/RegisterVaccinationCenterView.cpp
+        CoreTests/domain/model/CommunityMassVaccinationCenterTests.cpp
 )
 
 # US20 - Register SNS user
@@ -56,43 +58,6 @@ target_sources(leti-esoft-25-26-B1 PRIVATE
         Core/sources/controllers/ui/RegisterSNSUserController.cpp
         ConsoleApp/headers/views/RegisterSNSUserView.h
         ConsoleApp/sources/views/RegisterSNSUserView.cpp)
-
-# US41 - Record vaccine administration
-target_sources(leti-esoft-25-26-B1 PRIVATE
-        # Domain model
-        Core/headers/domain/model/VaccinationProcess.h
-        Core/sources/domain/model/VaccinationProcess.cpp
-
-
-        # DTO
-        Core/headers/controllers/dto/VaccinationProcessDTO.h
-
-        # Service
-        Core/headers/domain/services/VaccinationProcessService.h
-        Core/sources/domain/services/VaccinationProcessService.cpp
-
-        # Repositories
-        Core/headers/domain/repositories/VaccinationProcessRepository.h
-        Core/headers/infrastructure/memory/VaccinationProcessMemoryRepository.h
-        Core/sources/infrastructure/memory/VaccinationProcessMemoryRepository.cpp
-
-        Core/headers/domain/repositories/WaitingRoomRepository.h
-        Core/headers/infrastructure/memory/WaitingRoomMemoryRepository.h
-        Core/sources/infrastructure/memory/WaitingRoomMemoryRepository.cpp
-
-        Core/headers/domain/repositories/RecoveryRoomRepository.h
-        Core/headers/infrastructure/memory/RecoveryRoomMemoryRepository.h
-        Core/sources/infrastructure/memory/RecoveryRoomMemoryRepository.cpp
-
-        # Controller
-        Core/headers/controllers/ui/RecordVaccinationController.h
-        Core/sources/controllers/ui/RecordVaccinationController.cpp
-
-        # View
-        ConsoleApp/headers/views/RecordVaccinationView.h
-        ConsoleApp/sources/views/RecordVaccinationView.cpp
-)
-
 
 include_directories(Core)
 add_subdirectory(Core)
