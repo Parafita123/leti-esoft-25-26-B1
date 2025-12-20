@@ -11,6 +11,7 @@ participant "App" as App
 participant "service:VaccinationCenterService" as Service
 participant "factory:RepositoryFactory" as RepoFactory
 participant "dto:VaccinationCenterDTO" as CenterDto
+participant "dtoList:List<VaccineTypeDto>" as VaccineDtoList
 participant "repoVT:VaccineTypeRepository" as VTRepo
 participant "repoVC:VaccinationCenterRepository" as VCRepo
 
@@ -35,7 +36,7 @@ alt facilityType = COMMUNITY
   Service -> VTRepo: findAll()
   VTRepo --> Service: list<VaccineType>
 
-  Service --> Service: map(list<VaccineType>) -> lstVTDto
+  Service -> VaccineDtoList**: create(list<VaccineType>)
   Service --> Controller: LstVTDto
   Controller --> View: LstVTDto
 

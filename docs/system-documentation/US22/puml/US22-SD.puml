@@ -12,11 +12,13 @@ participant App as app
 activate recep
 
 participant "factory:RepositoryFactory" as repofact
+participant "service:UserArrivalService" as service
 participant "vcr:VaccinationCenterRepository" as vaccentrepo
 participant "sr:SNSUserRepository" as userrepo
 participant "uar:UserArrivalRepository" as arrvlrepo
+participant "dtoList:List<FacilityDto>" as FacilityDtoList
+participant "dto:<UserDto>" as userdto
 
-participant "service:UserArrivalService" as service
 participant "arrival:UserArrival" as arrival
 
 
@@ -25,11 +27,14 @@ recep -> View: requests to register a user arrival
 View -> controller: listFacilities()
 controller -> app: getRepositoryFactory()
 app --> controller: repofact
-controller -> repofact: getVaccinationCenterRepository()
-repofact --> controller: vaccentrepo
+app -> repofact: getVaccinationCenterRepository()
+repofact --> app: vaccentrepo
+app --> service**: create(vaccentrepo)
+app --> controller: vaccentrepo
 controller -> vaccentrepo: findAll()
 vaccentrepo --> controller: facilities
-controller --> View: facilities
+controller -> FacilityDtoList**: create(facilities)
+controller --> View: facilityDtoList
 
 View --> recep: asks to select the facility
 recep -> View: selects facility
@@ -40,13 +45,16 @@ recep -> View:  types a SNS_User_Numberr
 View -> controller: getSNSUserSummary(sns_user_number)
 controller -> app: getRepositoryFactory()
 app --> controller: repofact
-controller -> repofact: getSNSUserRepository()
-repofact --> controller: userrepo
+app -> repofact: getSNSUserRepository()
+repofact --> app: userrepo
+app --> service**: create(userrepo)
+app --> controller: userrepo
 controller -> userrepo: findBySNSUserNumber(sns_user_number)
 userrepo --> controller: user
-controller --> View: user
+controller -> userdto**: create(user)
+controller --> View: userdto
 
-View -> View: prepares arrival data (arrival time + DTO)
+View -> View: prepares arrival data
 View --> recep: asks for confirmation
 recep -> View: confirms data
 
@@ -61,7 +69,6 @@ repofact --> controller: userrepo
 controller -> repofact: getVaccinationCenterRepository()
 repofact --> controller: vaccentrepo
 
-create service
 controller -> service: UserArrivalService(arrvlrepo, userrepo, vaccentrepo)
 
 controller -> service: registerArrival(DTO)
