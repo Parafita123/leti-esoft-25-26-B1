@@ -9,6 +9,7 @@
 
 class Facility {
 protected:
+    int facilityID;
     std::string name;
     std::string postal_address;
     std::string phone_number;
@@ -19,7 +20,7 @@ protected:
     int max_vaccines_per_hour;
 
 public:
-    Facility(std::string name,
+    Facility(int facilityID, std::string name,
              std::string postal_address,
              std::string phone_number,
              std::string email,
@@ -31,6 +32,7 @@ public:
     virtual ~Facility() = default;
 
     const std::string& getName() const;
+    int getFacilityID() const;
 };
 
 #endif //LETI_ESOFT_25_26_B1_FACILITY_H

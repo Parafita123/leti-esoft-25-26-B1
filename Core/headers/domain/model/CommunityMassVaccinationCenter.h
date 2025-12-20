@@ -14,15 +14,18 @@ private:
     std::shared_ptr<VaccineType> vaccineType;
 
 public:
-    CommunityMassVaccinationCenter(std::string name,
-                                      std::string postal_address,
-                                      std::string phone_number,
-                                      std::string email,
-                                      std::string website_address,
-                                      std::string opening_hours,
-                                      std::string closing_hours,
-                                      int max_vaccines_per_hour,
-                                      std::shared_ptr<VaccineType> vaccineType);
+    CommunityMassVaccinationCenter(
+            int facilityID,
+            std::string name,
+            std::string postal_address,
+            std::string phone_number,
+            std::string email,
+            std::string website_address,
+            std::string opening_hours,
+            std::string closing_hours,
+            int max_vaccines_per_hour,
+            std::shared_ptr<VaccineType> vaccineType
+    );
 
     std::shared_ptr<VaccineType> getVaccineType() const;
 };

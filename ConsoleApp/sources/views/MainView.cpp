@@ -21,6 +21,9 @@
 #include "../Core/headers/controllers/ui/RecordVaccinationController.h"
 #include "../ConsoleApp/headers/views/RecordVaccinationView.h"
 
+#include "../Core/headers/controllers/ui/RegisterVaccinationCenterController.h"
+#include "../ConsoleApp/headers/views/RegisterVaccinationCenterView.h"
+
 MainView::MainView(App& app) : app(app) {}
 
 void MainView::showMenu() const {
@@ -30,6 +33,7 @@ void MainView::showMenu() const {
     std::cout << "3 - Register new vaccine" << std::endl;   // US11
     std::cout << "4 - Register SNS user" << std::endl;      // US20
     std::cout << "5 - Record vaccine administration" << std::endl; // US41
+    std::cout << "6 - Register a vaccination center" << std::endl;
     std::cout << "0 - Exit" << std::endl;
     std::cout << "Choose an option: ";
 }
@@ -86,6 +90,14 @@ void MainView::handleOption(int option) {
             RecordVaccinationView view(controller);
             view.run();
             break;
+        }
+        case 6: {
+            auto svc = app.getVaccinationCenterService();
+            RegisterVaccinationCenterController c(svc);
+            RegisterVaccinationCenterView v(c);
+            v.show();
+            break;
+
         }
         case 0:
             std::cout << "Exiting application..." << std::endl;

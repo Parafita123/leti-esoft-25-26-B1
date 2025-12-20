@@ -16,6 +16,9 @@
 #include "headers/domain/model/SNSUserContainer.h"
 #include "headers/domain/repositories/RepositoryFactory.h"
 #include "headers/domain/services/SNSUserService.h"
+#include <memory>
+#include "headers/domain/services/VaccinationCenterService.h"
+#include "headers/domain/services/UserArrivalService.h"
 
 class App {
 private:
@@ -31,6 +34,9 @@ private:
     std::shared_ptr<RepositoryFactory> repositoryFactory;
     std::shared_ptr<RecoveryRoomRepository> recoveryRoomRepository;
     std::shared_ptr<VaccinationProcessService> vaccinationProcessService;
+    std::shared_ptr<VaccinationCenterService> vaccinationCenterService;
+    std::shared_ptr<VaccineTypeRepository> vaccineTypeRepo;
+    std::shared_ptr<UserArrivalService> userArrivalService;
 
 public:
     App();
@@ -48,11 +54,14 @@ public:
      * Returns a reference to the SNS user container.
      */
     SNSUserContainer &getSNSUserContainer();
+    std::shared_ptr<VaccinationCenterService> getVaccinationCenterService();
+    std::shared_ptr<RepositoryFactory> getRepositoryFactory();
 
     /**
      * Returns the service responsible for recording vaccination processes.
      */
     std::shared_ptr<VaccinationProcessService> getVaccinationProcessService();
+    std::shared_ptr<UserArrivalService> getUserArrivalService();
 };
 
 #endif //LETI_ESOFT_25_26_B1_APP_H

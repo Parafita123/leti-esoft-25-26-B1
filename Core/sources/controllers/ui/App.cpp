@@ -14,6 +14,9 @@
 #include "headers/domain/repositories/VaccineTypeRepository.h"
 #include "headers/domain/repositories/RepositoryFactory.h"
 #include "headers/infrastructure/memory/MemoryRepositoryFactory.h"
+#include <memory>
+#include "headers/domain/services/VaccinationCenterService.h"
+
 
 VaccineTypeContainer& App::getVaccineTypeContainer() {
     return vaccineTypeContainer;
@@ -45,13 +48,40 @@ std::shared_ptr<VaccinationProcessService> App::getVaccinationProcessService() {
 
 std::shared_ptr<VaccineTypeRepository> App::getVaccineTypeRepository() {
     return repositoryFactory->getVaccineTypeRepository();
+    vaccinationCenterService = std::make_shared<VaccinationCenterService>(
+            repositoryFactory->getVaccinationCenterRepository(),
+            vaccineTypeRepo);
 }
 
 App::App() {
     repositoryFactory = std::make_shared<MemoryRepositoryFactory>();
+
+    vaccineTypeRepo = repositoryFactory->getVaccineTypeRepository();
+
+    auto ctrRepo = repositoryFactory->getVaccinationCenterRepository();
+    auto vtRepo  = repositoryFactory->getVaccineTypeRepository();
+    auto arrivalRepo = repositoryFactory->getUserArrivalRepository();
+    auto snsRepo     = repositoryFactory->getSNSUserRepository();
+    auto centerRepo  = repositoryFactory->getVaccinationCenterRepository();
+    auto apptRepo    = repositoryFactory->getVaccinationAppointmentRepository();
+
+    userArrivalService = std::make_shared<UserArrivalService>(repositoryFactory);
+
 }
 
 std::shared_ptr<SNSUserService> App::getSNSUserService() {
     auto repo = repositoryFactory->getSNSUserRepository();
     return std::make_shared<SNSUserService>(repo);
+}
+
+std::shared_ptr<VaccinationCenterService> App::getVaccinationCenterService() {
+    return vaccinationCenterService;
+}
+
+std::shared_ptr<RepositoryFactory> App::getRepositoryFactory() {
+    return repositoryFactory;
+}
+
+std::shared_ptr<UserArrivalService> App::getUserArrivalService() {
+    return userArrivalService;
 }

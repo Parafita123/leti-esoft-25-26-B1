@@ -64,4 +64,16 @@ add_library(Core
         ../ConsoleApp/headers/views/RecordVaccinationView.h
         ../ConsoleApp/sources/views/RecordVaccinationView.cpp
         sources/domain/model/CommunityMassVaccinationCenter.cpp
+        headers/domain/model/UserArrival.h
+        headers/domain/repositories/UserArrivalRepository.h
+        headers/domain/repositories/VaccinationAppointmentRepository.h
+        headers/infrastructure/memory/UserArrivalMemoryRepository.h
+        headers/controllers/dto/FacilityDTO.h
+        headers/controllers/dto/SNSUserDTO.h
+        sources/domain/model/UserArrival.cpp
+        sources/domain/services/UserArrivalService.cpp
+        sources/infrastructure/memory/VaccinationAppointmentMemoryRepository.cpp
+        sources/infrastructure/memory/UserArrivalMemoryRepository.cpp
+        sources/controllers/ui/RegisterUserArrivalController.cpp
+        headers/controllers/ui/RegisterUserArrivalController.h
 )

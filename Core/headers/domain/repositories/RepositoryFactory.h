@@ -7,6 +7,8 @@
 #include "SNSUserRepository.h"
 #include "headers/domain/repositories/VaccinationCenterRepository.h"
 #include "headers/domain/repositories/VaccineTypeRepository.h"
+#include "VaccinationAppointmentRepository.h"
+#include "UserArrivalRepository.h"
 
 class RepositoryFactory {
 public:
@@ -21,6 +23,10 @@ public:
     virtual std::shared_ptr<SNSUserRepository> getSNSUserRepository() = 0;
     virtual std::shared_ptr<VaccinationCenterRepository> getVaccinationCenterRepository() = 0;
     virtual std::shared_ptr<VaccineTypeRepository> getVaccineTypeRepository() = 0;
+    virtual std::shared_ptr<VaccinationAppointmentRepository> getVaccinationAppointmentRepository() = 0;
+    virtual std::shared_ptr<UserArrivalRepository> getUserArrivalRepository() = 0;
+
+
 };
 
 #endif // LETI_ESOFT_25_26_B1_REPOSITORYFACTORY_H

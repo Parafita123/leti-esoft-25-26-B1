@@ -44,6 +44,14 @@ add_executable(leti-esoft-25-26-B1 main.cpp
         Core/headers/controllers/ui/RegisterVaccinationCenterController.h
         ConsoleApp/headers/views/RegisterVaccinationCenterView.h
         ConsoleApp/sources/views/RegisterVaccinationCenterView.cpp
+        Core/headers/domain/repositories/UserArrivalRepository.h
+        Core/headers/domain/repositories/VaccinationAppointmentRepository.h
+        Core/headers/controllers/dto/SNSUserDTO.h
+        Core/sources/domain/model/UserArrival.cpp
+        Core/sources/domain/services/UserArrivalService.cpp
+        Core/sources/infrastructure/memory/VaccinationAppointmentMemoryRepository.cpp
+        Core/sources/infrastructure/memory/UserArrivalMemoryRepository.cpp
+        Core/sources/controllers/ui/RegisterUserArrivalController.cpp
 )
 
 # US20 - Register SNS user

@@ -3,7 +3,7 @@
 //
 #include "headers/domain/model/Facility.h"
 
-Facility::Facility(std::string name,
+Facility::Facility(int facilityID, std::string name,
                    std::string postal_address,
                    std::string phone_number,
                    std::string email,
@@ -11,7 +11,8 @@ Facility::Facility(std::string name,
                    std::string opening_hours,
                    std::string closing_hours,
                    int max_vaccines_per_hour)
-        : name(std::move(name)),
+        : facilityID(facilityID),
+          name(std::move(name)),
           postal_address(std::move(postal_address)),
           phone_number(std::move(phone_number)),
           email(std::move(email)),
@@ -21,3 +22,5 @@ Facility::Facility(std::string name,
           max_vaccines_per_hour(max_vaccines_per_hour) {}
 
 const std::string& Facility::getName() const { return name; }
+int Facility::getFacilityID() const { return facilityID; }
+

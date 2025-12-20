@@ -36,6 +36,14 @@ add_executable(ConsoleApp ConsoleApp.cpp
         headers/views/RegisterVaccinationCenterView.h
         sources/views/RegisterVaccinationCenterView.cpp
         sources/views/RegisterVaccinationCenterView.cpp
+        ../Core/headers/domain/repositories/UserArrivalRepository.h
+        ../Core/headers/domain/repositories/VaccinationAppointmentRepository.h
+        ../Core/headers/controllers/dto/SNSUserDTO.h
+        ../Core/sources/domain/model/UserArrival.cpp
+        ../Core/sources/domain/services/UserArrivalService.cpp
+        ../Core/sources/infrastructure/memory/VaccinationAppointmentMemoryRepository.cpp
+        ../Core/sources/infrastructure/memory/UserArrivalMemoryRepository.cpp
+        ../Core/sources/controllers/ui/RegisterUserArrivalController.cpp
 )
 
 target_link_libraries(ConsoleApp Core)
