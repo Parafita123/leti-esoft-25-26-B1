@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autoactivate on
+autonumber
+
+participant "{XXX}Controller" as CTRL
+participant "App" as APP
+participant "appInstance:App" as APPOBJ
+participant "cfgReader:ConfigFileReader" as READER
+participant "cfgOptions:ConfigObject" as CFG
+participant "factory:MemoryRepositoryFactory" as MEM_FACTORY
+participant "factory:MSSQLServerRepositoryFactory" as SQL_FACTORY
+participant "person:Person" as PERSON
+activate CTRL
+
+CTRL -> APP: GetInstance()
+opt appInstace == null
+APP -->APPOBJ**: create()
+activate APPOBJ
+APPOBJ --> READER**:create()
+APPOBJ -> READER: read_config("config.ini")
+READER --> CFG**: create()
+READER --> APPOBJ: cfgOptions
+
+alt cfgOption.persitenceMode == "memory"
+APPOBJ --> MEM_FACTORY**: create()
+else cfgOption.persitenceMode == "MSSQLServer"
+APPOBJ --> SQL_FACTORY**: create()
+else
+note over APPOBJ: more options must be handled too
+end
+
+APPOBJ --> PERSON**: create(cfgOption.personName, factory)
+deactivate APPOBJ
+end
+APP --> CTRL: appInstance
+
+CTRL -> APPOBJ: getPerson()
+APPOBJ--> CTRL: person
+
+note over CTRL, PERSON : Further Interactions between the controller and person
+
+
+@enduml
