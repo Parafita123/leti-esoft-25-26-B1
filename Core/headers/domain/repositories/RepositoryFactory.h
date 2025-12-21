@@ -9,6 +9,9 @@
 #include "headers/domain/repositories/VaccineTypeRepository.h"
 #include "VaccinationAppointmentRepository.h"
 #include "UserArrivalRepository.h"
+#include "headers/domain/repositories/VaccinationProcessRepository.h"
+#include "headers/domain/repositories/WaitingRoomRepository.h"
+#include "headers/domain/repositories/RecoveryRoomRepository.h"
 
 class RepositoryFactory {
 public:
@@ -25,6 +28,25 @@ public:
     virtual std::shared_ptr<VaccineTypeRepository> getVaccineTypeRepository() = 0;
     virtual std::shared_ptr<VaccinationAppointmentRepository> getVaccinationAppointmentRepository() = 0;
     virtual std::shared_ptr<UserArrivalRepository> getUserArrivalRepository() = 0;
+
+    /**
+     * Returns a repository capable of persisting vaccination process
+     * records.  Concrete factories decide which implementation is
+     * returned.
+     */
+    virtual std::shared_ptr<VaccinationProcessRepository> getVaccinationProcessRepository() = 0;
+
+    /**
+     * Returns a repository managing the waiting room.  This repository
+     * allows removal of SNS users once they are vaccinated.
+     */
+    virtual std::shared_ptr<WaitingRoomRepository> getWaitingRoomRepository() = 0;
+
+    /**
+     * Returns a repository managing the recovery room.  This repository
+     * allows assignment of SNS users after vaccination.
+     */
+    virtual std::shared_ptr<RecoveryRoomRepository> getRecoveryRoomRepository() = 0;
 
 
 };

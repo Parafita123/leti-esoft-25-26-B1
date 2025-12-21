@@ -37,20 +37,23 @@ SNSUserContainer &App::getSNSUserContainer() {
 std::shared_ptr<VaccinationProcessService> App::getVaccinationProcessService() {
     // Lazy initialize on first use
     if (!vaccinationProcessService) {
-        vaccinationProcessRepository = std::make_shared<VaccinationProcessMemoryRepository>();
-        waitingRoomRepository = std::make_shared<WaitingRoomMemoryRepository>();
-        recoveryRoomRepository = std::make_shared<RecoveryRoomMemoryRepository>();
-        vaccinationProcessService = std::make_shared<VaccinationProcessService>(
-                vaccinationProcessRepository, waitingRoomRepository, recoveryRoomRepository);
+        // obtain the repositories through the factory so that they can be
+        // shared with other parts of the application
+        vaccinationProcessRepository = repositoryFactory->getVaccinationProcessRepository();
+        waitingRoomRepository       = repositoryFactory->getWaitingRoomRepository();
+        recoveryRoomRepository      = repositoryFactory->getRecoveryRoomRepository();
+        vaccinationProcessService   = std::make_shared<VaccinationProcessService>(
+                vaccinationProcessRepository,
+                waitingRoomRepository,
+                recoveryRoomRepository);
     }
     return vaccinationProcessService;
 }
 
 std::shared_ptr<VaccineTypeRepository> App::getVaccineTypeRepository() {
+    // always return the repository from the factory.  Initialization of
+    // other services should not occur after this return statement.
     return repositoryFactory->getVaccineTypeRepository();
-    vaccinationCenterService = std::make_shared<VaccinationCenterService>(
-            repositoryFactory->getVaccinationCenterRepository(),
-            vaccineTypeRepo);
 }
 
 App::App() {
@@ -65,7 +68,17 @@ App::App() {
     auto centerRepo  = repositoryFactory->getVaccinationCenterRepository();
     auto apptRepo    = repositoryFactory->getVaccinationAppointmentRepository();
 
+    // initialize user arrival service with repository factory so it can
+    // obtain its own dependencies as required
     userArrivalService = std::make_shared<UserArrivalService>(repositoryFactory);
+
+    // initialize vaccination center service with the appropriate
+    // repositories.  this must be done here because the return
+    // statement in getVaccineTypeRepository previously prevented
+    // initialization.
+    vaccinationCenterService = std::make_shared<VaccinationCenterService>(
+            repositoryFactory->getVaccinationCenterRepository(),
+            repositoryFactory->getVaccineTypeRepository());
 
 }
 

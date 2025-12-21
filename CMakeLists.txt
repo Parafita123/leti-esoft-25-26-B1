@@ -63,14 +63,14 @@ target_sources(leti-esoft-25-26-B1 PRIVATE
         Core/headers/controllers/ui/RegisterSNSUserController.h
         Core/sources/controllers/ui/RegisterSNSUserController.cpp
         ConsoleApp/headers/views/RegisterSNSUserView.h
-        ConsoleApp/sources/views/RegisterSNSUserView.cpp)
+        ConsoleApp/sources/views/RegisterSNSUserView.cpp
+)
 
 # US41 - Record vaccine administration
 target_sources(leti-esoft-25-26-B1 PRIVATE
         # Domain model
         Core/headers/domain/model/VaccinationProcess.h
         Core/sources/domain/model/VaccinationProcess.cpp
-
 
         # DTO
         Core/headers/controllers/dto/VaccinationProcessDTO.h
@@ -100,7 +100,6 @@ target_sources(leti-esoft-25-26-B1 PRIVATE
         ConsoleApp/headers/views/RecordVaccinationView.h
         ConsoleApp/sources/views/RecordVaccinationView.cpp
 )
-
 
 include_directories(Core)
 add_subdirectory(Core)

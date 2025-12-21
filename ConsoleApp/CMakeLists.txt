@@ -45,6 +45,10 @@ add_executable(ConsoleApp ConsoleApp.cpp
         ../Core/sources/infrastructure/memory/VaccinationAppointmentMemoryRepository.cpp
         ../Core/sources/infrastructure/memory/UserArrivalMemoryRepository.cpp
         ../Core/sources/controllers/ui/RegisterUserArrivalController.cpp
+
+        # US41 - Record vaccination administration
+        headers/views/RecordVaccinationView.h
+        sources/views/RecordVaccinationView.cpp
 )
 
 target_link_libraries(ConsoleApp Core)
