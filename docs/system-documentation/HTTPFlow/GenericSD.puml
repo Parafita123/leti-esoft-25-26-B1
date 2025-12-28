@@ -1,0 +1,52 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autoactivate on
+autonumber
+
+participant ":HTTPClient" as HTTPClient
+participant ":HTTPServer" as HTTPServer
+participant "req:HTTPRequest" as HTTPRequest
+participant "resp:HTTPResponse" as HTTPResponse
+participant "handler:RouteHandler" as Handler
+participant ":{XXX}Controller" as Ctrl
+participant "{XXX}Mapper" as Mapper
+participant "json:Json" as Json
+participant "result:HttpResult" as Result
+
+activate HTTPClient
+
+HTTPClient -> HTTPServer: HTTP Request(method, uri, headers, body)
+HTTPServer -> HTTPRequest**: create(method, uri, headers, body)
+HTTPServer -> HTTPResponse**: create(404)
+HTTPServer -> HTTPServer: findHandler(req)
+HTTPServer --> HTTPServer: handler
+HTTPServer -> Handler: run(req,resp)
+
+Handler -> Ctrl**: create(...)
+Handler -> Ctrl: callMethod(...)
+
+Ctrl -> Ctrl: doSomeStuff()
+note right: some interactions with Person, \n{XXX}Service and so on \nSimilar to any other Controller. "
+Ctrl --> Ctrl: object
+note right: 'object' is some domain object or void
+opt
+Ctrl -> Mapper: toJson(object)
+Mapper -> Json**: create()
+loop
+Mapper -> Json: set{XXX}(...)
+Json --> Mapper:
+end loop
+Mapper --> Ctrl: json
+end opt
+Ctrl --> Result**: create(status,json)
+Ctrl --> Handler: result
+Handler -> Handler: setHttpResult(resp, result)
+Handler -> HTTPResponse: setStatus(result.status)
+HTTPResponse --> Handler:
+Handler -> HTTPResponse: setBody(result.jsonObject)
+HTTPResponse --> Handler:
+Handler --> Handler:
+Handler --> HTTPServer: resp
+HTTPServer --> HTTPClient: resp
+@enduml

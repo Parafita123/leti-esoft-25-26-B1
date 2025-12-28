@@ -1,0 +1,50 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+autoactivate on
+autonumber
+
+participant ":HTTPClient" as HTTPClient
+participant ":HTTPServer" as HTTPServer
+participant "req:HTTPRequest" as HTTPRequest
+participant "resp:HTTPResponse" as HTTPResponse
+participant "handler:RouteHandler" as System
+participant ":VaccineTypeController" as Ctrl
+participant ":Person" as Person
+participant "service:VaccineTypeService" as Service
+participant "factory:RepositoryFactory" as Factory
+participant "repo:VaccineTypeRepository" as Repo
+participant "vactype:VaccineType" as VaccineType
+participant "result:HttpResult" as Result
+
+activate HTTPClient
+
+HTTPClient -> HTTPServer: POST(..., {...})
+HTTPServer -> HTTPRequest**: create(..., {...})
+HTTPServer -> HTTPResponse**: create(404)
+HTTPServer -> HTTPServer: findHandler(req)
+HTTPServer --> HTTPServer: handler
+HTTPServer -> System: run(req,resp)
+
+System -> Ctrl**: create(...)
+System -> Ctrl: postVaccineType(code, disease, short_description)
+Ctrl -> Person: getVaccineTypeService()
+Person -> Factory : getVaccineTypeRepository()
+Factory --> Person: repo
+Person -->Service**: create(repo)
+Person --> Ctrl: service
+Ctrl -> Service: create(code, disease, short_description)
+Service --> VaccineType**: create(code, disease, short_description)
+Service --> Ctrl: vactype
+Ctrl -> Service: addOrUpdate(vactype)
+Service -> Service : validate(vactype)
+Service --> Service : ok
+Service -> Repo: save(vactype)
+Repo --> Service : ok
+Service --> Ctrl: ok
+Ctrl --> Result**: create(201)
+Ctrl --> System: result
+System -> System: setHttpResult(resp, result)
+System --> System:
+System --> HTTPServer: resp
+HTTPServer --> HTTPClient: resp
+@enduml

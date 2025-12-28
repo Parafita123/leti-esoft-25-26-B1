@@ -1,0 +1,67 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autoactivate on
+autonumber
+
+participant ":HTTPClient" as HTTPClient
+participant "handler:RouteHandler" as System
+participant ":VaccineTypeController" as Ctrl
+participant ":App" as App
+participant "service:VaccineTypeService" as Service
+participant "factory:RepositoryFactory" as Factory
+participant "repo:VaccineTypeRepository" as Repo
+participant "list:List<VaccineType>" as List
+participant "vactype:VaccineType" as VaccineTYpe
+participant "VaccineTypeMapper" as Mapper
+participant "jsonObj:JSON" as Json
+participant "catJson:JSON" as JsonCat
+participant "result:HttpResult" as Result
+
+activate HTTPClient
+
+HTTPClient -> System: GET/categories
+note over System: after doing some stuff
+System -> Ctrl: getAll()
+Ctrl -> App: getVaccineTypeService()
+App -> Factory : getVaccineTypeRepository()
+Factory --> App: repo
+App -->Service**: create(repo)
+App --> Ctrl: service
+
+Ctrl -> Service: getAll()
+Service -> Repo: getAll()
+Repo --> Service: list
+Service --> Ctrl: list
+
+Ctrl -> Mapper: toJson(list)
+Mapper --> Json**: create()
+loop for each 'cat' in 'list'
+    Mapper -> Mapper: toJson(cat)
+    Mapper -> VaccineType: getCode()
+    VaccineType --> Mapper: code
+    Mapper -> VaccineType: getDisease()
+    VaccineType --> Mapper: disease
+    Mapper -> VaccineType: getShortDescription()
+    VaccineType --> Mapper: short_description
+    Mapper --> JsonCat**: create()
+    Mapper -> JsonCat: setCode(code)
+    JsonCat --> Mapper
+    Mapper -> JsonCat: setDisease()
+    JsonCat --> Mapper
+    Mapper -> JsonCat: setShortDescription(short_description)
+    JsonCat --> Mapper
+    Mapper --> Mapper: catJson
+    Mapper -> Json: add(catJson)
+    Json --> Mapper:
+end loop
+Mapper --> Ctrl: jsonObj
+Ctrl --> Result**: create(200, jsonObj)
+Ctrl --> System: result
+System -> System: setHttpResult(resp, result)
+System --> System:
+System --> HTTPClient: resp
+
+
+
+@enduml
