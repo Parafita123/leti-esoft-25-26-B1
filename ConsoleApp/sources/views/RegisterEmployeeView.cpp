@@ -3,14 +3,16 @@
 //
 #include "../../headers/views/RegisterEmployeeView.h"
 
+#include <string>
 #include <codecvt>
 #include <iostream>
 #include <locale>
 
-static std::string ws2s(const std::wstring& w) {
-    wstring_convert<codecvt_utf8<wchar_t>> conv;
+std::string ws2s(const std::wstring& w) {
+    std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
     return conv.to_bytes(w);
 }
+
 RegisterEmployeeView::RegisterEmployeeView(RegisterEmployeeController controller)
         : controller(controller) {}
 

@@ -1,5 +1,6 @@
 #include <stdexcept>
 #include "headers/domain/shared/Result.h"
+using std::wstring;
 
 Result::Result(const int result, const wstring &message) {
     this->result = result;
@@ -42,5 +43,5 @@ const Result Result::NOK(const wstring &message) {
 const Result Result::NOK(int number, const wstring &message) {
     if (number != 0)
         return Result(number, message);
-    throw invalid_argument("A NOK result cannot have a 'zero' error number.");
+    throw std::invalid_argument("A NOK result cannot have a 'zero' error number.");
 }

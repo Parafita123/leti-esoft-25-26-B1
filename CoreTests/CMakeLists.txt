@@ -16,6 +16,20 @@ FetchContent_MakeAvailable(googletest)
 # Define the test executable
 add_executable(CoreTests
         domain/services/VaccinationProcessServiceTests.cpp
+        ../RestAPI/headers/RouterConfig.h
+        ../RestAPI/headers/ServerStatusRouter.h
+        ../RestAPI/headers/TasksServer.h
+        ../RestAPI/sources/RouterConfig.cpp
+        ../RestAPI/sources/ServerStatusRouter.cpp
+        ../RestAPI/sources/VaccineTypeRouter.cpp
+        ../Core/headers/controllers/restapi/HttpStatus.h
+        ../Core/headers/controllers/restapi/HttpResult.h
+        ../Core/headers/controllers/restapi/RestController.h
+        ../Core/headers/controllers/restapi/VaccineTypeController.h
+        ../Core/sources/controllers/restapi/HttpResult.cpp
+        ../Core/sources/controllers/restapi/RestController.cpp
+        ../Core/sources/controllers/restapi/VaccineTypeController.cpp
+        ../RestAPI/RestAPI.cpp
 )
 
 # Add include directories so that tests can find Core headers

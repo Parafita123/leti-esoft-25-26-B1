@@ -1,6 +1,9 @@
 #include <locale>
 #include <algorithm>
+#include <codecvt>
 #include "headers/domain/shared/StringUtils.h"
+
+using std::wstring;
 
 wstring StringUtils::toUpperCase(const wstring &value) {
     //  Assuming your system is already in UTF-8
@@ -55,4 +58,14 @@ bool StringUtils::ensureNotNullOrEmpty(const wstring &value, int minLength) {
         return (trim(value).length() >= minLength);
     }
     return false;
+}
+
+std::wstring StringUtils::toWString(const std::string &value) {
+    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> conv;
+    return conv.from_bytes(value);
+}
+
+std::string StringUtils::toString(const std::wstring &value) {
+    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> conv;
+    return conv.to_bytes(value);
 }

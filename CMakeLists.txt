@@ -3,111 +3,19 @@ project(leti_esoft_25_26_B1)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(leti-esoft-25-26-B1 main.cpp
-        Core/headers/controllers/ui/App.h
-        Core/headers/controllers/ui/CreateNewVaccineTypeController.h
-        Core/headers/controllers/ui/App.h
-        Core/headers/domain/model/VaccineType.h
-        Core/sources/controllers/ui/App.cpp
-        Core/sources/controllers/ui/CreateNewVaccineTypeController.cpp
-        Core/sources/domain/model/VaccineType.cpp
-        ConsoleApp/headers/views/CreateNewVaccineTypeView.h
-        ConsoleApp/sources/views/CreateNewVaccineTypeView.cpp
-        Core/sources/domain/model/VaccineTypeContainer.cpp
-        ConsoleApp/headers/views/MainView.h
-        ConsoleApp/sources/views/MainView.cpp
-        Core/headers/domain/model/VaccineTechnology.h
-        Core/sources/domain/model/VaccineTechnology.cpp
-        Core/headers/domain/model/Vaccine.h
-        Core/sources/domain/model/Vaccine.cpp
-        Core/headers/domain/model/VaccineContainer.h
-        Core/sources/domain/model/VaccineContainer.cpp
-        Core/headers/controllers/ui/RegisterVaccineController.h
-        Core/sources/controllers/ui/RegisterVaccineController.cpp
-        ConsoleApp/headers/views/RegisterVaccineView.h
-        ConsoleApp/sources/views/RegisterVaccineView.cpp
-        Core/headers/domain/model/FacilityType.h
-        Core/headers/controllers/dto/VaccinationCenterDTO.h
-        Core/headers/domain/model/Facility.h
-        Core/sources/domain/model/Faclity.cpp
-        Core/headers/domain/model/HealthcareCenter.h
-        Core/headers/domain/model/CommunityMassVaccinationCenter.h
-        Core/headers/domain/repositories/VaccinationCenterRepository.h
-        Core/headers/domain/repositories/VaccineTypeRepository.h
-        Core/headers/domain/repositories/VaccineTypeRepository.h
-        Core/headers/infrastructure/memory/VaccinationCenterMemoryRepository.h
-        Core/sources/infrastructure/memory/VaccinationCenterMemoryRepository.cpp
-        Core/headers/infrastructure/memory/VaccineTypeMemoryRepository.h
-        Core/sources/infrastructure/memory/VaccineTypeMemoryRepository.cpp
-        Core/headers/domain/services/VaccinationCenterService.h
-        Core/sources/domain/services/VaccinationCenterService.cpp
-        Core/headers/controllers/ui/RegisterVaccinationCenterController.h
-        ConsoleApp/headers/views/RegisterVaccinationCenterView.h
-        ConsoleApp/sources/views/RegisterVaccinationCenterView.cpp
-        Core/headers/domain/repositories/UserArrivalRepository.h
-        Core/headers/domain/repositories/VaccinationAppointmentRepository.h
-        Core/headers/controllers/dto/SNSUserDTO.h
-        Core/sources/domain/model/UserArrival.cpp
-        Core/sources/domain/services/UserArrivalService.cpp
-        Core/sources/infrastructure/memory/VaccinationAppointmentMemoryRepository.cpp
-        Core/sources/infrastructure/memory/UserArrivalMemoryRepository.cpp
-        Core/sources/controllers/ui/RegisterUserArrivalController.cpp
-)
-
-# US20 - Register SNS user
-target_sources(leti-esoft-25-26-B1 PRIVATE
-        Core/headers/domain/model/SNSUser.h
-        Core/sources/domain/model/SNSUser.cpp
-        Core/headers/domain/model/SNSUserContainer.h
-        Core/sources/domain/model/SNSUserContainer.cpp
-        Core/headers/controllers/ui/RegisterSNSUserController.h
-        Core/sources/controllers/ui/RegisterSNSUserController.cpp
-        ConsoleApp/headers/views/RegisterSNSUserView.h
-        ConsoleApp/sources/views/RegisterSNSUserView.cpp)
-
-# US41 - Record vaccine administration
-target_sources(leti-esoft-25-26-B1 PRIVATE
-        # Domain model
-        Core/headers/domain/model/VaccinationProcess.h
-        Core/sources/domain/model/VaccinationProcess.cpp
-
-
-        # DTO
-        Core/headers/controllers/dto/VaccinationProcessDTO.h
-
-        # Service
-        Core/headers/domain/services/VaccinationProcessService.h
-        Core/sources/domain/services/VaccinationProcessService.cpp
-
-        # Repositories
-        Core/headers/domain/repositories/VaccinationProcessRepository.h
-        Core/headers/infrastructure/memory/VaccinationProcessMemoryRepository.h
-        Core/sources/infrastructure/memory/VaccinationProcessMemoryRepository.cpp
-
-        Core/headers/domain/repositories/WaitingRoomRepository.h
-        Core/headers/infrastructure/memory/WaitingRoomMemoryRepository.h
-        Core/sources/infrastructure/memory/WaitingRoomMemoryRepository.cpp
-
-        Core/headers/domain/repositories/RecoveryRoomRepository.h
-        Core/headers/infrastructure/memory/RecoveryRoomMemoryRepository.h
-        Core/sources/infrastructure/memory/RecoveryRoomMemoryRepository.cpp
-
-        # Controller
-        Core/headers/controllers/ui/RecordVaccinationController.h
-        Core/sources/controllers/ui/RecordVaccinationController.cpp
-
-        # View
-        ConsoleApp/headers/views/RecordVaccinationView.h
-        ConsoleApp/sources/views/RecordVaccinationView.cpp
-)
-
-
-include_directories(Core)
+# Subprojetos/libraries
 add_subdirectory(Core)
 add_subdirectory(ConsoleApp)
+add_subdirectory(RestAPI)
 add_subdirectory(CoreTests)
 
-# Enable CTest at the top-level project so tests can be discovered and run
 enable_testing()
 
-target_link_libraries(leti-esoft-25-26-B1 Core)
+# Executável da consola (MainView)
+add_executable(app_console main.cpp)
+target_link_libraries(app_console PRIVATE Core ConsoleAppLib)
+
+
+if (WIN32)
+    target_link_libraries(app_console PRIVATE ws2_32)
+endif()

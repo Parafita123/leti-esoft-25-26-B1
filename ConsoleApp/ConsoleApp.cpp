@@ -6,7 +6,7 @@
 #include "../Core/headers/domain/model/VaccineTypeContainer.h"
 
 int main() {
-    VaccineTypeContainer container;
+    CreateNewVaccineTypeController container;
     CreateNewVaccineTypeController controller(container);
     CreateNewVaccineTypeView view(controller);
 
