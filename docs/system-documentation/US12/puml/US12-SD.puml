@@ -12,6 +12,7 @@ participant "mapper:VaccineMapper" as Mapper
 participant "service:VaccineService" as Service
 participant "repo:VaccineRepository" as Repo
 participant "listVaccines : List<Vaccine>" as ListVaccines
+participant "VaccineDTO : VaccineDTO" as vaccineDTO
 participant "dtoList : List<VaccineDTO>" as ListDTO
 
 activate Admin
@@ -41,11 +42,13 @@ Service --> Ctrl: listVaccines
 Ctrl -> ListDTO**: create()
 loop for each vaccine in listVaccines
     Ctrl -> Mapper: toDTO(vaccine)
-    Mapper --> Ctrl: vaccineDTO : VaccineDTO
-    Ctrl -> ListDTO: add(vaccineDTO)
+    Mapper -> vaccineDTO**: create()
+    Mapper -> ListDTO: add(vaccineDTO)
 end loop
-ListDTO --> Ctrl : return ListDTO
-Ctrl --> View: dtoList
+ListDTO --> Mapper : return ListDTO
+Mapper --> Ctrl : return ListDTO
+Ctrl --> View: ListDTO
+
 
 '--- 4. Presentation ---
 View --> Admin: displays grouped and alphabetically ordered list
