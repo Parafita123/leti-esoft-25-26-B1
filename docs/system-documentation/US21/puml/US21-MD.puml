@@ -1,0 +1,76 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide circle
+skinparam classAttributeIconSize 0
+left to right direction
+
+' ==== ENTIDADES ====
+class SNS_User {
+    -name
+    -date_of_birth
+    -sex
+    -postal_address
+    -phone_number
+    -email
+    -citizen_card_number
+    -sns_user_number
+}
+
+class Receptionist {
+    -employee_id
+    -name
+}
+
+class Facility {
+    -id
+    -name
+    -postal_address
+    -phone_number
+    -email
+    -opening_hours
+    -closing_hours
+    -max_vaccines_per_hour
+}
+
+class Vaccine {
+    -id
+    -commercial_name
+    -brand
+    -technology
+}
+
+class Vaccine_Type {
+    -type_code
+    -disease
+    -short_description
+}
+
+class Vaccination_Appointment {
+    -snsUserNumber
+    -facilityId
+    -vaccineId
+    -date
+    -time
+    -status
+}
+
+class VaccinationProcess {
+    -vaccination_date
+    -vaccine_type
+    -lot_number
+    -sns_user_number
+}
+
+' ==== RELACIONAMENTOS ====
+Receptionist "1" --> "0..*" SNS_User : registers
+SNS_User "1" --> "0..*" Vaccination_Appointment : makes
+Vaccination_Appointment "0..*" --> "1" Vaccine : correlated
+Vaccination_Appointment "0..*" --> "1" Facility : scheduled at
+VaccinationProcess "0..*" --> "1" SNS_User : registers
+VaccinationProcess "0..*" --> "1" Vaccine : uses
+VaccinationProcess "0..*" --> "1" Receptionist : performed by
+
+Vaccine "0..*" --> "1" Vaccine_Type : has
+
+@enduml

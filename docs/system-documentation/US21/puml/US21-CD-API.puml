@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/class-diagram
+left to right direction
+
+hide circle
+skinparam classAttributeIconSize 0
+
+' ==== CONTROLLER ====
+class ScheduleVaccinationController {
+    +startScheduling(): HttpResult
+    +getAllFacilities(): HttpResult
+    +getAllVaccines(): HttpResult
+    +createAppointment(snsUserNumber: string, date: string, time: string, facilityId: string, vaccineId: string): HttpResult
+}
+
+' ==== MAPPERS ====
+class FacilityMapper {
+    +toJson(Facility f): json
+    +toJson(List<Facility> facilities): json
+}
+
+class VaccineMapper {
+    +toJson(Vaccine v): json
+    +toJson(List<Vaccine> vaccines): json
+}
+
+' ==== HTTP RESULT ====
+class HttpResult {
+    -status: HttpStatus
+    -result: json
+    HttpResult()
+    HttpResult(HttpStatus status)
+    HttpResult(HttpStatus status, const wstring &message)
+    HttpResult(HttpStatus status, const string &message)
+    HttpResult(HttpStatus status, const char *message)
+    HttpResult(HttpStatus status, const json &result)
+}
+
+' ==== RELACIONAMENTOS ====
+ScheduleVaccinationController ..> FacilityMapper
+ScheduleVaccinationController ..> VaccineMapper
+ScheduleVaccinationController ..> HttpResult
+
+@enduml

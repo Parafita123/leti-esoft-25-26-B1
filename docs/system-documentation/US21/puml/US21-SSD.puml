@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+autoactivate on
+autonumber
+
+actor "Receptionist" as Receptionist
+participant "Vaccination Scheduling System" as System
+
+activate Receptionist
+
+Receptionist -> System: request vaccine administration scheduling
+
+System --> Receptionist: display list of facilities
+Receptionist -> System: select facility
+
+System --> Receptionist: display list of vaccines
+Receptionist -> System: select vaccine
+
+System --> Receptionist: request SNS user number, date and time
+Receptionist -> System: provide SNS user number, date and time
+
+System --> Receptionist: confirm scheduling success
+
+@enduml

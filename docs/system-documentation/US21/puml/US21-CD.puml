@@ -1,0 +1,131 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide circle
+skinparam classAttributeIconSize 0
+
+' ==== VIEW E CONTROLLER ====
+class ScheduleVaccinationView {
+}
+
+class ScheduleVaccinationController {
+    +startScheduling(): void
+    +getVaccine(): void
+    +createAppointment(snsUserNumber: string, date: string, time: string, facilityId: string, vaccineId: string): Result
+}
+
+class Receptionist {
+}
+
+' ==== SERVICES ====
+class FacilityService {
+    +FacilityService(FacilityRepository repo)
+    +getAll(): List<Facility>
+}
+
+class VaccineService {
+    +VaccineService(VaccineRepository repo)
+    +getAll(): List<Vaccine>
+}
+
+class VaccinationAppointmentService {
+    +VaccinationAppointmentService(VaccinationAppointmentRepository repo)
+    +create(snsUserNumber: string, date: string, time: string, facilityId: string, vaccineId: string): Vaccination_Appointment
+    +validate(appointment: Vaccination_Appointment): Result
+}
+
+class Facility {
+    -id: string
+    -name: string
+    -postalAddress: string
+    -phoneNumber: string
+    -email: string
+    -websiteAddress: string
+    -openingHours: string
+    -closingHours: string
+    -maxVaccinesPerHour: int
+}
+
+class Vaccine {
+    -id: string
+    -commercialName: string
+    -brand: string
+    -technology: string
+}
+
+class Vaccination_Appointment {
+    -snsUserNumber: string
+    -date: string
+    -time: string
+    -facilityId: string
+    -vaccineId: string
+    -status: string
+}
+
+interface FacilityRepository <<interface>> {
+    +getAll(): List<Facility>
+}
+
+interface VaccineRepository <<interface>> {
+    +getAll(): List<Vaccine>
+}
+
+interface VaccinationAppointmentRepository <<interface>> {
+    +save(appointment: Vaccination_Appointment): Result
+}
+
+interface RepositoryFactory <<interface>> {
+    +getFacilityRepository(): FacilityRepository
+    +getVaccineRepository(): VaccineRepository
+    +getVaccinationAppointmentRepository(): VaccinationAppointmentRepository
+}
+
+class FacilityMemoryRepository {
+    +getAll(): List<Facility>
+}
+
+class VaccineMemoryRepository {
+    +getAll(): List<Vaccine>
+}
+
+class VaccinationAppointmentMemoryRepository {
+    +save(appointment: Vaccination_Appointment): Result
+}
+
+class MemoryRepositoryFactory {
+    +getFacilityRepository(): FacilityRepository
+    +getVaccineRepository(): VaccineRepository
+    +getVaccinationAppointmentRepository(): VaccinationAppointmentRepository
+}
+
+Receptionist "1" -down-> "1" RepositoryFactory: uses
+
+FacilityRepository "1" -right-> "0..*" Facility: records
+VaccineRepository "1" -right-> "0..*" Vaccine: records
+VaccinationAppointmentRepository "1" -right-> "0..*" Vaccination_Appointment: records
+
+ScheduleVaccinationView ..> ScheduleVaccinationController
+ScheduleVaccinationController ..> Receptionist
+ScheduleVaccinationController ..> FacilityService
+ScheduleVaccinationController ..> VaccineService
+ScheduleVaccinationController ..> VaccinationAppointmentService
+
+FacilityService ..> FacilityRepository
+VaccineService ..> VaccineRepository
+VaccinationAppointmentService ..> VaccinationAppointmentRepository
+
+FacilityService ..> Facility
+VaccineService ..> Vaccine
+ScheduleVaccinationController ..> Vaccination_Appointment
+
+FacilityMemoryRepository .up.|> FacilityRepository
+VaccineMemoryRepository .up.|> VaccineRepository
+VaccinationAppointmentMemoryRepository .up.|> VaccinationAppointmentRepository
+MemoryRepositoryFactory .up.|> RepositoryFactory
+
+MemoryRepositoryFactory .right.> FacilityMemoryRepository
+MemoryRepositoryFactory .right.> VaccineMemoryRepository
+MemoryRepositoryFactory .right.> VaccinationAppointmentMemoryRepository
+
+@enduml
+

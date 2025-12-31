@@ -3,83 +3,71 @@
 autoactivate on
 autonumber
 
-actor "Receptionist" as User
-participant ":ScheduleVaccinationView" as View
+' ==== CAMADA HTTP ====
+participant ":HTTPClient" as HTTPClient
+participant ":HTTPServer" as HTTPServer
+participant "req:HTTPRequest" as HTTPRequest
+participant "resp:HTTPResponse" as HTTPResponse
+participant "handler:RouteHandler" as System
+participant "result:HttpResult" as Result
+
+' ==== CAMADA APLICAÇÃO ====
 participant ":ScheduleVaccinationController" as Ctrl
 participant ":App" as App
-
 participant "service:FacilityService" as FacilityService
 participant "service:VaccineService" as VaccineService
 participant "service:VaccinationAppointmentService" as AppointmentService
-
 participant "factory:RepositoryFactory" as Factory
 participant "repo:FacilityRepository" as FacilityRepo
 participant "repo:VaccineRepository" as VaccineRepo
 participant "repo:VaccinationAppointmentRepository" as AppointmentRepo
-
 participant "dtoList:List<FacilityDto>" as FacilityDtoList
 participant "dtoList:List<VaccineDto>" as VaccineDtoList
-
 participant "appointment:Vaccination_Appointment" as Appointment
 
-activate User
+activate HTTPClient
 
-User -> View: asks to schedule a vaccine administration
-View -> Ctrl: startScheduling()
+' ==== CLIENTE FAZ REQUISIÇÃO ====
+HTTPClient -> HTTPServer: POST /appointments {...}
+HTTPServer -> HTTPRequest**: create(..., {...})
+HTTPServer -> HTTPResponse**: create(404)
+HTTPServer -> HTTPServer: findHandler(req)
+HTTPServer --> HTTPServer: handler
+HTTPServer -> System: run(req, resp)
 
-
-' Get facilities
-
+' ==== CONTROLLER RECEBE REQUISIÇÃO E CHAMA SERVIÇOS ====
+System -> Ctrl**: createAppointment(snsUserNumber, date, time, facilityId, vaccineId)
+System -> Ctrl: postAppointment(snsUserNumber, date, time, facilityId, vaccineId)
+' ==== OBTER FACILITIES ====
 Ctrl -> App: getFacilityService()
 App -> Factory: getFacilityRepository()
-Factory --> App: facilityRepo
-App --> FacilityService**: create(facilityRepo)
-App --> Ctrl: facilityService
-
+Factory --> App: FacilityRepo
+App --> FacilityService**: create(FacilityRepo)
+App --> Ctrl: FacilityService
 Ctrl -> FacilityService: getAll()
 FacilityService -> FacilityRepo: getAll()
 FacilityRepo --> FacilityService: facilities
 FacilityService --> Ctrl: facilities
-
 Ctrl -> FacilityDtoList**: create(facilities)
-Ctrl --> View: facilityDtoList
-View --> User: shows facilities and requests selection
 
-
-' Get vaccines (same pattern)
-
-User -> View: asks which vaccine
-View -> Ctrl: getVaccine()
+' ==== OBTER VACCINES ====
 Ctrl -> App: getVaccineService()
 App -> Factory: getVaccineRepository()
-Factory --> App: vaccineRepo
-App --> VaccineService**: create(vaccineRepo)
-App --> Ctrl: vaccineService
-
+Factory --> App: VaccineRepo
+App --> VaccineService**: create(VaccineRepo)
+App --> Ctrl: VaccineService
 Ctrl -> VaccineService: getAll()
 VaccineService -> VaccineRepo: getAll()
 VaccineRepo --> VaccineService: vaccines
 VaccineService --> Ctrl: vaccines
-
 Ctrl -> VaccineDtoList**: create(vaccines)
-Ctrl --> View: vaccineDtoList
-View --> User: shows vaccines and requests selection
 
-
-' User provides data
-
-User -> View: provides SNS user, date and time
-View -> Ctrl: createAppointment(snsUserNumber, date, time, facilityId, vaccineId)
-
-
-' Create and save appointment
-
+' ==== CRIAR E SALVAR APPOINTMENT ====
 Ctrl -> App: getVaccinationAppointmentService()
 App -> Factory: getVaccinationAppointmentRepository()
-Factory --> App: appointmentRepo
-App --> AppointmentService**: create(appointmentRepo)
-App --> Ctrl: appointmentService
-
+Factory --> App: AppointmentRepo
+App --> AppointmentService**: create(AppointmentRepo)
+App --> Ctrl: AppointmentService
 Ctrl -> AppointmentService: create(snsUserNumber, date, time, facilityId, vaccineId)
 AppointmentService --> Appointment**: create(...)
 AppointmentService -> AppointmentService: validate(appointment)
@@ -88,8 +76,10 @@ AppointmentService -> AppointmentRepo: save(appointment)
 AppointmentRepo --> AppointmentService: ok
 AppointmentService --> Ctrl: ok
 
-Ctrl --> View: ok
-View --> User: informs operation success
+' ==== RETORNO HTTP ====
+Ctrl --> System: result
+System -> System: setHttpResult(resp, result)
+System --> HTTPServer: resp
+HTTPServer --> HTTPClient: resp
 
 @enduml
-
