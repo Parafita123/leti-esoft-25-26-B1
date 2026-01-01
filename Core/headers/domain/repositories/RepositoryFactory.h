@@ -12,7 +12,7 @@
 #include "headers/domain/repositories/VaccinationProcessRepository.h"
 #include "headers/domain/repositories/WaitingRoomRepository.h"
 #include "headers/domain/repositories/RecoveryRoomRepository.h"
-
+#include "headers/domain/repositories/VaccineRepository.h"
 class RepositoryFactory {
 public:
     virtual ~RepositoryFactory() = default;
@@ -28,7 +28,7 @@ public:
     virtual std::shared_ptr<VaccineTypeRepository> getVaccineTypeRepository() = 0;
     virtual std::shared_ptr<VaccinationAppointmentRepository> getVaccinationAppointmentRepository() = 0;
     virtual std::shared_ptr<UserArrivalRepository> getUserArrivalRepository() = 0;
-
+    virtual std::shared_ptr<VaccineRepository> getVaccineRepository() = 0;
     /**
      * Returns a repository capable of persisting vaccination process
      * records.  Concrete factories decide which implementation is

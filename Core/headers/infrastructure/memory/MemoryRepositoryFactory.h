@@ -14,6 +14,9 @@
 #include "headers/domain/repositories/VaccinationProcessRepository.h"
 #include "headers/domain/repositories/WaitingRoomRepository.h"
 #include "headers/domain/repositories/RecoveryRoomRepository.h"
+#include "headers/domain/repositories/VaccineRepository.h"
+#include "headers/infrastructure/memory/VaccineMemoryRepository.h"
+
 class MemoryRepositoryFactory : public RepositoryFactory {
 private:
 
@@ -30,6 +33,7 @@ private:
     std::shared_ptr<VaccinationProcessRepository> vpRepo;
     std::shared_ptr<WaitingRoomRepository> wrRepo;
     std::shared_ptr<RecoveryRoomRepository> rrRepo;
+    std::shared_ptr<VaccineRepository> vaccineRepo;
 
 public:
     MemoryRepositoryFactory();
@@ -38,6 +42,7 @@ public:
     std::shared_ptr<VaccineTypeRepository> getVaccineTypeRepository() override;
     std::shared_ptr<VaccinationAppointmentRepository> getVaccinationAppointmentRepository() override;
     std::shared_ptr<UserArrivalRepository> getUserArrivalRepository() override;
+    std::shared_ptr<VaccineRepository> getVaccineRepository() override;
 
     // US41 repositories
     std::shared_ptr<VaccinationProcessRepository> getVaccinationProcessRepository() override;

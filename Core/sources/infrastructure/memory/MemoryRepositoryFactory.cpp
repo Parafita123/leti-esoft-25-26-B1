@@ -1,5 +1,5 @@
 
-
+#include "headers/infrastructure/memory/VaccineMemoryRepository.h"
 #include "headers/infrastructure/memory/MemoryRepositoryFactory.h"
 #include "headers/infrastructure/memory/SNSUserMemoryRepository.h"
 #include "headers/infrastructure/memory/UserArrivalMemoryRepository.h"
@@ -13,6 +13,15 @@
 MemoryRepositoryFactory::MemoryRepositoryFactory() {
     vcRepo = std::make_shared<VaccinationCenterMemoryRepository>();
     vtRepo = std::make_shared<VaccineTypeMemoryRepository>();
+}
+
+
+std::shared_ptr<VaccineRepository> MemoryRepositoryFactory::getVaccineRepository() {
+    if (!vaccineRepo) {
+        static VaccineContainer vaccineContainer;
+        vaccineRepo = std::make_shared<VaccineMemoryRepository>(vaccineContainer);
+    }
+    return vaccineRepo;
 }
 
 std::shared_ptr<SNSUserRepository> MemoryRepositoryFactory::getSNSUserRepository() {
