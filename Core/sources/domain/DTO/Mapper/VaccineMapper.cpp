@@ -4,10 +4,10 @@
 #include "headers/domain/DTO/Mapper/VaccineMapper.h"
 #include "headers/domain/model/VaccineTechnology.h"
 
-VaccineDTO VaccineMapper::toDTO(const Vaccine& vaccine) {
-    return {
-            vaccine.getTypeCode(),
-            vaccine.getBrand(),
-            VaccineTechnologyUtils::toString(vaccine.getTechnology())
-    };
+VaccineDTO VaccineMapper::toDTO(const Vaccine& v) {
+    return VaccineDTO(
+            v.getCommercialName(),
+            v.getBrand(),
+            v.getTypeCode()
+    );
 }
