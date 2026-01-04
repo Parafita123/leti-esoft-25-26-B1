@@ -33,6 +33,11 @@ void TasksServer::run(std::string host, int port) {
     VaccineTypeRouter vtRouter;
     vtRouter.configure(this->svr);
 
+    // /vaccines
+    log("\t ... configuring vaccines resource...");
+    VaccineRouter vRouter;
+    vRouter.configure(this->svr);
+
     log("HTTP Server is listening on port " + std::to_string(port) + ".");
     this->svr.listen(host.c_str(), port);
     log("HTTP Server is stopping.");

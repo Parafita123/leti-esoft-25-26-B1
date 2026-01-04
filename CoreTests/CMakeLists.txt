@@ -29,7 +29,6 @@ add_executable(CoreTests
         ../Core/sources/controllers/restapi/HttpResult.cpp
         ../Core/sources/controllers/restapi/RestController.cpp
         ../Core/sources/controllers/restapi/VaccineTypeController.cpp
-        ../RestAPI/RestAPI.cpp
 )
 
 # Add include directories so that tests can find Core headers

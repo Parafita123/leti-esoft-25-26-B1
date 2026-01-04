@@ -6,6 +6,7 @@
 #define LETI_ESOFT_25_26_B1_TASKSSERVER_H
 
 #include "../headers/VaccineTypeRouter.h"
+#include "../headers/VaccineRouter.h"
 #include <iostream>
 #include <string>
 #include "../thirdparty/httplib.h"
