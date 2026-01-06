@@ -41,7 +41,7 @@ FacilityService -> FacilityRepo: getAll()
 FacilityRepo --> FacilityService: facilities
 FacilityService --> Ctrl: facilities
 
-Ctrl -> FacilityDtoList**: create(facilities)
+Ctrl -> FacilityDtoList**: createDTO(facilities)
 Ctrl --> View: facilityDtoList
 View --> User: shows facilities and requests selection
 
