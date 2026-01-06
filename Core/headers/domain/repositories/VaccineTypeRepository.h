@@ -19,6 +19,7 @@ public:
     virtual std::shared_ptr<VaccineType> findByCode(const std::string& code) = 0;
     virtual bool exists(const std::string& code) = 0;
     virtual Result save(std::shared_ptr<VaccineType> obj) = 0;
+    virtual Result remove(const std::string& code) = 0;
 };
 
 

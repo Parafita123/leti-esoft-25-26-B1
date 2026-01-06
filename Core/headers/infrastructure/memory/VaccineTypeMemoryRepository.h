@@ -20,6 +20,7 @@ public:
     std::shared_ptr<VaccineType> findByCode(const std::string& code) override;
     bool exists(const std::string& code) override;
     Result save(std::shared_ptr<VaccineType> obj);
+    Result remove(const std::string& code) override;
 };
 
 #endif //LETI_ESOFT_25_26_B1_VACCINETYPEMEMORYREPOSITORY_H

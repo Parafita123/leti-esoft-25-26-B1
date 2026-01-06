@@ -80,3 +80,50 @@ HttpResult VaccineTypeController::postVaccineType(const std::string& code,
 
     return result;
 }
+HttpResult VaccineTypeController::putVaccineType(const std::string& code,
+                                                 const std::string& disease,
+                                                 const std::string& description) {
+    HttpResult result;
+
+    if (!repo->exists(code)) {
+        result.setHttpStatus(HttpStatus::HTTP_CLIENT_ERROR_NOT_FOUND);
+        result.setMessage("VaccineType not found.");
+        return result;
+    }
+
+    auto vt = std::make_shared<VaccineType>(code, disease, description);
+    Result r = repo->save(vt); // O save costuma fazer update se já existir
+
+    if (r.isOK()) {
+        result.setHttpStatus(HttpStatus::HTTP_OK);
+        result.setMessage("VaccineType updated successfully.");
+    } else {
+        result.setHttpStatus(HttpStatus::HTTP_SERVER_ERROR);
+        result.setMessage(StringUtils::toString(r.getMessage()));
+    }
+
+    return result;
+}
+
+HttpResult VaccineTypeController::deleteVaccineType(const std::string& code) {
+    HttpResult result;
+
+    if (!repo->exists(code)) {
+        result.setHttpStatus(HttpStatus::HTTP_CLIENT_ERROR_NOT_FOUND);
+        result.setMessage("VaccineType not found.");
+        return result;
+    }
+
+    // Supondo que o seu repositório tenha um método remove ou delete
+    Result r = repo->remove(code);
+
+    if (r.isOK()) {
+        result.setHttpStatus(HttpStatus::HTTP_OK);
+        result.setMessage("VaccineType deleted successfully.");
+    } else {
+        result.setHttpStatus(HttpStatus::HTTP_SERVER_ERROR);
+        result.setMessage(StringUtils::toString(r.getMessage()));
+    }
+
+    return result;
+}
