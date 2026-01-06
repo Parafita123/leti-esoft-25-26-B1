@@ -99,6 +99,11 @@ add_library(Core
         sources/controllers/restapi/RestController.cpp
         headers/controllers/restapi/VaccineTypeController.h
         sources/controllers/restapi/VaccineTypeController.cpp
+
+        # Vaccine REST controller
+        headers/controllers/restapi/VaccineController.h
+        sources/controllers/restapi/VaccineController.cpp
+        headers/controllers/restapi/SharedRepositoryFactory.h
 )
 
 target_include_directories(Core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

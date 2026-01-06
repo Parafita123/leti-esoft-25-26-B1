@@ -8,7 +8,7 @@
 #include "headers/domain/shared/StringUtils.h"
 #include "headers/infrastructure/memory/MemoryRepositoryFactory.h"
 #include "headers/controllers/restapi/HttpStatus.h"
-
+#include "headers/controllers/restapi/SharedRepositoryFactory.h"
 using json::JSON;
 
 std::shared_ptr<RepositoryFactory> VaccineTypeController::sharedFactory = nullptr;
@@ -18,7 +18,7 @@ VaccineTypeController::VaccineTypeController(const std::wstring& bearerToken) {
         throw std::invalid_argument("Missing bearer token");
 
     if (!sharedFactory) {
-        sharedFactory = std::make_shared<MemoryRepositoryFactory>();
+        sharedFactory = getSharedRepositoryFactory();
     }
 
     repo = sharedFactory->getVaccineTypeRepository();
@@ -60,6 +60,11 @@ HttpResult VaccineTypeController::postVaccineType(const std::string& code,
         result.setMessage("VaccineType already exists.");
         return result;
     }
+
+    if (!sharedFactory) {
+        sharedFactory = getSharedRepositoryFactory();
+    }
+    repo = sharedFactory->getVaccineTypeRepository();
 
     auto vt = std::make_shared<VaccineType>(code, disease, description);
     Result r = repo->save(vt);

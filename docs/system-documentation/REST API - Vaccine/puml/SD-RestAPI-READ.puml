@@ -1,11 +1,80 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
+autoactivate on
 autonumber
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+participant ":HTTPClient" as HTTPClient
+participant "handler:RouteHandler" as System
+participant ":VaccineController" as Ctrl
+participant ":App" as App
+participant "service:VaccineService" as Service
+participant "factory:RepositoryFactory" as Factory
+participant "repo:VaccineRepository" as Repo
+participant "list:List<Vaccine>" as List
+participant "vaccine:Vaccine" as Vaccine
+participant "VaccineMapper" as Mapper
+participant "jsonObj:JSON" as Json
+participant "vacJson:JSON" as JsonVac
+participant "result:HttpResult" as Result
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+activate HTTPClient
+
+HTTPClient -> System: GET /vaccines
+note over System: route matches /vaccines
+System -> Ctrl: getAll()
+
+'--- 1. Orchestration / Dependency Injection ---
+Ctrl -> App: getVaccineService()
+App -> Factory: getVaccineRepository()
+Factory --> App: repo
+App --> Service**: create(repo)
+App --> Ctrl: service
+
+'--- 2. Domain: Data Access (+ optional ordering rules) ---
+Ctrl -> Service: getAllVaccines()
+Service -> Repo: findAll()
+Repo --> Service: list
+Service -> Service: sortByTypeThenBrand(list)
+Service --> Service: ok
+Service --> Ctrl: list
+
+'--- 3. JSON Mapping ---
+Ctrl -> Mapper: toJson(list)
+Mapper --> Json**: create()
+loop for each 'vaccine' in 'list'
+    Mapper -> Mapper: toJson(vaccine)
+    Mapper -> Vaccine: getName()
+    Vaccine --> Mapper: name
+    Mapper -> Vaccine: getBrand()
+    Vaccine --> Mapper: brand
+    Mapper -> Vaccine: getTypeCode()
+    Vaccine --> Mapper: typeCode
+    Mapper -> Vaccine: getTechnology()
+    Vaccine --> Mapper: technology
+    Mapper -> Vaccine: getLot()
+    Vaccine --> Mapper: lot
+
+    Mapper --> JsonVac**: create()
+    Mapper -> JsonVac: setName(name)
+    JsonVac --> Mapper
+    Mapper -> JsonVac: setBrand(brand)
+    JsonVac --> Mapper
+    Mapper -> JsonVac: setTypeCode(typeCode)
+    JsonVac --> Mapper
+    Mapper -> JsonVac: setTechnology(technology)
+    JsonVac --> Mapper
+    Mapper -> JsonVac: setLot(lot)
+    JsonVac --> Mapper
+
+    Mapper -> Json: add(vacJson)
+    Json --> Mapper
+end loop
+Mapper --> Ctrl: jsonObj
+
+Ctrl --> Result**: create(200, jsonObj)
+Ctrl --> System: result
+System -> System: setHttpResult(resp, result)
+System --> HTTPClient: resp
+
 @enduml

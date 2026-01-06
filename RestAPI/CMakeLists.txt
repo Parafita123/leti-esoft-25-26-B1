@@ -6,6 +6,7 @@ add_executable(RestAPI
         sources/TasksServer.cpp
         sources/VaccineTypeRouter.cpp
         sources/ServerStatusRouter.cpp
+        sources/VaccineRouter.cpp
 )
 
 target_include_directories(RestAPI PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})

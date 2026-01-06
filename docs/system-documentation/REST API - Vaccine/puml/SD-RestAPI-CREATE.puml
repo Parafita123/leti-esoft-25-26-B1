@@ -1,11 +1,58 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-
+autoactivate on
 autonumber
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+participant ":HTTPClient" as HTTPClient
+participant ":HTTPServer" as HTTPServer
+participant "req:HTTPRequest" as HTTPRequest
+participant "resp:HTTPResponse" as HTTPResponse
+participant "handler:RouteHandler" as System
+participant ":VaccineController" as Ctrl
+participant ":App" as App
+participant "service:VaccineService" as Service
+participant "factory:RepositoryFactory" as Factory
+participant "repo:VaccineRepository" as Repo
+participant "container:VaccineContainer" as Container
+participant "vac:Vaccine" as Vaccine
+participant "result:HttpResult" as Result
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+activate HTTPClient
+
+HTTPClient -> HTTPServer: POST(/vaccines, {name, brand, typeCode, technology, lot})
+HTTPServer -> HTTPRequest**: create(POST, /vaccines, body)
+HTTPServer -> HTTPResponse**: create(404)
+HTTPServer -> HTTPServer: findHandler(req)
+HTTPServer --> HTTPServer: handler
+HTTPServer -> System: run(req, resp)
+
+System -> Ctrl**: create(bearerToken)
+System -> Ctrl: postVaccine(name, brand, typeCode, technology, lot)
+
+'--- 1. Orchestration / Dependency Injection ---
+Ctrl -> App: getVaccineService()
+App -> Factory: getVaccineRepository()
+Factory --> App: repo
+App --> Service**: create(repo)
+App --> Ctrl: service
+
+'--- 2. Domain: Create + Validate + Persist ---
+Ctrl -> Service: create(name, brand, typeCode, technology, lot)
+Service -> Container: create(name, brand, typeCode, technology, lot)
+Container --> Vaccine**: create(name, brand, typeCode, technology, lot)
+Container --> Service: vac
+
+Service -> Service: validate(vac)
+Service --> Service: ok
+
+Service -> Repo: save(vac)
+Repo --> Service: ok
+Service --> Ctrl: ok
+
+Ctrl --> Result**: create(201)
+Ctrl --> System: result
+System -> System: setHttpResult(resp, result)
+System --> HTTPServer: resp
+HTTPServer --> HTTPClient: resp
+
 @enduml
