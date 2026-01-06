@@ -32,6 +32,12 @@ public:
     HttpResult postVaccineType(const std::string& code,
                                const std::string& disease,
                                const std::string& description);
+
+    HttpResult putVaccineType(const std::string& code,
+                              const std::string& disease,
+                              const std::string& description);
+
+    HttpResult deleteVaccineType(const std::string& code);
 };
 
 #endif //LETI_ESOFT_25_26_B1_VACCINETYPECONTROLLER_H
