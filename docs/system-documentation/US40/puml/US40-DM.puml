@@ -1,0 +1,64 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+class Employee {
+    - Employee_id
+    - name
+    - postal_adress
+    - phone_number
+    - email
+    - citizenCardNumber
+    - role
+}
+
+class Nurse {
+}
+
+class Facility {
+    - name
+    - postal_adress
+    - phone_number
+    - email
+    - website_adress
+    - opening_hours
+    - closing_hours
+    - max_vaccines_per_hour
+}
+
+class Waiting_Room {
+}
+
+class SNS_User {
+    - name
+    - sns_user_number
+    - date_of_birth
+    - phone_number
+}
+
+class User_Arrival {
+    - arrival_time
+}
+
+' --- Relacionamentos ---
+
+' Herança: Nurse é um tipo de Employee
+Employee <|-- Nurse
+
+' Uma Facility tem uma sala de espera (especialização/composição)
+Facility <|-- Waiting_Room
+
+' O Enfermeiro trabalha numa Facility (contexto para a consulta)
+Nurse "*" -- "1" Facility : works in >
+
+' A Facility/Waiting_Room contém registos de chegada (User_Arrival)
+Facility "1" -- "*" User_Arrival : has >
+
+' Cada registo de chegada pertence a um SNS_User
+SNS_User "1" -- "*" User_Arrival : has >
+
+' A Waiting_Room contém os SNS_Users presentes (relação lógica)
+Waiting_Room "1" -- "*" SNS_User : contains >
+
+@enduml

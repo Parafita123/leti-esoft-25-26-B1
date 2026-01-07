@@ -1,0 +1,82 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+
+' --- Camada de Interface (UI) ---
+class ConsultWaitingRoomView {
+}
+
+class ConsultWaitingRoomController {
+    + getFacilities(): List<FacilityDTO>
+    + getWaitingRoom(): List<UserDTO>
+}
+
+' --- Camada de Aplicação / Infraestrutura ---
+class App {
+    + getRepositoryFactory(): RepositoryFactory
+    + getWaitingRoomService(): WaitingRoomService
+}
+
+interface RepositoryFactory <<interface>> {
+    + getVaccinationCenterRepository(): VaccinationCenterRepository
+    + getWaitingRoomRepository(): WaitingRoomRepository
+}
+
+' --- Camada de Serviço (Lógica de Negócio) ---
+class WaitingRoomService {
+    + WaitingRoomService(repo: WaitingRoomRepository)
+    + getWaitingRoomUsers(): List<User>
+    + sortByArrivalTime(list: List<User>)
+}
+
+' --- Camada de Domínio (Modelo e Persistência) ---
+interface VaccinationCenterRepository <<interface>> {
+    + findAll(): List<Facility>
+}
+
+interface WaitingRoomRepository <<interface>> {
+    + findAll(): List<User>
+}
+
+class User {
+}
+
+class Facility {
+}
+
+' --- Transferência de Dados (DTO & Mapper) ---
+class WaitingRoomMapper {
+    + toDTO(user: User): UserDTO
+}
+
+class UserDTO {
+}
+
+class FacilityDtoList {
+    + create(facilities: List<Facility>)
+}
+
+' --- Relacionamentos baseados no SD ---
+
+ConsultWaitingRoomView ..> ConsultWaitingRoomController
+ConsultWaitingRoomController ..> App
+ConsultWaitingRoomController ..> WaitingRoomMapper
+ConsultWaitingRoomController ..> UserDTO
+ConsultWaitingRoomController ..> FacilityDtoList
+
+App "1" --> "1" RepositoryFactory : fornece
+App ..> WaitingRoomService : cria
+
+WaitingRoomService ..> WaitingRoomRepository : usa
+WaitingRoomService ..> User : manipula
+
+RepositoryFactory ..> VaccinationCenterRepository : cria
+RepositoryFactory ..> WaitingRoomRepository : cria
+
+VaccinationCenterRepository ..> Facility : gere
+WaitingRoomRepository ..> User : gere
+
+WaitingRoomMapper ..> User : converte
+WaitingRoomMapper ..> UserDTO : cria
+
+@enduml

@@ -1,0 +1,64 @@
+@startuml
+autonumber
+autoactivate on
+actor "Nurse" as Nurse
+participant ":ConsultWaitingRoomView" as View
+participant ":ConsultWaitingRoomController" as Ctrl
+participant ":App" as App
+participant "factory:RepositoryFactory" as Factory
+participant "service:WaitingRoomService" as Service
+participant "repo:WaitingRoomRepository" as Repo
+participant "mapper:WaitingRoomMapper" as Mapper
+participant "UserDTO:UserDTO" as DTO
+participant "dtoList : List<UserDTO>" as ListDTO
+
+
+Nurse -> View: solicita consulta da sala de espera
+View -> Ctrl: getFacilities()
+
+'--- 1. Seleção do Centro---
+Ctrl -> App: getRepositoryFactory()
+App --> Ctrl: Factory
+Ctrl -> Factory: getVaccinationCenterRepository()
+Factory --> Ctrl: Repo
+
+Ctrl -> Repo: findAll()
+Repo --> Ctrl: facilities
+Ctrl -> FacilityDtoList**: create(facilities)
+Ctrl --> View: facilityDtoList
+
+View --> Nurse: solicita seleção do centro de vacinação
+Nurse -> View: seleciona centro
+View -> Ctrl: getWaitingRoom()
+
+
+'--- Orquestração e Injeção de Dependência ---
+Ctrl -> App: getWaitingRoomService()
+App -> Factory: getWaitingRoomRepository()
+Factory --> App: repo
+App --> Service**: create(repo)
+App --> Ctrl: service
+
+'--- Lógica de Domínio e Critério de Aceitação (AC40-1) ---
+Ctrl -> Service: getWaitingRoomUsers()
+Service -> Repo: findAll()
+Repo --> Service: listUsers
+Service -> Service: sortByArrivalTime(listUsers)
+Service --> Service: ok
+Service --> Ctrl: sortedUsers
+
+'--- 3. Mapeamento DTO (UI nunca vê o domínio)  ---
+Ctrl -> ListDTO**: create()
+loop para cada user em sortedUsers
+    Ctrl -> Mapper: toDTO(user)
+    Mapper -> DTO**: create()
+    Mapper -> ListDTO: add(UserDTO)
+end loop
+ListDTO --> Mapper : return ListDTO
+Mapper --> Ctrl : return ListDTO
+Ctrl --> View: ListDTO
+
+'--- 4. Apresentação ---
+
+View --> Nurse: apresenta lista ordenada por chegada
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+autonumber
+actor "Nurse" as N
+participant ":System" as S
+
+activate N
+N -> S : solicita consulta da sala de espera
+activate S
+S --> N : apresenta lista de centros de vacinação e solicita seleção
+deactivate S
+
+N -> S : seleciona o centro pretendido
+activate S
+S --> N : apresenta utentes na sala de espera ordenados
+deactivate S
+deactivate N
+@enduml
