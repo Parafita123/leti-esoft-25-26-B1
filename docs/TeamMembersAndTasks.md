@@ -37,7 +37,11 @@ Finally, keep in mind that each User Story is not isolated — it must be integr
 | [US11](../docs/system-documentation/US11) (SDP Activities)                                         |          |   1231051   |          |          |
 | [US14](../docs/system-documentation/US14) (SDP Activities)                                         |          |   1230426   |          |          |
 | [US15](../docs/system-documentation/US15) (SDP Activities)                                         |          |   1211255   |          |       |
-| [US12](../docs/system-documentation/US12)                                                          |          |          |          |       |
+| [US12](../docs/system-documentation/US12)                                                          |          |          |1230426         |       |
 | [US13](../docs/system-documentation/US13) (SDP Activities)                                         |          |      | 1231283  |       |
 | [US20](../docs/system-documentation/US20)                                                          |          |          | 1231051  |       |
-| [US30](../docs/system-documentation/US30) (SDP Activities)                                         |          |      |          |       |
+| [US30](../docs/system-documentation/US30) (SDP Activities)                                         |          |      |1211255          |       |
+| [US21](../docs/system-documentation/US12)                                                          |          |          |          |1230426       |
+| [US22](../docs/system-documentation/US13) (SDP Activities)                                         |          |      |   |1231283       |
+| [US40](../docs/system-documentation/US20)                                                          |          |          |   |       |
+| [US41](../docs/system-documentation/US30) (SDP Activities)                                         |          |      |          |1231051       |

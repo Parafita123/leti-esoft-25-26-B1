@@ -9,7 +9,7 @@ participant "req:HTTPRequest" as HTTPRequest
 participant "resp:HTTPResponse" as HTTPResponse
 participant "handler:RouteHandler" as System
 participant ":VaccineTypeController" as Ctrl
-participant ":Person" as Person
+participant ":App" as App
 participant "service:VaccineTypeService" as Service
 participant "factory:RepositoryFactory" as Factory
 participant "repo:VaccineTypeRepository" as Repo
@@ -27,11 +27,11 @@ HTTPServer -> System: run(req,resp)
 
 System -> Ctrl**: create(...)
 System -> Ctrl: postVaccineType(code, disease, short_description)
-Ctrl -> Person: getVaccineTypeService()
-Person -> Factory : getVaccineTypeRepository()
-Factory --> Person: repo
-Person -->Service**: create(repo)
-Person --> Ctrl: service
+Ctrl -> App: getVaccineTypeService()
+App -> Factory : getVaccineTypeRepository()
+Factory --> App: repo
+App -->Service**: create(repo)
+App --> Ctrl: service
 Ctrl -> Service: create(code, disease, short_description)
 Service --> VaccineType**: create(code, disease, short_description)
 Service --> Ctrl: vactype
