@@ -1,11 +1,51 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-
+autoactivate on
 autonumber
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+participant ":HTTPClient" as HTTPClient
+participant ":HTTPServer" as HTTPServer
+participant "req:HTTPRequest" as HTTPRequest
+participant "resp:HTTPResponse" as HTTPResponse
+participant "handler:RouteHandler" as System
+participant ":VaccineTypeController" as Ctrl
+participant ":App" as App
+participant "service:VaccineTypeService" as Service
+participant "factory:RepositoryFactory" as Factory
+participant "repo:VaccineTypeRepository" as Repo
+participant "result:HttpResult" as Result
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+activate HTTPClient
+
+HTTPClient -> HTTPServer: DELETE(/vaccine-types/{code})
+HTTPServer -> HTTPRequest**: create(...)
+HTTPServer -> HTTPResponse**: create(404)
+HTTPServer -> HTTPServer: findHandler(req)
+HTTPServer --> HTTPServer: handler
+HTTPServer -> System: run(req, resp)
+
+System -> Ctrl**: create(...)
+System -> Ctrl: deleteVaccineType(code)
+
+Ctrl -> App: getVaccineTypeService()
+App -> Factory: getVaccineTypeRepository()
+Factory --> App: repo
+App --> Service**: create(repo)
+App --> Ctrl: service
+
+Ctrl -> Service: delete(code)
+Service -> Repo: existsByCode(code)
+Repo --> Service: true
+
+Service -> Repo: deleteByCode(code)
+Repo --> Service: ok
+
+Service --> Ctrl: ok
+Ctrl --> Result**: create(204)
+Ctrl --> System: result
+
+System -> System: setHttpResult(resp, result)
+System --> HTTPServer: resp
+HTTPServer --> HTTPClient: resp
+
 @enduml
