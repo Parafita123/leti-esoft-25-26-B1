@@ -1,49 +1,57 @@
 cmake_minimum_required(VERSION 3.27)
 project(CoreTests)
 
-# Use FetchContent to download and build GoogleTest and GoogleMock if they are not provided
 include(FetchContent)
 include(CTest)
 enable_testing()
 
 FetchContent_Declare(
-    googletest
-    URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+        googletest
+        URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
 )
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# Define the test executable
+# 1) Define o executável primeiro
 add_executable(CoreTests
         domain/services/VaccinationProcessServiceTests.cpp
-        ../RestAPI/headers/RouterConfig.h
-        ../RestAPI/headers/ServerStatusRouter.h
-        ../RestAPI/headers/TasksServer.h
+
+        # Se precisares mesmo disto nos testes (senão, remove)
         ../RestAPI/sources/RouterConfig.cpp
         ../RestAPI/sources/ServerStatusRouter.cpp
         ../RestAPI/sources/VaccineTypeRouter.cpp
-        ../Core/headers/controllers/restapi/HttpStatus.h
-        ../Core/headers/controllers/restapi/HttpResult.h
-        ../Core/headers/controllers/restapi/RestController.h
-        ../Core/headers/controllers/restapi/VaccineTypeController.h
+
+        # Se os testes usam estes .cpp diretamente (senão, remove)
         ../Core/sources/controllers/restapi/HttpResult.cpp
         ../Core/sources/controllers/restapi/RestController.cpp
         ../Core/sources/controllers/restapi/VaccineTypeController.cpp
+        domain/model/VaccinationCenterTests.cpp
+        domain/repositories/RepositoryFactoryMock.h
+        domain/repositories/UserArrivalRepositoryMock.h
+        domain/repositories/VaccinationAppointmentRepositoryMock.h
+        domain/services/UserArrivalServiceTests.cpp
+        domain/repositories/SNSUserRepositoryMock.h
+        domain/repositories/VaccinationCenterRepositoryMock.h
 )
 
-# Add include directories so that tests can find Core headers
+# 2) Includes
 target_include_directories(CoreTests PRIVATE
         ${CMAKE_SOURCE_DIR}/Core
+        ${CMAKE_SOURCE_DIR}/RestAPI
 )
 
-# Link against the Core library and GoogleTest/GoogleMock targets
-target_link_libraries(CoreTests
-        PRIVATE
+# 3) Link libs
+target_link_libraries(CoreTests PRIVATE
         Core
         GTest::gtest
         GTest::gmock
         GTest::gtest_main
 )
 
-# Register the test with CTest so that `ctest` will run it
+# 4) Winsock no Windows (porque tens httplib/RouterConfig nos testes)
+if (WIN32)
+    target_link_libraries(CoreTests PRIVATE ws2_32)
+endif()
+
+# 5) Registar no CTest
 add_test(NAME CoreTests COMMAND CoreTests)
