@@ -41,3 +41,7 @@ bool UserArrivalMemoryRepository::exists(const std::string& snsUserNumber,
     }
     return false;
 }
+
+std::vector<std::shared_ptr<UserArrival>> UserArrivalMemoryRepository::findAll() {
+    return this->data;
+}

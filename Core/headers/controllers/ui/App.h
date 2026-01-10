@@ -37,10 +37,11 @@ private:
     std::shared_ptr<VaccinationCenterService> vaccinationCenterService;
     std::shared_ptr<VaccineTypeRepository> vaccineTypeRepo;
     std::shared_ptr<UserArrivalService> userArrivalService;
+    static std::shared_ptr<App> instance;
 
 public:
     App();
-
+    static App& getInstance();
     VaccineTypeContainer& getVaccineTypeContainer();
     std::shared_ptr<VaccineTypeRepository> getVaccineTypeRepository();
     std::shared_ptr<SNSUserService> getSNSUserService();

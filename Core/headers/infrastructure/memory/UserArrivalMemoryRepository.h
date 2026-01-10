@@ -19,11 +19,13 @@ private:
 
     static std::string toDayString(std::chrono::system_clock::time_point tp);
 
+
 public:
     Result save(std::shared_ptr<UserArrival> obj) override;
 
     bool exists(const std::string& snsUserNumber,
                 int facilityID,
                 const std::string& day) override;
+    std::vector<std::shared_ptr<UserArrival>> findAll() override;
 };
 #endif //LETI_ESOFT_25_26_B1_USERARRIVALMEMORYREPOSITORY_H

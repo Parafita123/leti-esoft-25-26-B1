@@ -102,6 +102,12 @@ add_library(Core
         sources/controllers/restapi/VaccineTypeController.cpp
         sources/domain/DTO/Mapper/VaccineMapper.cpp
         sources/controllers/restapi/VaccineController.cpp
+        sources/domain/services/WaitingRoomService.cpp
+        headers/domain/services/WaitingRoomService.h
+        sources/domain/DTO/Mapper/WaitingRoomMapper.cpp
+        headers/domain/DTO/Mapper/WaitingRoomMapper.h
+        sources/controllers/ui/ConsultWaitingRoomController.cpp
+        headers/controllers/ui/ConsultWaitingRoomController.h
 
 )
 

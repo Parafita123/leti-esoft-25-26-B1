@@ -24,6 +24,8 @@
 #include "../Core/headers/controllers/ui/RegisterVaccinationCenterController.h"
 #include "../ConsoleApp/headers/views/RegisterVaccinationCenterView.h"
 
+#include "../ConsoleApp/headers/views/ConsultWaitingRoomView.h"
+
 MainView::MainView(App& app) : app(app) {}
 
 void MainView::showMenu() const {
@@ -34,6 +36,7 @@ void MainView::showMenu() const {
     std::cout << "4 - Register SNS user" << std::endl;      // US20
     std::cout << "5 - Register a vaccination center" << std::endl;
     std::cout << "6 - Record vaccine administration" << std::endl; // US41
+    std::cout << "7 - View waiting room list" << std::endl;
     std::cout << "0 - Exit" << std::endl;
     std::cout << "Choose an option: ";
 }
@@ -99,6 +102,12 @@ void MainView::handleOption(int option) {
             view.run();
             break;
         }
+        case 7: {
+        // US40 - View waiting room list
+        ConsultWaitingRoomView view; // O controlador é instanciado internamente na View
+        view.run();
+        break;
+        }
         case 0:
             std::cout << "Exiting application..." << std::endl;
             break;
@@ -110,7 +119,6 @@ void MainView::handleOption(int option) {
 
 void MainView::show() {
     bool running = true;
-
     while (running) {
         showMenu();
 

@@ -25,6 +25,8 @@ add_library(ConsoleAppLib
         sources/views/RecordVaccinationView.cpp
         headers/views/ListVaccinesView.h
         sources/views/ListVaccinesView.cpp
+        sources/views/ConsultWaitingRoomView.cpp
+        headers/views/ConsultWaitingRoomView.h
 )
 
 target_include_directories(ConsoleAppLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

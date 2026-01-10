@@ -17,6 +17,7 @@
 #include <memory>
 #include "headers/domain/services/VaccinationCenterService.h"
 
+std::shared_ptr<App> App::instance = nullptr;
 
 VaccineTypeContainer& App::getVaccineTypeContainer() {
     return vaccineTypeContainer;
@@ -97,4 +98,12 @@ std::shared_ptr<RepositoryFactory> App::getRepositoryFactory() {
 
 std::shared_ptr<UserArrivalService> App::getUserArrivalService() {
     return userArrivalService;
+}
+
+App& App::getInstance() {
+    if (instance == nullptr) {
+        // Criar a instância se ainda não existir
+        instance = std::shared_ptr<App>(new App());
+    }
+    return *instance;
 }

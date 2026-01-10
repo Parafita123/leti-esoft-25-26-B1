@@ -20,6 +20,9 @@ public:
     virtual bool exists(const std::string& snsUserNumber,
                         int facilityID,
                         const std::string& day) = 0;
+
+    virtual std::vector<std::shared_ptr<UserArrival>> findAll() = 0;
+
 };
 
 #endif //LETI_ESOFT_25_26_B1_USERARRIVALREPOSITORY_H
