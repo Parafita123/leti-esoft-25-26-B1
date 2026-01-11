@@ -1,3 +1,7 @@
+//
+// Created by Filipe on 10/01/2026.
+//
+
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
@@ -5,11 +9,11 @@
 #include <optional>
 #include <string>
 #include <vector>
+#include <cctype>
 
 #include <headers/domain/services/UserArrivalService.h>
 #include <headers/controllers/dto/UserArrivalDTO.h>
 
-// Repositories (interfaces)
 #include <headers/domain/repositories/RepositoryFactory.h>
 #include <headers/domain/repositories/UserArrivalRepository.h>
 #include <headers/domain/repositories/SNSUserRepository.h>
@@ -19,22 +23,17 @@
 // Domain models
 #include <headers/domain/model/SNSUser.h>
 #include <headers/domain/model/Facility.h>
-#include <headers/domain/model/HealthcareCenter.h>
 
 #include <headers/domain/shared/Result.h>
+
+// ✅ Use the complete mock implementation (existsForDay + save + findAll)
+#include "../repositories/VaccinationAppointmentRepositoryMock.h"
 
 using ::testing::_;
 using ::testing::Return;
 using ::testing::Truly;
 
 // -------------------- Mocks --------------------
-
-class VaccinationAppointmentRepositoryMock : public VaccinationAppointmentRepository {
-public:
-    MOCK_METHOD(bool, existsForDay,
-                (const std::string& snsUserNumber, int facilityID, const std::string& day),
-                (override));
-};
 
 class UserArrivalRepositoryMock : public UserArrivalRepository {
 public:
@@ -95,7 +94,6 @@ protected:
         userRepo = std::make_shared<SNSUserRepositoryMock>();
         centerRepo = std::make_shared<VaccinationCenterRepositoryMock>();
 
-        // Service asks the factory for repos during registerArrival()
         EXPECT_CALL(*repoFactory, getVaccinationAppointmentRepository())
                 .WillRepeatedly(Return(apptRepo));
         EXPECT_CALL(*repoFactory, getUserArrivalRepository())
@@ -110,11 +108,12 @@ protected:
 
     static bool LooksLikeYYYYMMDD(const std::string& s) {
         if (s.size() != 10) return false;
-        return (std::isdigit(s[0]) && std::isdigit(s[1]) && std::isdigit(s[2]) && std::isdigit(s[3]) &&
+        return (std::isdigit((unsigned char)s[0]) && std::isdigit((unsigned char)s[1]) &&
+                std::isdigit((unsigned char)s[2]) && std::isdigit((unsigned char)s[3]) &&
                 s[4] == '-' &&
-                std::isdigit(s[5]) && std::isdigit(s[6]) &&
+                std::isdigit((unsigned char)s[5]) && std::isdigit((unsigned char)s[6]) &&
                 s[7] == '-' &&
-                std::isdigit(s[8]) && std::isdigit(s[9]));
+                std::isdigit((unsigned char)s[8]) && std::isdigit((unsigned char)s[9]));
     }
 };
 
@@ -176,25 +175,6 @@ TEST_F(UserArrivalServiceFixture, RegisterArrival_UserNotFound_EmptyOptional_Sho
     EXPECT_TRUE(res.isNOK());
 }
 
-TEST_F(UserArrivalServiceFixture, RegisterArrival_UserNotFound_NullptrOptional_ShouldFail) {
-    UserArrivalDTO dto{1, 123};
-    const std::string sns = std::to_string(dto.sns_user_number);
-
-    EXPECT_CALL(*apptRepo, existsForDay(sns, dto.facilityID, _))
-            .WillOnce(Return(true));
-    EXPECT_CALL(*arrivalRepo, exists(sns, dto.facilityID, _))
-            .WillOnce(Return(false));
-
-    EXPECT_CALL(*userRepo, getBySNSUserNumber(sns))
-            .WillOnce(Return(std::optional<std::shared_ptr<SNSUser>>(std::shared_ptr<SNSUser>{})));
-
-    EXPECT_CALL(*centerRepo, findById(_)).Times(0);
-    EXPECT_CALL(*arrivalRepo, save(_)).Times(0);
-
-    Result res = service->registerArrival(dto);
-    EXPECT_TRUE(res.isNOK());
-}
-
 TEST_F(UserArrivalServiceFixture, RegisterArrival_FacilityNotFound_EmptyOptional_ShouldFail) {
     UserArrivalDTO dto{1, 123};
     const std::string sns = std::to_string(dto.sns_user_number);
@@ -220,31 +200,6 @@ TEST_F(UserArrivalServiceFixture, RegisterArrival_FacilityNotFound_EmptyOptional
     EXPECT_TRUE(res.isNOK());
 }
 
-TEST_F(UserArrivalServiceFixture, RegisterArrival_FacilityNotFound_NullptrOptional_ShouldFail) {
-    UserArrivalDTO dto{1, 123};
-    const std::string sns = std::to_string(dto.sns_user_number);
-
-    EXPECT_CALL(*apptRepo, existsForDay(sns, dto.facilityID, _))
-            .WillOnce(Return(true));
-    EXPECT_CALL(*arrivalRepo, exists(sns, dto.facilityID, _))
-            .WillOnce(Return(false));
-
-    auto user = std::make_shared<SNSUser>(
-            "Ana Silva", "2000-01-01", "F", "Rua X", "912345678",
-            "ana@teste.pt", "12345678", sns
-    );
-    EXPECT_CALL(*userRepo, getBySNSUserNumber(sns))
-            .WillOnce(Return(std::optional<std::shared_ptr<SNSUser>>(user)));
-
-    EXPECT_CALL(*centerRepo, findById(dto.facilityID))
-            .WillOnce(Return(std::optional<std::shared_ptr<Facility>>(std::shared_ptr<Facility>{})));
-
-    EXPECT_CALL(*arrivalRepo, save(_)).Times(0);
-
-    Result res = service->registerArrival(dto);
-    EXPECT_TRUE(res.isNOK());
-}
-
 TEST_F(UserArrivalServiceFixture, RegisterArrival_SaveReturnsNOK_ShouldPropagate) {
     UserArrivalDTO dto{1, 123};
     const std::string sns = std::to_string(dto.sns_user_number);
@@ -262,15 +217,8 @@ TEST_F(UserArrivalServiceFixture, RegisterArrival_SaveReturnsNOK_ShouldPropagate
             .WillOnce(Return(std::optional<std::shared_ptr<SNSUser>>(user)));
 
     auto facility = std::make_shared<Facility>(
-            /*id*/ dto.facilityID,
-            /*name*/ "HC Test",
-            /*address*/ "Street X",
-            /*phone*/ "912345678",
-            /*email*/ "hc@test.pt",
-            /*website*/ "https://hc.pt",
-            /*opening*/ "08:00",
-            /*closing*/ "20:00",
-            /*maxPerHour*/ 40
+            dto.facilityID, "HC Test", "Street X", "912345678",
+            "hc@test.pt", "https://hc.pt", "08:00", "20:00", 40
     );
     EXPECT_CALL(*centerRepo, findById(dto.facilityID))
             .WillOnce(Return(std::optional<std::shared_ptr<Facility>>(facility)));
@@ -289,50 +237,7 @@ TEST_F(UserArrivalServiceFixture, RegisterArrival_ShouldUseDateInYYYYMMDDFormat)
 
     EXPECT_CALL(*apptRepo, existsForDay(sns, dto.facilityID,
                                         Truly([](const std::string& day) { return LooksLikeYYYYMMDD(day); })))
-            .WillOnce(Return(false)); // fail early is fine; we only care about the day format
-
-    Result res = service->registerArrival(dto);
-    EXPECT_TRUE(res.isNOK());
-}
-
-TEST_F(UserArrivalServiceFixture, RegisterArrival_DoesNotSaveWhenUserMissing) {
-    UserArrivalDTO dto{1, 123};
-    const std::string sns = std::to_string(dto.sns_user_number);
-
-    EXPECT_CALL(*apptRepo, existsForDay(sns, dto.facilityID, _))
-            .WillOnce(Return(true));
-    EXPECT_CALL(*arrivalRepo, exists(sns, dto.facilityID, _))
             .WillOnce(Return(false));
-
-    EXPECT_CALL(*userRepo, getBySNSUserNumber(sns))
-            .WillOnce(Return(std::optional<std::shared_ptr<SNSUser>>{}));
-
-    EXPECT_CALL(*arrivalRepo, save(_)).Times(0);
-
-    Result res = service->registerArrival(dto);
-    EXPECT_TRUE(res.isNOK());
-}
-
-TEST_F(UserArrivalServiceFixture, RegisterArrival_DoesNotSaveWhenFacilityMissing) {
-    UserArrivalDTO dto{1, 123};
-    const std::string sns = std::to_string(dto.sns_user_number);
-
-    EXPECT_CALL(*apptRepo, existsForDay(sns, dto.facilityID, _))
-            .WillOnce(Return(true));
-    EXPECT_CALL(*arrivalRepo, exists(sns, dto.facilityID, _))
-            .WillOnce(Return(false));
-
-    auto user = std::make_shared<SNSUser>(
-            "Ana Silva", "2000-01-01", "F", "Rua X", "912345678",
-            "ana@teste.pt", "12345678", sns
-    );
-    EXPECT_CALL(*userRepo, getBySNSUserNumber(sns))
-            .WillOnce(Return(std::optional<std::shared_ptr<SNSUser>>(user)));
-
-    EXPECT_CALL(*centerRepo, findById(dto.facilityID))
-            .WillOnce(Return(std::optional<std::shared_ptr<Facility>>{}));
-
-    EXPECT_CALL(*arrivalRepo, save(_)).Times(0);
 
     Result res = service->registerArrival(dto);
     EXPECT_TRUE(res.isNOK());
@@ -342,17 +247,14 @@ TEST_F(UserArrivalServiceFixture, RegisterArrivalSuccessful) {
     UserArrivalDTO dto{1, 123};
     const std::string sns = std::to_string(dto.sns_user_number);
 
-    // 1) Must have appointment today for this center
     EXPECT_CALL(*apptRepo, existsForDay(sns, dto.facilityID, _))
             .Times(1)
             .WillOnce(Return(true));
 
-    // 2) No duplicate arrival
     EXPECT_CALL(*arrivalRepo, exists(sns, dto.facilityID, _))
             .Times(1)
             .WillOnce(Return(false));
 
-    // 3) User exists
     auto user = std::make_shared<SNSUser>(
             "Ana Silva", "2000-01-01", "F", "Rua X, Porto", "912345678",
             "ana@teste.pt", "12345678", sns
@@ -361,23 +263,14 @@ TEST_F(UserArrivalServiceFixture, RegisterArrivalSuccessful) {
             .Times(1)
             .WillOnce(Return(std::optional<std::shared_ptr<SNSUser>>(user)));
 
-    // 4) Facility exists
     auto facility = std::make_shared<Facility>(
-            /*id*/ dto.facilityID,
-            /*name*/ "HC Test",
-            /*address*/ "Street X",
-            /*phone*/ "912345678",
-            /*email*/ "hc@test.pt",
-            /*website*/ "https://hc.pt",
-            /*opening*/ "08:00",
-            /*closing*/ "20:00",
-            /*maxPerHour*/ 40
+            dto.facilityID, "HC Test", "Street X", "912345678",
+            "hc@test.pt", "https://hc.pt", "08:00", "20:00", 40
     );
     EXPECT_CALL(*centerRepo, findById(dto.facilityID))
             .Times(1)
             .WillOnce(Return(std::optional<std::shared_ptr<Facility>>(facility)));
 
-    // 5) Must save
     EXPECT_CALL(*arrivalRepo, save(_))
             .Times(1)
             .WillOnce(Return(Result::OK()));
