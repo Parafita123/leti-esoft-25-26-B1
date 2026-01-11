@@ -7,7 +7,8 @@ participant ":ConsultWaitingRoomController" as Ctrl
 participant ":App" as App
 participant "factory:RepositoryFactory" as Factory
 participant "service:WaitingRoomService" as Service
-participant "repo:WaitingRoomRepository" as Repo
+participant "repo:FacilityRepository" as FacilityRepo
+participant "repo:WaitingRoomRepository" as WRRepo
 participant "mapper:WaitingRoomMapper" as Mapper
 participant "UserDTO:UserDTO" as DTO
 participant "dtoList : List<UserDTO>" as ListDTO
@@ -22,8 +23,8 @@ App --> Ctrl: Factory
 Ctrl -> Factory: getVaccinationCenterRepository()
 Factory --> Ctrl: Repo
 
-Ctrl -> Repo: findAll()
-Repo --> Ctrl: facilities
+Ctrl -> FacilityRepo: findAll()
+FacilityRepo --> Ctrl: facilities
 Ctrl -> FacilityDtoList**: create(facilities)
 Ctrl --> View: facilityDtoList
 
@@ -41,8 +42,8 @@ App --> Ctrl: service
 
 '--- Lógica de Domínio e Critério de Aceitação (AC40-1) ---
 Ctrl -> Service: getWaitingRoomUsers()
-Service -> Repo: findAll()
-Repo --> Service: listUsers
+Service -> WRRepo: findAll()
+WRRepo --> Service: listUsers
 Service -> Service: sortByArrivalTime(listUsers)
 Service --> Service: ok
 Service --> Ctrl: sortedUsers
