@@ -48,8 +48,6 @@ class Vaccine_Type {
 
 class Vaccination_Appointment {
     -snsUserNumber
-    -facilityId
-    -vaccineId
     -date
     -time
     -status
