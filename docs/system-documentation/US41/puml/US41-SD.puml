@@ -1,64 +1,93 @@
 @startuml
-' Sequence Diagram for US41 – Record vaccine administration
+' US41 – Record vaccine administration (complete pattern like US21)
 autoactivate on
 autonumber
 
-actor "Nurse" as Nurse
+actor "Nurse" as User
 participant ":RecordVaccinationView" as View
-participant ":RecordVaccinationController" as Controller
+participant ":RecordVaccinationController" as Ctrl
 participant ":App" as App
-participant ":VaccinationProcessService" as Service
+
+participant "service:WaitingRoomService" as WaitingService
+participant "service:VaccinationProcessService" as ProcessService
+
 participant "factory:RepositoryFactory" as Factory
-participant ":WaitingRoomRepository" as WaitingRepo
-participant ":VaccinationProcessRepository" as ProcessRepo
-participant "obj:VaccinationProcess" as VaccinationProcess
+participant "repo:WaitingRoomRepository" as WaitingRepo
+participant "repo:VaccinationProcessRepository" as ProcessRepo
+participant "repo:VaccineRepository" as VaccineRepo
 
-activate Nurse
+participant "dto:RecordVaccinationDto" as Dto
+participant "proc:VaccinationProcess" as Process
+participant "result:Result" as Result
 
-' Nurse starts the process
-Nurse -> View: requests to record vaccine administration
-View --> Nurse: requests data (SNS user number, vaccine code, lot number)
-Nurse -> View: types SNS user number, vaccine code, lot number
+activate User
 
-' Send data to controller
-View -> Controller: recordVaccination(dto)
-Controller -> App: getVaccinationProcessService()
-App --> Controller: Service
-Controller -> Service: register(dto)
+' --- Start ---
+User -> View: asks to record vaccine administration
+View --> User: requests data (snsUserNumber, vaccineId/code, lotNumber)
+User -> View: types requested data
+View -> Ctrl: startRecord()
 
-' Obtain repositories
-Service -> Factory: getWaitingRoomRepository()
-Factory --> Service: WaitingRepo
-Service -> Factory: getVaccinationProcessRepository()
-Factory --> Service: ProcessRepo
+' --- (Optional) Get vaccines to select (pattern like US21) ---
+Ctrl -> App: getVaccineService()
+App -> Factory: getVaccineRepository()
+Factory --> App: vaccineRepo
+App --> "service:VaccineService"**: create(vaccineRepo)
+App --> Ctrl: vaccineService
 
-' Remove SNS user from waiting room
-Service -> WaitingRepo: removeSNSUser(dto.snsUserNumber)
-WaitingRepo --> Service: removed
+Ctrl -> "service:VaccineService": getAll()
+"service:VaccineService" -> VaccineRepo: getAll()
+VaccineRepo --> "service:VaccineService": vaccines
+"service:VaccineService" --> Ctrl: vaccines
 
+Ctrl -> "dtoList:List<VaccineDto>"**: create(vaccines)
+Ctrl --> View: vaccineDtoList
+View --> User: shows vaccines and requests selection
 
-' Ask for confirmation before persisting
-Service --> Controller: request confirmation
-Controller --> View: show all data and request confirmation
-View --> Nurse: shows all data for confirmation
-Nurse -> View: confirms data
-View -> Controller: confirmation received
-Controller -> Service: confirmRegistration()
+' --- User provides final data (selected vaccine + lot) ---
+User -> View: selects vaccine and provides lot number
+View -> Dto**: create(snsUserNumber, vaccineId/code, lotNumber)
+View -> Ctrl: register(dto)
 
-' Create and save vaccination process
-Service -> Service: createVaccinationProcess(dto)
-Service --> VaccinationProcess**: create(dto)
-activate VaccinationProcess
-VaccinationProcess --> Service: VaccinationProcess
-Service -> ProcessRepo: save(VaccinationProcess)
-ProcessRepo --> Service: result
+' --- Create services (same dependency injection pattern as US21) ---
+Ctrl -> App: getWaitingRoomService()
+App -> Factory: getWaitingRoomRepository()
+Factory --> App: waitingRepo
+App --> WaitingService**: create(waitingRepo)
+App --> Ctrl: waitingService
 
-' Assign SNS user to recovery room
-Service -> Service: assignToRecoveryRoom(dto.snsUserNumber)
+Ctrl -> App: getVaccinationProcessService()
+App -> Factory: getVaccinationProcessRepository()
+Factory --> App: processRepo
+App --> ProcessService**: create(processRepo)
+App --> Ctrl: processService
 
-' Return success
-Service --> Controller: Result(success)
-Controller --> View: Result(success)
-View --> Nurse: informs registration success
+' --- Domain rules (remove user from waiting room first) ---
+Ctrl -> WaitingService: removeSNSUser(dto.snsUserNumber)
+WaitingService -> WaitingRepo: removeSNSUser(dto.snsUserNumber)
+WaitingRepo --> WaitingService: removed
+WaitingService --> Ctrl: ok
+
+' --- Ask confirmation (like your flow) ---
+Ctrl --> View: show all data and request confirmation
+View --> User: shows all data for confirmation
+User -> View: confirms
+View -> Ctrl: confirmRegistration()
+
+' --- Create and persist vaccination process ---
+Ctrl -> ProcessService: create(dto)
+ProcessService --> Process**: create(dto)
+ProcessService -> ProcessService: validate(proc)
+ProcessService --> ProcessService: ok
+ProcessService -> ProcessRepo: save(proc)
+ProcessRepo --> ProcessService: result
+
+' --- Post actions (assign to recovery room) ---
+ProcessService -> ProcessService: assignToRecoveryRoom(dto.snsUserNumber)
+ProcessService --> ProcessService: ok
+
+ProcessService --> Ctrl: result(ok)
+Ctrl --> View: result(ok)
+View --> User: informs operation success
 
 @enduml

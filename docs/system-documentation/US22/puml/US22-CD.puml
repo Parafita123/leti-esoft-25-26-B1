@@ -12,12 +12,19 @@ class UserArrivalDTO {
     - int sns_user_number
 }
 
+class UserDTO {
+}
+
+class ListFacilityDTO {
+    - facilitylist
+}
 ' ===== UI Layer =====
 class RegisterUserArrivalView {
     + void show()
 }
 
 class RegisterUserArrivalController {
+    + listFacilities()
     + Result registerArrival(UserArrivalDTO dto)
     + vector<Facility> listFacilities()
     + getSNSUserSummary(snsNumber): optional<SNSUser>
@@ -31,7 +38,8 @@ class App {
 
 RegisterUserArrivalView ..> RegisterUserArrivalController
 RegisterUserArrivalController ..> UserArrivalDTO
-
+RegisterUserArrivalController ..> UserDTO
+RegisterUserArrivalController ..> ListFacilityDTO
 ' ===== Service Layer =====
 class UserArrivalService {
     + Result registerArrival(UserArrivalDTO dto)
@@ -40,8 +48,6 @@ class UserArrivalService {
 }
 
 RegisterUserArrivalController ..> UserArrivalService
-
-' ===== Repository Interfaces =====
 
 interface UserArrivalRepository <<interface>> {
     + Result save(shared_ptr<UserArrival>)
@@ -52,10 +58,9 @@ interface UserArrivalRepository <<interface>> {
 interface VaccinationCenterRepository <<interface>> {
   +virtual Result save(std::shared_ptr<Facility> obj)
   +virtual ~VaccinationCenterRepository() = default
+  +findAll()
 }
 
-
-' ===== Concrete Repositories (Memory) =====
     class UserArrivalMemoryRepository{
     + vector<shared_ptr<UserArrival>> data
 }
@@ -67,11 +72,11 @@ interface VaccinationCenterRepository <<interface>> {
       + existsByEmail(email : string) : bool
       + existsByCitizenCardNumber(cc : string) : bool
       + existsBySNSUserNumber(number : string) : bool
+      + findBySNSUserNumber(sns_user_number)
     }
 
 UserArrivalMemoryRepository .up.|> UserArrivalRepository
 
-' ===== Repository Factory =====
 interface RepositoryFactory <<interface>>  {
      + virtual std::shared_ptr<VaccinationCenterRepository> getVaccinationCenterRepository() = 0;
      + virtual shared_ptr<UserArrivalRepository> getUserArrivalRepository() = 0;
@@ -95,7 +100,6 @@ UserArrivalService ..> SNSUserRepository
 MemoryRepositoryFactory .up.|> RepositoryFactory
 MemoryRepositoryFactory .right.> UserArrivalMemoryRepository
 
-' ===== Domain Model =====
  abstract class UserArrival {
     - time_point arrival_time
     - shared_ptr<SNSUser> user

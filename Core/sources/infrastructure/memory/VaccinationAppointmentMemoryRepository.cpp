@@ -13,3 +13,13 @@ bool VaccinationAppointmentMemoryRepository::existsForDay(const std::string& sns
 void VaccinationAppointmentMemoryRepository::seed(const std::string& snsUserNumber, int facilityId, const std::string& day) {
     data.push_back({snsUserNumber, facilityId, day});
 }
+
+void VaccinationAppointmentMemoryRepository::save(
+        const VaccinationAppointment& appointment) {
+    appointments.push_back(appointment);
+}
+
+std::vector<VaccinationAppointment>
+VaccinationAppointmentMemoryRepository::findAll() const {
+    return appointments;
+}
