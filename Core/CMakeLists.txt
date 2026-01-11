@@ -108,6 +108,7 @@ add_library(Core
         headers/domain/DTO/Mapper/WaitingRoomMapper.h
         sources/controllers/ui/ConsultWaitingRoomController.cpp
         headers/controllers/ui/ConsultWaitingRoomController.h
+        ../ConsoleApp/headers/views/RegisterUserArrivalView.h
 
 )
 

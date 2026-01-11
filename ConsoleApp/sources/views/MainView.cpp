@@ -8,6 +8,8 @@
 #include "../Core/headers/controllers/ui/ListEmployeesByRoleController.h"
 #include "../ConsoleApp/headers/views/ListEmployeesByRoleView.h"
 #include "../Core/headers/controllers/ui/App.h"
+#include "../Core/headers/controllers/ui/RegisterUserArrivalController.h"
+#include "../ConsoleApp/headers/views/RegisterUserArrivalView.h"
 
 // US20 - Register SNS user
 #include "../Core/headers/controllers/ui/RegisterSNSUserController.h"
@@ -37,6 +39,7 @@ void MainView::showMenu() const {
     std::cout << "5 - Register a vaccination center" << std::endl;
     std::cout << "6 - Record vaccine administration" << std::endl; // US41
     std::cout << "7 - View waiting room list" << std::endl;
+    std::cout << "8 - Register SNS user arrival" << std::endl; // US22
     std::cout << "0 - Exit" << std::endl;
     std::cout << "Choose an option: ";
 }
@@ -108,6 +111,14 @@ void MainView::handleOption(int option) {
         view.run();
         break;
         }
+        case 8: {
+            // US22 - Register SNS user arrival
+            RegisterUserArrivalController controller(app);
+            RegisterUserArrivalView view(controller);
+            view.show();
+            break;
+        }
+
         case 0:
             std::cout << "Exiting application..." << std::endl;
             break;

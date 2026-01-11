@@ -12,7 +12,8 @@ add_subdirectory(CoreTests)
 enable_testing()
 
 # Executável da consola (MainView)
-add_executable(app_console main.cpp)
+add_executable(app_console main.cpp
+        ConsoleApp/headers/views/RegisterUserArrivalView.h)
 target_link_libraries(app_console PRIVATE Core ConsoleAppLib)
 
 
