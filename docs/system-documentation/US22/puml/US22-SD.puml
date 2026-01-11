@@ -13,6 +13,7 @@ activate recep
 
 participant "factory:RepositoryFactory" as repofact
 participant "service:UserArrivalService" as service
+participant "service:SNSUserService" as service1
 participant "vcr:VaccinationCenterRepository" as vaccentrepo
 participant "sr:SNSUserRepository" as userrepo
 participant "uar:UserArrivalRepository" as arrvlrepo
@@ -47,14 +48,14 @@ controller -> app: getRepositoryFactory()
 app --> controller: repofact
 app -> repofact: getSNSUserRepository()
 repofact --> app: userrepo
-app --> service**: create(userrepo)
+app --> service: create(userrepo)
 app --> controller: userrepo
 controller -> userrepo: findBySNSUserNumber(sns_user_number)
 userrepo --> controller: user
 controller -> userdto**: create(user)
 controller --> View: userdto
 
-View -> View: prepares arrival data
+View --> View: prepares arrival data
 View --> recep: asks for confirmation
 recep -> View: confirms data
 
@@ -71,9 +72,7 @@ repofact --> controller: vaccentrepo
 
 controller -> service: UserArrivalService(arrvlrepo, userrepo, vaccentrepo)
 
-controller -> service: registerArrival(DTO)
-
-service -> service: day = getCurrentDate()
+service --> service: day = getCurrentDate()
 service -> userrepo: findBySNSUserNumber(DTO.sns_user_number)
 userrepo --> service: user
 service -> vaccentrepo: findById(DTO.facilityId)
@@ -85,7 +84,7 @@ service -> arrival: UserArrival(now, user, facility)
 service -> arrvlrepo: save(arrival)
 arrvlrepo --> service: Result OK
 
-service -> service: assigns SNS_User to waiting_room (implicit)
+service --> service: assigns SNS_User to waiting_room (implicit)
 service --> controller: Result OK
 controller --> View: Result OK
 View --> recep: informs success of the operation
