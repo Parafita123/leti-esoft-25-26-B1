@@ -8,6 +8,8 @@
 #pragma once
 
 #include <string>
+#include "headers/domain/model/vaccinationAppointment.h"
+#include <vector>
 
 class VaccinationAppointmentRepository {
 public:
@@ -17,6 +19,11 @@ public:
     virtual bool existsForDay(const std::string& snsUserNumber,
                               int facilityID,
                               const std::string& day) = 0;
+
+
+    virtual void save(const VaccinationAppointment& appointment) = 0;
+    virtual std::vector<VaccinationAppointment> findAll() const = 0;
+
 };
 
 
