@@ -32,8 +32,10 @@ app -> repofact: getVaccinationCenterRepository()
 repofact --> app: vaccentrepo
 app --> service**: create(vaccentrepo)
 app --> controller: vaccentrepo
-controller -> vaccentrepo: findAll()
-vaccentrepo --> controller: facilities
+controller -> service: findAll()
+service -> vaccentrepo: findAll()
+vaccentrepo --> service: facilities
+service --> controller: facilities
 controller -> FacilityDtoList**: create(facilities)
 controller --> View: facilityDtoList
 
@@ -50,8 +52,10 @@ app -> repofact: getSNSUserRepository()
 repofact --> app: userrepo
 app --> service: create(userrepo)
 app --> controller: userrepo
-controller -> userrepo: findBySNSUserNumber(sns_user_number)
-userrepo --> controller: user
+controller -> service: findBySNSUserNumber(sns_user_number)
+service -> userrepo: findBySNSUserNumber(sns_user_number)
+userrepo --> service: user
+service --> controller: user
 controller -> userdto**: create(user)
 controller --> View: userdto
 
@@ -79,7 +83,7 @@ service -> vaccentrepo: findById(DTO.facilityId)
 vaccentrepo --> service: facility
 
 create arrival
-service -> arrival: UserArrival(now, user, facility)
+service --> arrival: UserArrival(now, user, facility)
 
 service -> arrvlrepo: save(arrival)
 arrvlrepo --> service: Result OK
