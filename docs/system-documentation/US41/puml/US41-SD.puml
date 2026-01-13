@@ -24,8 +24,6 @@ activate User
 
 ' --- Start ---
 User -> View: asks to record vaccine administration
-View --> User: requests data (snsUserNumber, vaccineId/code, lotNumber)
-User -> View: types requested data
 View -> Ctrl: startRecord()
 
 ' --- (Optional) Get vaccines to select (pattern like US21) ---
@@ -42,10 +40,11 @@ VaccineRepo --> "service:VaccineService": vaccines
 
 Ctrl -> "dtoList:List<VaccineDto>"**: create(vaccines)
 Ctrl --> View: vaccineDtoList
-View --> User: shows vaccines and requests selection
+View --> User: shows vaccines and requests data (snsUserNumber, vaccineId/code, lotNumber)
 
 ' --- User provides final data (selected vaccine + lot) ---
-User -> View: selects vaccine and provides lot number
+
+User -> View: types requested data
 View -> Dto**: create(snsUserNumber, vaccineId/code, lotNumber)
 View -> Ctrl: register(dto)
 
