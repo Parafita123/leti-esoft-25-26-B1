@@ -18,7 +18,7 @@ participant "repo:VaccineRepository" as VaccineRepo
 
 participant "dto:RecordVaccinationDto" as Dto
 participant "proc:VaccinationProcess" as Process
-participant "result:Result" as Result
+
 
 activate User
 
